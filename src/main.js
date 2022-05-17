@@ -5,11 +5,13 @@ import Toaster from '@meforma/vue-toaster'
 import VueCookies from 'vue-cookies'
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-// Import das Stores
+// Import das Stores - Vuex
 import colaboradoresStore from './store/colaboradoresStore'
 import emprestimoStore from './store/emprestimoStore'
 import inventarioStore from './store/inventarioStore'
 import itensStore from './store/itensStore'
+
+// Import das Views - Vue-router
 
 // Declarando módulos das Stores
 const store = createStore({
@@ -24,7 +26,7 @@ const store = createStore({
 // Definição das rotas
 
 const routes = [
-    
+
 ]
 
 // Declarando rotas no Router
