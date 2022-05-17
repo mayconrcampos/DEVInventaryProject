@@ -32,7 +32,7 @@
           </div>
 
           <button id="btnsubmit" type="submit">
-            <i class="fa-solid fa-lock-open"></i> Entrar
+            <i class="fa-solid fa-lock-open"></i> <router-link to="/menu" id="rlinkentrar">Entrar</router-link>
           </button>
           <button id="btngoogle" type="submit">
             <i class="fa-brands fa-google"></i> Entrar com Google
@@ -62,6 +62,10 @@ export default {
 </script>
 
 <style>
+#rlinkentrar {
+    text-decoration: none;
+    color: #e7e7e7;
+}
 #btnsubmit {
   width: 200px;
   border: 0;

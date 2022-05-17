@@ -15,5 +15,9 @@ export default {
 </script>
 
 <style>
-
+body{
+  padding: 0;
+  top: 0;
+  
+}
 </style>
