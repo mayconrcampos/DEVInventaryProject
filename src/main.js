@@ -4,6 +4,7 @@ import { createStore } from 'vuex'
 import Toaster from '@meforma/vue-toaster'
 import VueCookies from 'vue-cookies'
 import { createRouter, createWebHashHistory } from 'vue-router'
+import VueGravatar from "vue3-gravatar"
 
 // Import das Stores - Vuex
 import colaboradoresStore from './store/colaboradoresStore'
@@ -40,5 +41,6 @@ createApp(App)
     .use(store)
     .use(Toaster)
     .use(router)
+    .use(VueGravatar)
     .use(VueCookies)
     .mount('#app')
