@@ -1,5 +1,5 @@
 
-export default createStore({
+export default {
   state: {
     
   },
@@ -9,4 +9,4 @@ export default createStore({
   actions: {
   },
 
-})
+}
