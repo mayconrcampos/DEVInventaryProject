@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-5">
-    <main class="form-signin border p-3 rounded">
+    <main class="form-signin p-3 rounded">
       <div class="container w-100 m-auto text-center">
         <img
           class="img img-fluid w-50"
@@ -31,12 +31,12 @@
             <label for="floatingPassword">Senha</label>
           </div>
 
-          <button id="btnsubmit" type="submit">Entrar</button>
+          <button id="btnsubmit" type="submit"><i class="fa-solid fa-lock-open"></i> Entrar</button>
           <button id="btngoogle" type="submit"><i class="fa-brands fa-google"></i> Entrar com Google</button>
           <hr>
           <div class="container">
               <small>Não possui uma conta?</small>
-              <button href="#" id="btncriarconta">Criar conta</button>
+              <button href="#" id="btncriarconta"><i class="fa-solid fa-circle-plus"></i> Criar conta</button>
           </div>
           <p class="mt-5 mb-3 text-muted text-center">© Maycon R Campos - SENAI DEVinHouse[ConectaNuvem] - Maio de 2022</p>
         </form>
@@ -80,7 +80,6 @@ export default {
     margin-top: 40px;
 }
 #btncriarconta {
-    border: 1px solid black;
     width: 200px;
     border: 0;
     padding: 5px;
