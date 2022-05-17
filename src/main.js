@@ -13,6 +13,7 @@ import inventarioStore from './store/inventarioStore'
 import itensStore from './store/itensStore'
 
 // Import das Views - Vue-router
+import error404 from "./views/default/error404.vue"
 
 // Declarando módulos das Stores
 const store = createStore({
@@ -27,7 +28,7 @@ const store = createStore({
 // Definição das rotas
 
 const routes = [
-
+    { path: "/:pathMatch(.*)", component: error404 }
 ]
 
 // Declarando rotas no Router
