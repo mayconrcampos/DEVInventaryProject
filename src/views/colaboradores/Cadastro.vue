@@ -105,7 +105,6 @@ export default {
 
 <style scoped>
 #cadastro {
-    display: block;
     height: 100%;
     overflow-y: scroll;
 }

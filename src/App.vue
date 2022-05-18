@@ -38,4 +38,11 @@ body {
   bottom: 0;
   top: 0;
 }
+
+@media (max-width: 650px){
+  #pai {
+    display: block;
+    overflow-y: scroll;
+  }
+}
 </style>
