@@ -17,6 +17,7 @@ import error404 from "./views/default/error404.vue"
 import Login from "./views/user/Login.vue"
 import Menu from "./views/layout/Menu.vue"
 import Cadastro from "./views/colaboradores/Cadastro.vue"
+import Inventario from "./views/produtos/Inventario.vue"
 
 // Declarando módulos das Stores
 const store = createStore({
@@ -35,8 +36,10 @@ const routes = [
     { path: "/user/login", component: Login },
     { path: "/:pathMatch(.*)", component: error404 },
 
-    { path: "/menu", component: Menu, children: [
-        { path: "colabs/add", component: Cadastro }
+    {
+        path: "/menu", component: Menu, children: [
+            { path: "colabs/add", component: Cadastro },
+            { path: "geral/inventario", component: Inventario }
         ]
     }
 ]

@@ -32,7 +32,7 @@
           </div>
 
           <button id="btnsubmit" type="submit">
-            <i class="fa-solid fa-lock-open"></i> <router-link to="/menu" id="rlinkentrar">Entrar</router-link>
+            <i class="fa-solid fa-lock-open"></i> <router-link to="/menu/geral/inventario" id="rlinkentrar">Entrar</router-link>
           </button>
           <button id="btngoogle" type="submit">
             <i class="fa-brands fa-google"></i> Entrar com Google

@@ -25,7 +25,7 @@
       <ul class="nav nav-pills flex-column mb-auto">
         <label class="text-white mt-4 lbls">Geral</label>
         <li class="nav-item">
-          <router-link to="/home" class="nav-link" aria-current="page">
+          <router-link to="/menu/geral/inventario" class="nav-link" aria-current="page">
             <i class="fa-solid fa-chart-column me-3"></i> INVENTÁRIO
           </router-link>
         </li>
