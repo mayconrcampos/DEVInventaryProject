@@ -30,7 +30,7 @@
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/home" class="nav-link" aria-current="page">
+          <router-link to="/" class="nav-link" aria-current="page">
             <i class="fa-solid fa-arrow-right-from-bracket me-3"></i> SAIR
           </router-link>
         </li>
@@ -42,19 +42,19 @@
           </router-link>
         </li>
         <li>
-          <router-link to="/dashboard" class="nav-link">
+          <router-link to="/" class="nav-link">
             <i class="fa-solid fa-align-justify me-3"></i> LISTAR
           </router-link>
         </li>
 
         <label class="text-white mt-4 lbls">Produtos</label>
         <li>
-          <router-link to="" class="nav-link">
+          <router-link to="/" class="nav-link">
             <i class="fa-solid fa-circle-plus me-3"></i> CADASTRAR
           </router-link>
         </li>
         <li>
-          <router-link to="/dashboard" class="nav-link">
+          <router-link to="/" class="nav-link">
             <i class="fa-solid fa-cart-minus me-3"></i> EMPRÉSTIMO
           </router-link>
         </li>
