@@ -71,7 +71,7 @@ export default {
   border: 0;
   padding: 5px;
   border-radius: 5px;
-  background-color: #1f4794;
+  background-color: #143168;
   color: white;
   font-size: 1em;
   margin-top: 10px;
@@ -110,7 +110,7 @@ export default {
     border: 0;
     padding: 5px;
     border-radius: 5px;
-    background-color: #1f4794;
+    background-color: #143168;
     color: white;
     font-size: 0.9em;
     margin-top: 10px;
@@ -150,7 +150,7 @@ export default {
     border: 0;
     padding: 5px;
     border-radius: 5px;
-    background-color: #1f4794;
+    background-color: #143168;
     color: white;
     font-size: 0.6em;
     margin-top: 10px;

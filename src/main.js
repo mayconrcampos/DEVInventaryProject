@@ -16,6 +16,7 @@ import itensStore from './store/itensStore'
 import error404 from "./views/default/error404.vue"
 import Login from "./views/user/Login.vue"
 import Menu from "./views/layout/Menu.vue"
+import Cadastro from "./views/colaboradores/Cadastro.vue"
 
 // Declarando módulos das Stores
 const store = createStore({
@@ -30,10 +31,13 @@ const store = createStore({
 // Definição das rotas
 
 const routes = [
-    { path: "/", redirect: "/login" },
-    { path: "/login", component: Login },
+    { path: "/", redirect: "/user/login" },
+    { path: "/user/login", component: Login },
     { path: "/:pathMatch(.*)", component: error404 },
-    { path: "/menu", component: Menu }
+    { path: "/menu", component: Menu, children: [
+        { path: "colabs/cadastro", componente: Cadastro }
+    ]
+}
 ]
 
 // Declarando rotas no Router
