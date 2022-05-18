@@ -34,10 +34,11 @@ const routes = [
     { path: "/", redirect: "/user/login" },
     { path: "/user/login", component: Login },
     { path: "/:pathMatch(.*)", component: error404 },
+
     { path: "/menu", component: Menu, children: [
-        { path: "colabs/cadastro", componente: Cadastro }
-    ]
-}
+        { path: "colabs/add", component: Cadastro }
+        ]
+    }
 ]
 
 // Declarando rotas no Router

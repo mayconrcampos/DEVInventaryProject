@@ -55,13 +55,13 @@
         <li>
           <router-link to="/dashboard" class="nav-link ">
             
-            <i class="fa-solid fa-align-justify me-3"></i> CADASTRAR
+            <i class="fa-solid fa-circle-plus me-3"></i> CADASTRAR
           </router-link>
         </li>
         <li>
           <router-link to="/dashboard" class="nav-link ">
             
-            <i class="fa-solid fa-align-justify me-3"></i> EMPRÉSTIMO
+            <i class="fa-solid fa-cart-minus me-3"></i> EMPRÉSTIMO
           </router-link>
         </li>
         
