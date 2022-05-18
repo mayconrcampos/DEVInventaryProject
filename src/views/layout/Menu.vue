@@ -39,7 +39,7 @@
 
         <label class="text-white mt-4">Colaboradores</label>
         <li>
-          <router-link to="/dashboard" class="nav-link ">
+          <router-link to="/menu/colabs/add" class="nav-link ">
             
             <i class="fa-solid fa-users me-3"></i> CADASTRAR
           </router-link>
@@ -53,7 +53,7 @@
 
         <label class="text-white mt-4">Produtos</label>
         <li>
-          <router-link to="/dashboard" class="nav-link ">
+          <router-link to="" class="nav-link ">
             
             <i class="fa-solid fa-circle-plus me-3"></i> CADASTRAR
           </router-link>
@@ -66,35 +66,9 @@
         </li>
         
       </ul>
-      <hr />
+      
 
-      <div class="dropdown">
-        <a
-          href="#"
-          class="d-flex align-items-center text-decoration-none dropdown-toggle"
-          id="dropdownUser1"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <strong><i class="fa-solid fa-users"></i> Usuarios</strong>
-        </a>
-        <ul
-          class="dropdown-menu text-small shadow"
-          aria-labelledby="dropdownUser1"
-          id="dropdownlist"
-        >
-          <li>
-            <router-link class="dropdown-item" to="/register"
-              >Register</router-link
-            >
-          </li>
-          <li>
-            <router-link class="dropdown-item" to="/login">Login</router-link>
-          </li>
-          <li><hr class="dropdown-divider" /></li>
-          <!---<li><a class="dropdown-item" @click="deslogar()" href="#">Sign out</a></li>---->
-        </ul>
-      </div>
+      
     </div>
 
     <div id="containercontent">
@@ -114,11 +88,15 @@ export default {
 <style scoped>
 #containercontent {
   width: 100%;
+  display: block;
+
+  
 }
 #div {
   height: 100% !important;
   background-color: #143168 !important;
   color: antiquewhite !important;
+  
 }
 #div ul li {
     margin-top: 10px;
