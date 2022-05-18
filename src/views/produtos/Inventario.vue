@@ -107,54 +107,261 @@
           </div>
         </div>
 
+        <!-------- Cards de produtos --------->
+
         <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
-          <div class="col">
+          <!--- Colunas---->
+          
+
+          <div class="col rounded shadow">
             <div class="card h-100">
-              <img src="" class="card-img-top" alt="..." />
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title h-50 text-center">
+                  <img
+                    id="img"
+                    class="img-fluid mt-2"
+                    src="https://m.media-amazon.com/images/I/71+KVFmyssS._AC_SL1500_.jpg"
+                  />
+                </h5>
                 <p class="card-text">
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
+                  <small>Notebook Samsung Book I5 8GB 512GB SSD 15.6</small><br />
                 </p>
+                <div class="card-text">
+                  <span class="text-secondary"
+                    ><strong>Samsung</strong></span
+                  >
+                  <h5>Notebook</h5>
+                </div>
               </div>
-              <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
+              <div class="card-footer text-center">
+                <button class="btn btnstatusnaempresa">Na empresa</button>
               </div>
             </div>
           </div>
-          <div class="col">
+
+          
+
+          
+
+          <div class="col rounded shadow">
             <div class="card h-100">
-              <img src="" class="card-img-top" alt="..." />
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title h-50 text-center">
+                  <img
+                    id="img"
+                    class="img-fluid mt-2"
+                    src="https://http2.mlstatic.com/D_NQ_NP_2X_743539-MLA43295550332_082020-F.webp"
+                  />
+                </h5>
                 <p class="card-text">
-                  This card has supporting text below as a natural lead-in to
-                  additional content.
+                  <small>Multilaser MO251 - Mouse Sem Fio</small><br />
                 </p>
+                <div class="card-text">
+                  <span class="text-secondary"
+                    ><strong>Multilaser</strong></span
+                  >
+                  <h5>Mouse</h5>
+                </div>
               </div>
-              <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
+              <div class="card-footer text-center">
+                <button class="btn btnstatusnaempresa">Na empresa</button>
               </div>
             </div>
           </div>
-          <div class="col">
+
+          <div class="col rounded shadow">
             <div class="card h-100">
-              <img src="" class="card-img-top" alt="..." />
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title h-50 text-center">
+                  <img
+                    id="img"
+                    class="img-fluid mt-2"
+                    src="https://http2.mlstatic.com/D_NQ_NP_2X_826537-MLA43977268687_112020-F.webp"
+                  />
+                </h5>
                 <p class="card-text">
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This card has even longer
-                  content than the first to show that equal height action.
+                  <small>Teclado sem fio Logitech K270 QWERTY</small><br />
                 </p>
+                <div class="card-text">
+                  <span class="text-secondary"
+                    ><strong>Logitech</strong></span
+                  >
+                  <h5>Teclado</h5>
+                </div>
               </div>
-              <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
+              <div class="card-footer text-center">
+                <button class="btn btnstatusemprestado">Nome Colaborador</button>
               </div>
             </div>
           </div>
+
+          <div class="col rounded shadow">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title h-50 text-center">
+                  <img
+                    id="img"
+                    class="img-fluid mt-2"
+                    src="https://m.media-amazon.com/images/I/71+KVFmyssS._AC_SL1500_.jpg"
+                  />
+                </h5>
+                <p class="card-text">
+                  <small>Notebook Samsung Book I5 8GB 512GB SSD 15.6</small><br />
+                </p>
+                <div class="card-text">
+                  <span class="text-secondary"
+                    ><strong>Samsung</strong></span
+                  >
+                  <h5>Notebook</h5>
+                </div>
+              </div>
+              <div class="card-footer text-center">
+                <button class="btn btnstatusnaempresa">Na empresa</button>
+              </div>
+            </div>
+          </div>
+
+          
+
+          
+
+          <div class="col rounded shadow">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title h-50 text-center">
+                  <img
+                    id="img"
+                    class="img-fluid mt-2"
+                    src="https://http2.mlstatic.com/D_NQ_NP_2X_743539-MLA43295550332_082020-F.webp"
+                  />
+                </h5>
+                <p class="card-text">
+                  <small>Multilaser MO251 - Mouse Sem Fio</small><br />
+                </p>
+                <div class="card-text">
+                  <span class="text-secondary"
+                    ><strong>Multilaser</strong></span
+                  >
+                  <h5>Mouse</h5>
+                </div>
+              </div>
+              <div class="card-footer text-center">
+                <button class="btn btnstatusnaempresa">Na empresa</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col rounded shadow">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title h-50 text-center">
+                  <img
+                    id="img"
+                    class="img-fluid mt-2"
+                    src="https://http2.mlstatic.com/D_NQ_NP_2X_826537-MLA43977268687_112020-F.webp"
+                  />
+                </h5>
+                <p class="card-text">
+                  <small>Teclado sem fio Logitech K270 QWERTY</small><br />
+                </p>
+                <div class="card-text">
+                  <span class="text-secondary"
+                    ><strong>Logitech</strong></span
+                  >
+                  <h5>Teclado</h5>
+                </div>
+              </div>
+              <div class="card-footer text-center">
+                <button class="btn btnstatusemprestado">Nome Colaborador</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col rounded shadow">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title h-50 text-center">
+                  <img
+                    id="img"
+                    class="img-fluid mt-2"
+                    src="https://m.media-amazon.com/images/I/71+KVFmyssS._AC_SL1500_.jpg"
+                  />
+                </h5>
+                <p class="card-text">
+                  <small>Notebook Samsung Book I5 8GB 512GB SSD 15.6</small><br />
+                </p>
+                <div class="card-text">
+                  <span class="text-secondary"
+                    ><strong>Samsung</strong></span
+                  >
+                  <h5>Notebook</h5>
+                </div>
+              </div>
+              <div class="card-footer text-center">
+                <button class="btn btnstatusnaempresa">Na empresa</button>
+              </div>
+            </div>
+          </div>
+
+          
+
+          
+
+          <div class="col rounded shadow">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title h-50 text-center">
+                  <img
+                    id="img"
+                    class="img-fluid mt-2"
+                    src="https://http2.mlstatic.com/D_NQ_NP_2X_743539-MLA43295550332_082020-F.webp"
+                  />
+                </h5>
+                <p class="card-text">
+                  <small>Multilaser MO251 - Mouse Sem Fio</small><br />
+                </p>
+                <div class="card-text">
+                  <span class="text-secondary"
+                    ><strong>Multilaser</strong></span
+                  >
+                  <h5>Mouse</h5>
+                </div>
+              </div>
+              <div class="card-footer text-center">
+                <button class="btn btnstatusnaempresa">Na empresa</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col rounded shadow">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title h-50 text-center">
+                  <img
+                    id="img"
+                    class="img-fluid mt-2"
+                    src="https://http2.mlstatic.com/D_NQ_NP_2X_826537-MLA43977268687_112020-F.webp"
+                  />
+                </h5>
+                <p class="card-text">
+                  <small>Teclado sem fio Logitech K270 QWERTY</small><br />
+                </p>
+                <div class="card-text">
+                  <span class="text-secondary"
+                    ><strong>Logitech</strong></span
+                  >
+                  <h5>Teclado</h5>
+                </div>
+              </div>
+              <div class="card-footer text-center">
+                <button class="btn btnstatusemprestado">Nome Colaborador</button>
+              </div>
+            </div>
+          </div>
+
+          
+
+          
         </div>
       </div>
     </div>
@@ -175,5 +382,26 @@ export default {
 nav {
   background-color: #143168;
   color: aliceblue;
+}
+.btnstatusnaempresa {
+  border-radius: 10px !important;
+  background-color: #4caf50;
+  padding: 3px;
+  font-size: small;
+  color: white;
+  font-weight: bold;
+  width: 80%;
+}
+.btnstatusemprestado {
+  border-radius: 10px !important;
+  background-color: #f9a825;
+  padding: 3px;
+  font-size: small;
+  color: white;
+  font-weight: bold;
+  width: 80%;
+}
+#img {
+  max-height: 100%;
 }
 </style>
