@@ -47,7 +47,7 @@
                   fs-1
                 "
               >
-                <i class="fa-solid fa-cabinet-filing"></i> 30
+                <i class="fa-solid fa-cabinet-filing"></i> 59
               </h2>
               <h6 class="card-subtitle mb-2 text-muted text-center">Itens</h6>
             </div>
@@ -65,7 +65,7 @@
                   fs-1
                 "
               >
-                <i class="fa-solid fa-brazilian-real-sign"></i> 30
+                <i class="fa-solid fa-brazilian-real-sign"></i> 25.9k
               </h2>
               <h6 class="card-subtitle mb-2 text-muted text-center">
                 Valor em Produtos
@@ -85,7 +85,7 @@
                   fs-1
                 "
               >
-                <i class="fa-solid fa-boxes-stacked"></i> 30
+                <i class="fa-solid fa-boxes-stacked"></i> 70
               </h2>
               <h6 class="card-subtitle mb-2 text-muted text-center">
                 Empréstimos
@@ -107,7 +107,7 @@
           </div>
         </div>
 
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
           <div class="col">
             <div class="card h-100">
               <img src="" class="card-img-top" alt="..." />
