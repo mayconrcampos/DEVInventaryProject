@@ -1,16 +1,16 @@
 <template>
-  <div id="divpai" class="container mt-5">
-    <main class="row text-center p-5">
-      <div class="col-lg-6 justify-content-center p-5">
+  <div id="divpai" class="container">
+    <main class="row text-center d-flex flex-row justify-content-center w-100">
+      <div class="col-lg-6 mt-5">
         <img
-          class="img img-fluid w-100 mt-5"
+          class="img img-fluid w-75 mt-5"
           src="../../assets/inventarylogo.png"
           alt="DEVinventary"
         />
       </div>
 
       <div class="col-lg-6 mt-5 mb-5">
-        <form class="w-50 m-auto">
+        <form class="w-75 m-auto">
           <h1 id="titulologin">Login</h1>
 
           <div class="form-floating">
@@ -72,15 +72,13 @@ export default {
 </script>
 
 <style scoped>
-#divpai {
-  overflow-y: scroll;
-}
+
 #rlinkentrar {
   text-decoration: none;
   color: #e7e7e7;
 }
 #btnsubmit {
-  width: 200px;
+  width: 100%;
   border: 0;
   padding: 5px;
   border-radius: 5px;
@@ -91,7 +89,7 @@ export default {
   margin-right: 10px;
 }
 #btngoogle {
-  width: 200px;
+  width: 100%;
   border: 0;
   padding: 5px;
   border-radius: 5px;
@@ -106,10 +104,15 @@ export default {
   font-weight: bold;
   margin-top: 40px;
 }
+#btncriarconta:hover {
+  background-color: #696969;
+  color: #e7e7e7;
+  
+}
 #btncriarconta {
   width: 200px;
   border: 0;
-  padding: 5px;
+  padding: 8px;
   border-radius: 5px;
   background-color: #e7e7e7;
   color: black;
@@ -119,66 +122,21 @@ export default {
   text-decoration: none;
 }
 @media (max-width: 650px) {
-  #btnsubmit {
-    width: 60px;
-    border: 0;
-    padding: 5px;
-    border-radius: 5px;
-    background-color: #143168;
-    color: white;
-    font-size: 0.9em;
-    margin-top: 10px;
-    margin-right: 10px;
-  }
-  #btngoogle {
-    width: 133px;
-    border: 0;
-    padding: 6px;
-    border-radius: 5px;
-    background-color: #e7e7e7;
-    color: black;
-    font-size: 0.7em;
-    margin-top: 10px;
-  }
-  #containercriaconta {
-    display: flex !important;
-  }
-  #btncriarconta {
-    width: 100%;
-    border: 0;
-    padding: 5px;
-    border-radius: 5px;
-    background-color: #e7e7e7;
-    color: black;
-    font-size: 0.8em;
-    margin-top: 10px;
-  }
   #fraserodape {
     font-size: 0.7em;
   }
 }
 
 @media (max-width: 400px) {
-  #btnsubmit {
-    width: 80px;
-    border: 0;
-    padding: 5px;
-    border-radius: 5px;
-    background-color: #143168;
-    color: white;
-    font-size: 0.6em;
-    margin-top: 10px;
-    margin-right: 10px;
+  #divpai main div {
+    padding: 0;
   }
-  #btngoogle {
-    width: 120px;
-    border: 0;
-    padding: 6px;
-    border-radius: 5px;
-    background-color: #e7e7e7;
-    color: black;
+
+  #divpai main {
+    padding: 0;
+  }
+  #fraserodape {
     font-size: 0.6em;
-    margin-top: 10px;
   }
 }
 </style>
