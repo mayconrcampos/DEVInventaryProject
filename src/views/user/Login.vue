@@ -32,18 +32,21 @@
           </div>
 
           <button id="btnsubmit" type="submit">
-            <i class="fa-solid fa-lock-open"></i> <router-link to="/menu/geral/inventario" id="rlinkentrar">Entrar</router-link>
+            <i class="fa-solid fa-lock-open me-2"></i>
+            <router-link to="/menu/geral/inventario" id="rlinkentrar"
+              >Entrar</router-link
+            >
           </button>
-          <button id="btngoogle" type="submit">
-            <i class="fa-brands fa-google"></i> Entrar com Google
+          <button id="btngoogle" @click="aviso()">
+            <i class="fa-brands fa-google me-2"></i> Entrar com Google
           </button>
           <hr />
 
           <div id="containercriaconta" class="container">
             <small>Não possui uma conta?</small>
-            <button href="#" id="btncriarconta">
+            <router-link to="/menu/colabs/add" id="btncriarconta">
               <i class="fa-solid fa-circle-plus"></i> Criar conta
-            </button>
+            </router-link>
           </div>
 
           <p id="fraserodape" class="mt-5 mb-3 text-muted text-center">
@@ -52,19 +55,25 @@
         </form>
       </div>
     </main>
+ 
   </div>
 </template>
 
 <script>
 export default {
   name: "loGin",
+  methods: {
+    aviso(){
+      this.$toast.error("Funcionalidade não disponível.")
+    }
+  }
 };
 </script>
 
 <style>
 #rlinkentrar {
-    text-decoration: none;
-    color: #e7e7e7;
+  text-decoration: none;
+  color: #e7e7e7;
 }
 #btnsubmit {
   width: 200px;

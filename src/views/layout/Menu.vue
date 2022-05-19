@@ -25,7 +25,11 @@
       <ul class="nav nav-pills flex-column mb-auto">
         <label class="text-white mt-4 lbls">Geral</label>
         <li class="nav-item">
-          <router-link to="/menu/geral/inventario" class="nav-link" aria-current="page">
+          <router-link
+            to="/menu/geral/inventario"
+            class="nav-link"
+            aria-current="page"
+          >
             <i class="fa-solid fa-chart-column me-3"></i> INVENTÁRIO
           </router-link>
         </li>
@@ -63,7 +67,11 @@
 
     <div id="containercontent">
       <!--------- Conteúdo SPA Vue-router------------>
-      <router-view></router-view>
+      <router-view v-slot="{ Component }">
+        <transition name="fade">
+          <component :is="Component" />
+        </transition>
+      </router-view>
     </div>
   </div>
 </template>
@@ -103,17 +111,17 @@ ul li {
 }
 @media (max-width: 600px) {
   img {
-      display: none;
+    display: none;
   }
   .lbls {
-      display: none;
+    display: none;
   }
   #divmenu {
-      display: flex;
-      flex-direction: column;
-      overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
   }
-    
+
   #div {
     font-size: x-small;
     width: 100% !important;
@@ -148,5 +156,21 @@ ul li {
 
     font-size: small;
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+a:hover,
+a.router-link-active {
+  background-color: #fff;
+  color: #143168;
 }
 </style>
