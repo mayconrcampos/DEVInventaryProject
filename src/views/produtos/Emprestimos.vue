@@ -35,48 +35,45 @@
       </div>
 
       <div id="form" class="bg-white w-100 mt-4 p-4 rounded-2 shadow">
-        
         <!----------------------- THEAD TABLE ----------------------------->
-          <div class="row text-center">
-            <div class="col-lg-3">
-              <label class="col-form-label fs-5">Patrimônio</label>
-              
-            </div>
-            <div class="col-lg-3">
-              <label class="col-form-label fs-5">Título</label>
-             
-            </div>
-            <div class="col-lg-3">
-              <label class="col-form-label fs-5">Categoria</label>
-             
-            </div>
-            <div class="col-lg-3">
-              <label class="col-form-label fs-5">Emprestado para</label>
-            </div>
+        <div class="row text-center">
+          <div class="col-lg-3">
+            <label class="col-form-label fs-5">Patrimônio</label>
           </div>
-          <hr>
-        
-         <!----------------------- TBODY TABLE ----------------------------->
+          <div class="col-lg-3">
+            <label class="col-form-label fs-5">Título</label>
+          </div>
+          <div class="col-lg-3">
+            <label class="col-form-label fs-5">Categoria</label>
+          </div>
+          <div class="col-lg-3">
+            <label class="col-form-label fs-5">Emprestado para</label>
+          </div>
+        </div>
+        <hr />
 
-         <div class="row border rounded shadow text-center">
-            <div class="col-lg-3">
-              <label class="col-form-label fs-5">Código de Patrimônio</label>
-              
-            </div>
-            <div class="col-lg-3">
-              <label class="col-form-label fs-5">Título do Item</label>
-             
-            </div>
-            <div class="col-lg-3">
-              <label class="col-form-label fs-5">Categoria do Item</label>
-             
-            </div>
-            <div class="col-lg-3">
-              <label class="col-form-label fs-5">Categoria do Item</label>
-            </div>
+        <!----------------------- TBODY TABLE ----------------------------->
+
+        <div class="row border rounded shadow text-center">
+          <div class="col-lg-3">
+            <label class="col-form-label fs-5">011224</label>
           </div>
-        
-        
+          <div class="col-lg-3">
+            <label class="col-form-label fs-5">Mouse Óptico - Multilaser</label>
+          </div>
+          <div class="col-lg-3">
+            <label class="col-form-label fs-5">Logitech</label>
+          </div>
+          <div class="col-lg-3">
+            <label id="labeltableimg" class="col-form-label fs-5">Maycon R Campos 
+              <vue-gravatar
+              class="ms-2"
+                email="maycon.campos@gmail.com"
+                default="404"
+                alt="nobody"
+            /></label>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -108,6 +105,10 @@ nav {
   width: 100px;
 }
 #gravatar img {
+  width: 30px !important;
+  border-radius: 50% !important;
+}
+#labeltableimg img {
   width: 30px !important;
   border-radius: 50% !important;
 }
