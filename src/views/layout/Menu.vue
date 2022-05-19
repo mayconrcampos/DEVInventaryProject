@@ -68,7 +68,10 @@
     <div id="containercontent">
       <!--------- Conteúdo SPA Vue-router------------>
       <router-view v-slot="{ Component }">
-        <transition name="fade">
+        <transition
+          name="fade"
+          mode="in-out"
+        >
           <component :is="Component" />
         </transition>
       </router-view>
@@ -160,7 +163,7 @@ ul li {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.3s ease;
+  transition: opacity 0.1s ease;
 }
 
 .fade-enter-from,

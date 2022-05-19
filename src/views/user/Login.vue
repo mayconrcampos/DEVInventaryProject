@@ -1,14 +1,15 @@
 <template>
-  <div class="container mt-5">
-    <main class="form-signin p-3 rounded">
-      <div class="container w-100 m-auto text-center">
+  <div id="divpai" class="container mt-5">
+    <main class="row text-center p-5">
+      <div class="col-lg-6 justify-content-center p-5">
         <img
-          class="img img-fluid w-50"
+          class="img img-fluid w-100 mt-5"
           src="../../assets/inventarylogo.png"
           alt="DEVinventary"
         />
       </div>
-      <div class="container">
+
+      <div class="col-lg-6 mt-5 mb-5">
         <form class="w-50 m-auto">
           <h1 id="titulologin">Login</h1>
 
@@ -42,9 +43,9 @@
           </button>
           <hr />
 
-          <div id="containercriaconta" class="container">
+          <div id="containercriaconta" class="d-block">
             <small>Não possui uma conta?</small>
-            <router-link to="/menu/colabs/add" id="btncriarconta">
+            <router-link to="/user/cadastro" id="btncriarconta">
               <i class="fa-solid fa-circle-plus"></i> Criar conta
             </router-link>
           </div>
@@ -70,7 +71,10 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+#divpai {
+  overflow-y: scroll;
+}
 #rlinkentrar {
   text-decoration: none;
   color: #e7e7e7;
@@ -112,6 +116,7 @@ export default {
   font-size: 1em;
   margin-top: 10px;
   margin-left: 20px;
+  text-decoration: none;
 }
 @media (max-width: 650px) {
   #btnsubmit {

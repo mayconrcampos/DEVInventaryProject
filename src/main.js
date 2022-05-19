@@ -37,6 +37,7 @@ const store = createStore({
 const routes = [
     { path: "/", redirect: "/user/login" },
     { path: "/user/login", component: Login },
+    { path: "/user/cadastro", component: Cadastro },
     { path: "/:pathMatch(.*)", component: error404 },
 
     {

@@ -1,5 +1,5 @@
 <template>
-  <div id="cadastro" class="bg-light">
+  <div id="cadastro" class="bg-light m-auto w-100">
     <nav class="navbar navbar-expand-lg">
       <div class="d-flex flex-row fs-5 w-100">
         <div class="w-50 ms-3">
