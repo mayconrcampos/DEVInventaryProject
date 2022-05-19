@@ -49,7 +49,7 @@
 
         <label class="text-white mt-4 lbls">Produtos</label>
         <li>
-          <router-link to="/" class="nav-link">
+          <router-link to="/produtos/cadastra" class="nav-link">
             <i class="fa-solid fa-circle-plus me-3"></i> CADASTRAR
           </router-link>
         </li>

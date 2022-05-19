@@ -19,6 +19,7 @@ import Menu from "./views/layout/Menu.vue"
 import Cadastro from "./views/colaboradores/Cadastro.vue"
 import Inventario from "./views/produtos/Inventario.vue"
 import Listar from "./views/colaboradores/Listar.vue"
+import Cadastra from "./views/produtos/Cadastra.vue"
 
 // Declarando módulos das Stores
 const store = createStore({
@@ -39,10 +40,11 @@ const routes = [
 
     {
         path: "/menu", component: Menu, children: [
-            { path: "colabs/add", component: Cadastro },
+            { path: "colabs/add", component: Cadastro  },
             { path: "colabs/listar", component: Listar },
             { path: "geral/inventario", component: Inventario },
-            
+            { path: "/produtos/cadastra", component: Cadastra }
+
         ]
     }
 ]

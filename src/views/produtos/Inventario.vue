@@ -6,7 +6,14 @@
           <span class="">INVENTÁRIO</span>
         </div>
         <div class="w-50 text-end me-3">
-          <span class=""><i class="fa-solid fa-user me-1"></i> USUARIO</span>
+          <span id="gravatar"
+            ><vue-gravatar
+              email="maycon.campos@gmail.com"
+              default="404"
+              alt="nobody"
+            />
+            maycon.campos@gmail.com</span
+          >
         </div>
       </div>
     </nav>
@@ -241,5 +248,9 @@ nav {
 }
 #img {
   max-height: 100%;
+}
+#gravatar img {
+  width: 30px !important;
+  border-radius: 50% !important;
 }
 </style>

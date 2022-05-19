@@ -32,40 +32,47 @@
           </button>
         </div>
       </div>
+      <div id="form" class="bg-light w-100 mt-4 p-4 rounded-2 shadow">
 
-      <!----------- Cards dos usuários ---------->
-      <div class="album py-5 bg-light">
-        <div class="container">
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            <div class="col rounded">
-              <div class="card shadow-lg">
-                <vue-gravatar
-                  email="maycon.campos@gmail.com"
-                  default="404"
-                  alt="nobody"
-                />
+        <!----------- Cards dos usuários ---------->
+        <div class="album py-3 bg-light">
 
-                <div class="card-body">
-                  <p class="card-text text-center">
-                    <strong>Maycon R. Campos</strong>
-                  </p>
+          <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+              <div class="col rounded">
+                  
+                <div class="card shadow-lg rounded">
+                  <vue-gravatar
+                    email="maycon.campos@gmail.com"
+                    default="404"
+                    alt="nobody"
+                  />
 
-                  <div class="card-text text-center">
-                    <small class="card-text text-center"
-                      >maycon.campos@gmail.com</small
-                    >
+                  <div class="card-body">
+                    <p class="card-text text-center">
+                      <strong>Maycon R. Campos</strong>
+                    </p>
+
+                    <div class="card-text text-center">
+                      <small class="card-text text-center"
+                        >maycon.campos@gmail.com</small
+                      >
+                    </div>
+
+                    <p class="text-center">(48) 98444-3857</p>
+                    <hr />
+
+                    <p class="text-center">
+                      <strong>Desenvolvedor FullStack</strong>
+                    </p>
                   </div>
-
-                  <p class="text-center">(48) 98444-3857</p>
-                  <hr />
-
-                  <p class="text-center">
-                    <strong>Desenvolvedor FullStack</strong>
-                  </p>
                 </div>
               </div>
             </div>
           </div>
+
+
+
         </div>
       </div>
     </div>
