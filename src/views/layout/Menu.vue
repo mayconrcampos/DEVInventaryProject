@@ -54,7 +54,7 @@
           </router-link>
         </li>
         <li>
-          <router-link to="/" class="nav-link">
+          <router-link to="/produtos/emprestimos" class="nav-link">
             <i class="fa-solid fa-cart-minus me-3"></i> EMPRÉSTIMO
           </router-link>
         </li>
