@@ -42,7 +42,7 @@
           </router-link>
         </li>
         <li>
-          <router-link to="/" class="nav-link">
+          <router-link to="/menu/colabs/listar" class="nav-link">
             <i class="fa-solid fa-align-justify me-3"></i> LISTAR
           </router-link>
         </li>

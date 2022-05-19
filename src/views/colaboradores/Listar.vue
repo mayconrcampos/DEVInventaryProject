@@ -6,109 +6,67 @@
           <span class="">LISTAGEM DE COLABORADORES</span>
         </div>
         <div class="w-50 text-end me-3">
-          <span class=""><i class="fa-solid fa-user me-1"></i> USUARIO</span>
+          <span id="gravatar"
+            ><vue-gravatar
+              email="maycon.campos@gmail.com"
+              default="404"
+              alt="nobody"
+            />
+            maycon.campos@gmail.com</span
+          >
         </div>
       </div>
     </nav>
     <div class="container mb-5">
-      <h3 class="text-left mt-4 fw-bold">Estatísticas do Sistema</h3>
+      <h3 class="text-left mt-4 fw-bold">
+        Utilize a barra de pesquisa para buscar
+      </h3>
 
-      <div class="bg-white w-100 mt-4 p-4 rounded shadow">
-        <div class="card-group">
-          <div class="card border rounded shadow me-3" style="width: 13rem">
-            <div class="card-body">
-              <h2
-                class="
-                  card-title
-                  d-flex
-                  flex-row
-                  justify-content-evenly
-                  m-4
-                  fs-1
-                "
-              >
-                <i class="fa-solid fa-users"></i> 30
-              </h2>
-              <h6 class="card-subtitle mb-2 text-muted text-center">
-                Colaboradores
-              </h6>
-            </div>
-          </div>
+      <div class="row">
+        <div class="col-lg-10">
+          <input type="text" class="form-control" />
+        </div>
+        <div class="col-lg-2">
+          <button class="btn">
+            <i class="fa-solid fa-magnifying-glass"></i> Buscar
+          </button>
+        </div>
+      </div>
 
-          <div class="card border rounded shadow me-3" style="width: 13rem">
-            <div class="card-body">
-              <h2
-                class="
-                  card-title
-                  d-flex
-                  flex-row
-                  justify-content-evenly
-                  m-4
-                  fs-1
-                "
-              >
-                <i class="fa-solid fa-cabinet-filing"></i> 59
-              </h2>
-              <h6 class="card-subtitle mb-2 text-muted text-center">Itens</h6>
-            </div>
-          </div>
+      <!----------- Cards dos usuários ---------->
+      <div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col rounded">
+              <div class="card shadow-lg">
+                <vue-gravatar
+                  email="maycon.campos@gmail.com"
+                  default="404"
+                  alt="nobody"
+                />
 
-          <div class="card border rounded shadow me-3" style="width: 13rem">
-            <div class="card-body">
-              <h2
-                class="
-                  card-title
-                  d-flex
-                  flex-row
-                  justify-content-evenly
-                  m-4
-                  fs-1
-                "
-              >
-                <i class="fa-solid fa-brazilian-real-sign"></i> 25.9k
-              </h2>
-              <h6 class="card-subtitle mb-2 text-muted text-center">
-                Valor em Produtos
-              </h6>
-            </div>
-          </div>
+                <div class="card-body">
+                  <p class="card-text text-center">
+                    <strong>Maycon R. Campos</strong>
+                  </p>
 
-          <div class="card border rounded shadow me-3" style="width: 13rem">
-            <div class="card-body">
-              <h2
-                class="
-                  card-title
-                  d-flex
-                  flex-row
-                  justify-content-evenly
-                  m-4
-                  fs-1
-                "
-              >
-                <i class="fa-solid fa-boxes-stacked"></i> 70
-              </h2>
-              <h6 class="card-subtitle mb-2 text-muted text-center">
-                Empréstimos
-              </h6>
+                  <div class="card-text text-center">
+                    <small class="card-text text-center"
+                      >maycon.campos@gmail.com</small
+                    >
+                  </div>
+
+                  <p class="text-center">(48) 98444-3857</p>
+                  <hr />
+
+                  <p class="text-center">
+                    <strong>Desenvolvedor FullStack</strong>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-
-        <h5 class="fs-4 mt-4">Busca de Itens</h5>
-
-        <div class="row">
-          <div class="col-lg-10">
-            <input type="text" class="form-control" />
-          </div>
-          <div class="col-lg-2">
-            <button type="submit" class="btn btn-light">
-              <i class="fa-solid fa-magnifying-glass"></i> Buscar
-            </button>
-          </div>
-        </div>
-
-        
-        
       </div>
     </div>
   </div>
@@ -149,5 +107,15 @@ nav {
 }
 #img {
   max-height: 100%;
+}
+#gravatar img {
+  width: 30px !important;
+  border-radius: 50% !important;
+}
+.card img {
+  margin: auto;
+  margin-top: 20px;
+  width: 25%;
+  border-radius: 50%;
 }
 </style>

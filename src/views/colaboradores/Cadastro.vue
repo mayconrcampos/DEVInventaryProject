@@ -5,8 +5,16 @@
         <div class="w-50 ms-3">
           <span class="">CADASTRO DE COLABORADORES</span>
         </div>
+
         <div class="w-50 text-end me-3">
-          <span class=""><i class="fa-solid fa-user me-1"></i> USUARIO</span>
+          <span id="gravatar"
+            ><vue-gravatar
+              email="maycon.campos@gmail.com"
+              default="404"
+              alt="nobody"
+            />
+            maycon.campos@gmail.com</span
+          >
         </div>
       </div>
     </nav>
@@ -89,8 +97,8 @@
           </div>
         </div>
         <div class="d-flex justify-content-end mt-4">
-            <button id="btnlimpar" class="btn me-3">Limpar</button>
-            <button id="btnsalvar" class="btn">Salvar</button>
+          <button id="btnlimpar" class="btn me-3">Limpar</button>
+          <button id="btnsalvar" class="btn">Salvar</button>
         </div>
       </div>
     </div>
@@ -105,21 +113,25 @@ export default {
 
 <style scoped>
 #cadastro {
-    height: 100%;
-    overflow-y: scroll;
+  height: 100%;
+  overflow-y: scroll;
 }
 nav {
   background-color: #143168;
   color: aliceblue;
 }
 #btnlimpar {
-    background-color: #f9a825;
-    color: white;
-    width: 100px;
+  background-color: #f9a825;
+  color: white;
+  width: 100px;
 }
 #btnsalvar {
-    background-color: #4caf50;
-    color: white;
-    width: 100px;
+  background-color: #4caf50;
+  color: white;
+  width: 100px;
+}
+#gravatar img {
+  width: 30px !important;
+  border-radius: 50% !important;
 }
 </style>

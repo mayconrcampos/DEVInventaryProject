@@ -18,6 +18,7 @@ import Login from "./views/user/Login.vue"
 import Menu from "./views/layout/Menu.vue"
 import Cadastro from "./views/colaboradores/Cadastro.vue"
 import Inventario from "./views/produtos/Inventario.vue"
+import Listar from "./views/colaboradores/Listar.vue"
 
 // Declarando módulos das Stores
 const store = createStore({
@@ -39,7 +40,9 @@ const routes = [
     {
         path: "/menu", component: Menu, children: [
             { path: "colabs/add", component: Cadastro },
-            { path: "geral/inventario", component: Inventario }
+            { path: "colabs/listar", component: Listar },
+            { path: "geral/inventario", component: Inventario },
+            
         ]
     }
 ]
@@ -55,6 +58,6 @@ createApp(App)
     .use(store)
     .use(Toaster)
     .use(router)
-    .component("v-gravatar", VueGravatar)
+    .use(VueGravatar)
     .use(VueCookies)
     .mount('#app')
