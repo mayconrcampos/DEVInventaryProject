@@ -23,7 +23,8 @@
 
       <div id="form" class="bg-white w-100 mt-4 p-4 rounded-2 shadow">
         <h5 class="fs-4">Dados Pessoais</h5>
-        <Form>
+
+        <Form @submit="adicionaColaborador">
           <div class="row">
             <div class="col-lg-5">
               <label class="col-form-label">Nome Completo</label>
@@ -190,8 +191,8 @@
             </div>
           </div>
           <div class="d-flex justify-content-end mt-4">
-            <button id="btnlimpar" class="btn me-3">Limpar</button>
-            <button id="btnsalvar" class="btn">Salvar</button>
+            <button type="submit" id="btnsalvar" class="btn me-3">Salvar</button>
+            <button id="btnlimpar" class="btn" @click.prevent="limpar">Limpar</button>
           </div>
         </Form>
       </div>
@@ -241,7 +242,48 @@ export default {
   },
   methods: {
     ...mapMutations(["addColaborador"]),
-    adicionaColaborador() {},
+
+    // Adiciona Colaborador
+    adicionaColaborador() {
+      this.addColaborador({
+        "nome": this.nome,
+        "genero": this.genero,
+        "data_nasc": this.data_nasc,
+        "fone": this.fone,
+        "email": this.email,
+        "cargo": this.cargo,
+        "cep": this.cep,
+        "cidade": this.cidade,
+        "uf": this.uf,
+        "logradouro": this.logradouro,
+        "numero": this.numero,
+        "complem": this.complem,
+        "bairro": this.bairro,
+        "ponto_ref": this.ponto_ref
+      })
+      console.log(this.colaboradores)
+      this.$toast.success("Colaborador cadastrado com sucesso")
+      this.limpar()
+      this.$router.push("")
+    },
+    limpar(){
+      this.nome = ""
+      this.genero = ""
+      this.data_nasc = ""
+      this.fone = ""
+      this.email = ""
+      this.cargo = ""
+      this.cep = ""
+      this.cidade = ""
+      this.uf = ""
+      this.logradouro = ""
+      this.numero = ""
+      this.complem = ""
+      this.bairro = ""
+      this.ponto_ref = ""
+    },
+
+    // Validações
     validaNome(nome) {
       if (nome.length > 0 && nome.trim()) {
         return true;
