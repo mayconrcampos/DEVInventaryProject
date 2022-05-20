@@ -8,6 +8,7 @@ import VueGravatar from "vue3-gravatar"
 import MDialogPlugin from 'vue-m-dialog'
 import 'vue-m-dialog/dist/style.css'
 
+
 // Import das Stores - Vuex
 import colaboradoresStore from './store/colaboradoresStore'
 import emprestimoStore from './store/emprestimoStore'

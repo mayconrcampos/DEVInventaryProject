@@ -48,29 +48,30 @@
                 as="select"
               >
                 <option disabled>Selecione</option>
-                <option v-for="gen in generos" :key="gen" value="gen">{{ gen }}</option> 
-
+                <option v-for="gen in generos" :key="gen" value="gen">
+                  {{ gen }}
+                </option>
               </Field>
               <ErrorMessage name="genero" class="text-danger" />
             </div>
 
             <div class="col-lg-3">
               <label class="col-form-label">Data Nascimento</label>
-              <Field 
+              <Field
                 :rules="validaDataNasc"
                 name="data_nasc"
-                type="date" 
-                class="form-control" 
-                v-model="data_nasc" />
-                <ErrorMessage name="data_nasc" class="text-danger" />
+                type="date"
+                class="form-control"
+                v-model="data_nasc"
+              />
+              <ErrorMessage name="data_nasc" class="text-danger" />
             </div>
-            
           </div>
 
           <div class="row mb-5">
             <div class="col-lg-4">
               <label class="col-form-label">Telefone</label>
-              <Field 
+              <Field
                 :rules="validaFone"
                 name="fone"
                 type="text"
@@ -83,12 +84,12 @@
 
             <div class="col-lg-4">
               <label class="col-form-label">Email</label>
-              <Field 
+              <Field
                 :rules="validaEmail"
                 name="email"
-                type="email" 
-                class="form-control" 
-                v-model="email" 
+                type="email"
+                class="form-control"
+                v-model="email"
               />
               <ErrorMessage name="email" class="text-danger" />
             </div>
@@ -98,10 +99,11 @@
               <Field
                 :rules="validaCargo"
                 name="cargo"
-                type="text" 
-                class="form-control" 
-                v-model="cargo" />
-                <ErrorMessage name="cargo" class="text-danger" />
+                type="text"
+                class="form-control"
+                v-model="cargo"
+              />
+              <ErrorMessage name="cargo" class="text-danger" />
             </div>
           </div>
 
@@ -123,22 +125,25 @@
 
             <div class="col-lg-6">
               <label class="col-form-label">Cidade</label>
-              <Field 
+              <Field
                 :rules="validaCidade"
                 name="cidade"
-                type="text" 
-                class="form-control" 
-                v-model="cidade" />
-                <ErrorMessage name="cidade" class="text-danger" />
+                type="text"
+                class="form-control"
+                v-model="cidade"
+              />
+              <ErrorMessage name="cidade" class="text-danger" />
             </div>
 
             <div class="col-lg-2">
               <label class="col-form-label">UF</label>
               <Field
                 :rules="validaUF"
-                name="uf" 
-                class="form-control" 
-                v-model="uf" as="select">
+                name="uf"
+                class="form-control"
+                v-model="uf"
+                as="select"
+              >
                 <option disabled>Escolha a UF</option>
                 <option v-for="(uf, index) in UFs" :key="index" :value="uf">
                   {{ uf }}
@@ -151,12 +156,13 @@
           <div class="row">
             <div class="col-lg-10">
               <label class="col-form-label">Logradouro</label>
-              <Field 
+              <Field
                 :rules="validaLogradouro"
                 name="logradouro"
-                type="text" 
-                class="form-control" 
-                v-model="logradouro" />
+                type="text"
+                class="form-control"
+                v-model="logradouro"
+              />
               <ErrorMessage name="logradouro" class="text-danger" />
             </div>
             <div class="col-lg-2">
@@ -177,22 +183,52 @@
             </div>
             <div class="col-lg-4">
               <label class="col-form-label">Bairro</label>
-              <Field 
+              <Field
                 :rules="validaBairro"
                 name="bairro"
-                type="text" 
-                class="form-control" 
-                v-model="bairro" />
-                <ErrorMessage name="bairro" class="text-danger" />
+                type="text"
+                class="form-control"
+                v-model="bairro"
+              />
+              <ErrorMessage name="bairro" class="text-danger" />
             </div>
             <div class="col-lg-4">
               <label class="col-form-label">Ponto de Referência</label>
               <input type="text" class="form-control" v-model="ponto_ref" />
             </div>
           </div>
+          <hr />
+          <div class="row">
+            <div class="col-lg">
+              <label class="col-form-label">Senha</label>
+              <Field
+                :rules="validaSenha1"
+                name="senha1"
+                type="password"
+                class="form-control"
+                v-model="senha1"
+              />
+              <ErrorMessage name="senha1" class="text-danger" />
+            </div>
+            <div class="col-lg">
+              <label class="col-form-label">Repita a Senha</label>
+              <Field
+                :rules="validaSenha2"
+                name="senha2"
+                type="password"
+                class="form-control"
+                v-model="senha2"
+              />
+              <ErrorMessage name="senha2" class="text-danger" />
+            </div>
+          </div>
           <div class="d-flex justify-content-end mt-4">
-            <button type="submit" id="btnsalvar" class="btn me-3">Salvar</button>
-            <button id="btnlimpar" class="btn" @click.prevent="limpar">Limpar</button>
+            <button type="submit" id="btnsalvar" class="btn me-3">
+              Salvar
+            </button>
+            <button id="btnlimpar" class="btn" @click.prevent="limpar">
+              Limpar
+            </button>
           </div>
         </Form>
       </div>
@@ -205,6 +241,7 @@ import { mask } from "vue-the-mask";
 import { mapMutations, mapState } from "vuex";
 import { Field, Form, ErrorMessage } from "vee-validate";
 import axios from "axios";
+
 export default {
   name: "caDastro",
   directives: {
@@ -231,13 +268,15 @@ export default {
       complem: "",
       bairro: "",
       ponto_ref: "",
+      senha1: "",
+      senha2: "",
     };
   },
   computed: {
     ...mapState({
       UFs: (state) => state.formularioCadastroStore.UFs,
       colaboradores: (state) => state.colaboradoresStore.colaboradores,
-      generos: (state) => state.formularioCadastroStore.generos
+      generos: (state) => state.formularioCadastroStore.generos,
     }),
   },
   methods: {
@@ -246,41 +285,42 @@ export default {
     // Adiciona Colaborador
     adicionaColaborador() {
       this.addColaborador({
-        "nome": this.nome,
-        "genero": this.genero,
-        "data_nasc": this.data_nasc,
-        "fone": this.fone,
-        "email": this.email,
-        "cargo": this.cargo,
-        "cep": this.cep,
-        "cidade": this.cidade,
-        "uf": this.uf,
-        "logradouro": this.logradouro,
-        "numero": this.numero,
-        "complem": this.complem,
-        "bairro": this.bairro,
-        "ponto_ref": this.ponto_ref
-      })
-      console.log(this.colaboradores)
-      this.$toast.success("Colaborador cadastrado com sucesso")
-      this.limpar()
-      this.$router.push("")
+        nome: this.nome,
+        genero: this.genero,
+        data_nasc: this.data_nasc,
+        fone: this.fone,
+        email: this.email,
+        cargo: this.cargo,
+        cep: this.cep,
+        cidade: this.cidade,
+        uf: this.uf,
+        logradouro: this.logradouro,
+        numero: this.numero,
+        complem: this.complem,
+        bairro: this.bairro,
+        ponto_ref: this.ponto_ref,
+        senha: this.senha1,
+      });
+      console.log(this.colaboradores);
+      this.$toast.success("Colaborador cadastrado com sucesso");
+      this.limpar();
+      this.$router.push("");
     },
-    limpar(){
-      this.nome = ""
-      this.genero = ""
-      this.data_nasc = ""
-      this.fone = ""
-      this.email = ""
-      this.cargo = ""
-      this.cep = ""
-      this.cidade = ""
-      this.uf = ""
-      this.logradouro = ""
-      this.numero = ""
-      this.complem = ""
-      this.bairro = ""
-      this.ponto_ref = ""
+    limpar() {
+      this.nome = "";
+      this.genero = "";
+      this.data_nasc = "";
+      this.fone = "";
+      this.email = "";
+      this.cargo = "";
+      this.cep = "";
+      this.cidade = "";
+      this.uf = "";
+      this.logradouro = "";
+      this.numero = "";
+      this.complem = "";
+      this.bairro = "";
+      this.ponto_ref = "";
     },
 
     // Validações
@@ -296,84 +336,108 @@ export default {
       }
       return "Campo obrigatório";
     },
-    validaDataNasc(data){
-      if(data && new Date(data) < new Date()){
-        return true
+    validaDataNasc(data) {
+      if (data && new Date(data) < new Date()) {
+        return true;
       }
-      return "Data Inválida"
+      return "Data Inválida";
     },
-    validaFone(fone){
-      if(fone.length > 14){
-        return true
+    validaFone(fone) {
+      if (fone.length > 14) {
+        return true;
       }
-      return "Campo obrigatório"
+      return "Campo obrigatório";
     },
-    validaEmail(email){
-      if(email && email.trim()){
-        return true 
-      }
+    validaEmail(email) {
+      let usuario = email.substring(0, email.indexOf("@"));
+      let dominio = email.substring(email.indexOf("@") + 1, email.length);
+
+      if (usuario.length >= 1 &&
+          dominio.length >= 3 &&
+          usuario.search("@") == -1 &&
+          dominio.search("@") == -1 &&
+          usuario.search(" ") == -1 &&
+          dominio.search(" ") == -1 &&
+          dominio.search(".") != -1 &&
+          dominio.indexOf(".") >= 1 &&
+          dominio.lastIndexOf(".") < dominio.length - 1
+      ) {
+        return true
+      } 
       return "Email inválido"
     },
-    validaCargo(cargo){
-      if(cargo && cargo.trim()){
-        return true
+    validaCargo(cargo) {
+      if (cargo && cargo.trim()) {
+        return true;
       }
-      return "Campo obrigatório"
+      return "Campo obrigatório";
     },
-    validaCep(cep){
-      if(cep.length == 9){
-        cep = cep.replace("-", "")
-        this.consultaCep(cep)
-        
-        return true
-      }
-      return "Campo obrigatório"
-    },
-    validaCidade(cidade){
-      if(cidade && cidade.trim()){
-        return true
-      }
-      return "Campo obrigatório"
-    },  
-    validaUF(uf){
-      if(uf){
-        return true
-      }
-      return "Campo obrigatório"
-    },
-    validaLogradouro(logradouro){
-      if(logradouro.length > 1 && logradouro.trim()){
-        return true
-      }
-      return "Campo obrigatório"
-    },
-    validaBairro(bairro){
-      if(bairro && bairro.trim()){
-        return true
-      }
-      return "Campo obrigatório"
-    },
-    async consultaCep(cep){
-      await axios.get(`https://viacep.com.br/ws/${cep}/json/`)
-      .then(resposta => {
-        if("erro" in resposta.data){
-          this.$toast.error("CEP inválido")
+    validaCep(cep) {
+      if (cep.length == 9) {
+        cep = cep.replace("-", "");
+        this.consultaCep(cep);
 
-          this.cidade = ""
-          this.uf = ""
-          this.logradouro = ""
-          this.bairro = ""
-          this.complem = ""
-        } else {
-          this.cidade = resposta.data.localidade
-          this.uf = resposta.data.uf
-          this.logradouro = resposta.data.logradouro
-          this.bairro = resposta.data.bairro
-          this.complem = resposta.data.complemento
-        }
-        
-      })
-    }
+        return true;
+      }
+      return "Campo obrigatório";
+    },
+    validaCidade(cidade) {
+      if (cidade && cidade.trim()) {
+        return true;
+      }
+      return "Campo obrigatório";
+    },
+    validaUF(uf) {
+      if (uf) {
+        return true;
+      }
+      return "Campo obrigatório";
+    },
+    validaLogradouro(logradouro) {
+      if (logradouro.length > 1 && logradouro.trim()) {
+        return true;
+      }
+      return "Campo obrigatório";
+    },
+    validaBairro(bairro) {
+      if (bairro && bairro.trim()) {
+        return true;
+      }
+      return "Campo obrigatório";
+    },
+    validaSenha1(senha1) {
+      if (senha1.length > 8) {
+        return true;
+      }
+      return "Somente senha acima de 8 caracteres";
+    },
+    validaSenha2(senha2) {
+      if (this.senha1 == senha2) {
+        return true;
+      }
+      return "Senhas não conferem";
+    },
+    async consultaCep(cep) {
+      await axios
+        .get(`https://viacep.com.br/ws/${cep}/json/`)
+        .then((resposta) => {
+          if ("erro" in resposta.data) {
+            this.$toast.error("CEP inválido");
+
+            this.cidade = "";
+            this.uf = "";
+            this.logradouro = "";
+            this.bairro = "";
+            this.complem = "";
+          } else {
+            this.cidade = resposta.data.localidade;
+            this.uf = resposta.data.uf;
+            this.logradouro = resposta.data.logradouro;
+            this.bairro = resposta.data.bairro;
+            this.complem = resposta.data.complemento;
+          }
+        });
+    },
   },
 };
 </script>
