@@ -1,6 +1,6 @@
 <template>
   <div id="cadastro" class="bg-light">
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg sticky-top">
       <div class="d-flex flex-row fs-5 w-100">
         <div class="w-50 ms-3">
           <span class="">INVENTÁRIO</span>

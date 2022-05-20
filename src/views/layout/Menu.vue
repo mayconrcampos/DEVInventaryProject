@@ -70,7 +70,7 @@
       <router-view v-slot="{ Component }">
         <transition
           name="fade"
-          mode="in-out"
+          
         >
           <component :is="Component" />
         </transition>
@@ -163,7 +163,7 @@ ul li {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.1s ease;
+  transition: opacity 0s ease;
 }
 
 .fade-enter-from,

@@ -38,7 +38,7 @@
               >Entrar</router-link
             >
           </button>
-          <button id="btngoogle" @click="aviso()">
+          <button id="btngoogle" @click="show = true">
             <i class="fa-brands fa-google me-2"></i> Entrar com Google
           </button>
           <hr />
@@ -56,23 +56,41 @@
         </form>
       </div>
     </main>
- 
+
+    <m-dialog v-model="show" title="Aviso" draggable="true">
+      <img
+          class="img img-fluid mb-5"
+          src="../../assets/inventarylogo.png"
+          alt="DEVinventary"
+        />
+      <p class="text-center">Funcionalidade em fase de implementação.</p>
+
+      <template v-slot:footer>
+        <button class="m-dialog--confirm-btn" @click="show = false">
+          Ok
+        </button>
+      </template>
+    </m-dialog>
   </div>
 </template>
 
 <script>
 export default {
   name: "loGin",
-  methods: {
-    aviso(){
-      this.$toast.error("Funcionalidade não disponível.")
+  data() {
+    return {
+      show: false
     }
-  }
+  },
+  methods: {
+    aviso() {
+      this.$toast.error("Funcionalidade não disponível.");
+    },
+  },
 };
 </script>
 
 <style scoped>
-
 #rlinkentrar {
   text-decoration: none;
   color: #e7e7e7;
@@ -107,7 +125,6 @@ export default {
 #btncriarconta:hover {
   background-color: #696969;
   color: #e7e7e7;
-  
 }
 #btncriarconta {
   width: 200px;
