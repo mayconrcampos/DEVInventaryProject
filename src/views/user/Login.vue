@@ -57,7 +57,7 @@
       </div>
     </main>
 
-    <m-dialog v-model="show" title="Aviso" draggable="true">
+    <m-dialog v-model="show" title="Aviso" :draggable="ok">
       <img
           class="img img-fluid mb-5"
           src="../../assets/inventarylogo.png"
@@ -79,7 +79,8 @@ export default {
   name: "loGin",
   data() {
     return {
-      show: false
+      show: false,
+      ok: true
     }
   },
   methods: {

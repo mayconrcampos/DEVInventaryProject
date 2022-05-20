@@ -5,12 +5,21 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 
 export default {
   name: 'App',
   components: {
     
-  }
+  },
+  methods: {
+    ...mapActions(["carregaColaboradoresDB"])
+  },
+  mounted() {
+    this.carregaColaboradoresDB()
+  },
+    
+  
 }
 </script>
 

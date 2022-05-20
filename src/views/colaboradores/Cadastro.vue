@@ -48,7 +48,7 @@
                 as="select"
               >
                 <option disabled>Selecione</option>
-                <option v-for="gen in generos" :key="gen" value="gen">
+                <option v-for="gen in generos" :key="gen" :value="gen">
                   {{ gen }}
                 </option>
               </Field>
@@ -238,7 +238,7 @@
 
 <script>
 import { mask } from "vue-the-mask";
-import { mapMutations, mapState } from "vuex";
+import { mapActions, mapMutations, mapState } from "vuex";
 import { Field, Form, ErrorMessage } from "vee-validate";
 import axios from "axios";
 
@@ -281,30 +281,39 @@ export default {
   },
   methods: {
     ...mapMutations(["addColaborador"]),
+    ...mapActions(["salvaColaboradoresDB", "insereColaborador"]),
 
     // Adiciona Colaborador
     adicionaColaborador() {
-      this.addColaborador({
-        nome: this.nome,
-        genero: this.genero,
-        data_nasc: this.data_nasc,
-        fone: this.fone,
-        email: this.email,
-        cargo: this.cargo,
-        cep: this.cep,
-        cidade: this.cidade,
-        uf: this.uf,
-        logradouro: this.logradouro,
-        numero: this.numero,
-        complem: this.complem,
-        bairro: this.bairro,
-        ponto_ref: this.ponto_ref,
-        senha: this.senha1,
-      });
-      console.log(this.colaboradores);
-      this.$toast.success("Colaborador cadastrado com sucesso");
-      this.limpar();
-      this.$router.push("");
+    
+        this.insereColaborador({
+          nome: this.nome,
+          genero: this.genero,
+          data_nasc: this.data_nasc,
+          fone: this.fone,
+          email: this.email,
+          cargo: this.cargo,
+          cep: this.cep,
+          cidade: this.cidade,
+          uf: this.uf,
+          logradouro: this.logradouro,
+          numero: this.numero,
+          complem: this.complem,
+          bairro: this.bairro,
+          ponto_ref: this.ponto_ref,
+          senha: this.senha1,
+        }).then((resposta) => {
+          if (resposta == true) {
+            this.salvaColaboradoresDB();
+            this.$toast.success("Colaborador cadastrado com sucesso");
+            this.limpar();
+            this.$router.push("/");
+          }else{
+            this.$toast.error("Usuário já está cadastrado no sistema");
+          }
+        })
+      
+      
     },
     limpar() {
       this.nome = "";
@@ -352,19 +361,20 @@ export default {
       let usuario = email.substring(0, email.indexOf("@"));
       let dominio = email.substring(email.indexOf("@") + 1, email.length);
 
-      if (usuario.length >= 1 &&
-          dominio.length >= 3 &&
-          usuario.search("@") == -1 &&
-          dominio.search("@") == -1 &&
-          usuario.search(" ") == -1 &&
-          dominio.search(" ") == -1 &&
-          dominio.search(".") != -1 &&
-          dominio.indexOf(".") >= 1 &&
-          dominio.lastIndexOf(".") < dominio.length - 1
+      if (
+        usuario.length >= 1 &&
+        dominio.length >= 3 &&
+        usuario.search("@") == -1 &&
+        dominio.search("@") == -1 &&
+        usuario.search(" ") == -1 &&
+        dominio.search(" ") == -1 &&
+        dominio.search(".") != -1 &&
+        dominio.indexOf(".") >= 1 &&
+        dominio.lastIndexOf(".") < dominio.length - 1
       ) {
-        return true
-      } 
-      return "Email inválido"
+        return true;
+      }
+      return "Email inválido";
     },
     validaCargo(cargo) {
       if (cargo && cargo.trim()) {
@@ -406,7 +416,7 @@ export default {
       return "Campo obrigatório";
     },
     validaSenha1(senha1) {
-      if (senha1.length > 8) {
+      if (senha1.length > 4) {
         return true;
       }
       return "Somente senha acima de 8 caracteres";
