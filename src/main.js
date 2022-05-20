@@ -11,6 +11,7 @@ import colaboradoresStore from './store/colaboradoresStore'
 import emprestimoStore from './store/emprestimoStore'
 import inventarioStore from './store/inventarioStore'
 import itensStore from './store/itensStore'
+import formularioCadastroStore from './store/formularioCadastroStore'
 
 // Import das Views - Vue-router
 import error404 from "./views/default/error404.vue"
@@ -28,7 +29,8 @@ const store = createStore({
         colaboradoresStore,
         emprestimoStore,
         inventarioStore,
-        itensStore
+        itensStore,
+        formularioCadastroStore
     }
 })
 
