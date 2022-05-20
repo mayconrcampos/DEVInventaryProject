@@ -150,7 +150,13 @@
           <div class="row">
             <div class="col-lg-10">
               <label class="col-form-label">Logradouro</label>
-              <input type="text" class="form-control" v-model="logradouro" />
+              <Field 
+                :rules="validaLogradouro"
+                name="logradouro"
+                type="text" 
+                class="form-control" 
+                v-model="logradouro" />
+              <ErrorMessage name="logradouro" class="text-danger" />
             </div>
             <div class="col-lg-2">
               <label class="col-form-label">Número</label>
@@ -170,7 +176,13 @@
             </div>
             <div class="col-lg-4">
               <label class="col-form-label">Bairro</label>
-              <input type="text" class="form-control" v-model="bairro" />
+              <Field 
+                :rules="validaBairro"
+                name="bairro"
+                type="text" 
+                class="form-control" 
+                v-model="bairro" />
+                <ErrorMessage name="bairro" class="text-danger" />
             </div>
             <div class="col-lg-4">
               <label class="col-form-label">Ponto de Referência</label>
@@ -269,7 +281,6 @@ export default {
     validaCep(cep){
       if(cep.length == 9){
         cep = cep.replace("-", "")
-        console.log(cep)
         this.consultaCep(cep)
         
         return true
@@ -284,6 +295,18 @@ export default {
     },  
     validaUF(uf){
       if(uf){
+        return true
+      }
+      return "Campo obrigatório"
+    },
+    validaLogradouro(logradouro){
+      if(logradouro.length > 1 && logradouro.trim()){
+        return true
+      }
+      return "Campo obrigatório"
+    },
+    validaBairro(bairro){
+      if(bairro && bairro.trim()){
         return true
       }
       return "Campo obrigatório"
