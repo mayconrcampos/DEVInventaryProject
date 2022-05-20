@@ -5,6 +5,8 @@ import Toaster from '@meforma/vue-toaster'
 import VueCookies from 'vue-cookies'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import VueGravatar from "vue3-gravatar"
+import MDialogPlugin from 'vue-m-dialog'
+import 'vue-m-dialog/dist/style.css'
 
 // Import das Stores - Vuex
 import colaboradoresStore from './store/colaboradoresStore'
@@ -63,6 +65,7 @@ const router = new createRouter({
 
 createApp(App)
     .use(store)
+    .use(MDialogPlugin)
     .use(Toaster)
     .use(router)
     .use(VueGravatar)
