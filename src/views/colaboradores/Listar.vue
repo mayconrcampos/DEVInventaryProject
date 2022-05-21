@@ -31,8 +31,8 @@
       <div id="form" class="bg-light w-100 mt-4 p-4 rounded-2 shadow">
         <!----------- Cards dos usuários ---------->
         <div class="album py-3 bg-light">
-          <div class="d-flex flex-row">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <div class="container">
+            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 g-3">
               <div
                 class="col rounded"
                 v-for="(col, index) in colaboradores"
@@ -87,7 +87,7 @@ export default {
   },
   computed: {
     ...mapState({
-      logado: (state) => state.colaboradoresStore.logado,
+      logado: (state) => state.usuarioStore.logado,
       colaboradores: (state) => state.colaboradoresStore.colaboradores,
     }),
   },

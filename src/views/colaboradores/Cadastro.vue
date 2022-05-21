@@ -6,18 +6,19 @@
           <span class="">CADASTRO DE COLABORADORES</span>
         </div>
 
-        <!----
+        
         <div class="w-50 text-end me-3">
           <span id="gravatar"
             ><vue-gravatar
-              email="maycon.campos@gmail.com"
+              :email="logado.usuario"
               default="404"
               alt="nobody"
             />
-            maycon.campos@gmail.com</span
+          {{logado.usuario}}
+          </span
           >
         </div>
-        ----->
+        
       </div>
     </nav>
     <div class="container mb-5">
@@ -199,31 +200,7 @@
               <input type="text" class="form-control" v-model="ponto_ref" />
             </div>
           </div>
-          <hr />
-          <div class="row">
-            <div class="col-lg">
-              <label class="col-form-label">Senha</label>
-              <Field
-                :rules="validaSenha1"
-                name="senha1"
-                type="password"
-                class="form-control"
-                v-model="senha1"
-              />
-              <ErrorMessage name="senha1" class="text-danger" />
-            </div>
-            <div class="col-lg">
-              <label class="col-form-label">Repita a Senha</label>
-              <Field
-                :rules="validaSenha2"
-                name="senha2"
-                type="password"
-                class="form-control"
-                v-model="senha2"
-              />
-              <ErrorMessage name="senha2" class="text-danger" />
-            </div>
-          </div>
+          
           <div class="d-flex justify-content-end mt-4">
             <button type="submit" id="btnsalvar" class="btn me-3">
               Salvar
@@ -240,7 +217,7 @@
 
 <script>
 import { mask } from "vue-the-mask";
-import { mapActions, mapMutations, mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 import { Field, Form, ErrorMessage } from "vee-validate";
 import axios from "axios";
 
@@ -270,8 +247,7 @@ export default {
       complem: "",
       bairro: "",
       ponto_ref: "",
-      senha1: "",
-      senha2: "",
+
     };
   },
   computed: {
@@ -279,10 +255,10 @@ export default {
       UFs: (state) => state.formularioCadastroStore.UFs,
       colaboradores: (state) => state.colaboradoresStore.colaboradores,
       generos: (state) => state.formularioCadastroStore.generos,
+      logado: (state) => state.usuarioStore.logado,
     }),
   },
   methods: {
-    ...mapMutations(["addColaborador"]),
     ...mapActions(["salvaColaboradoresDB", "insereColaborador"]),
 
     // Adiciona Colaborador
@@ -303,15 +279,14 @@ export default {
           complem: this.complem,
           bairro: this.bairro,
           ponto_ref: this.ponto_ref,
-          senha: this.senha1,
         }).then((resposta) => {
           if (resposta == true) {
             this.salvaColaboradoresDB();
             this.$toast.success("Colaborador cadastrado com sucesso");
+            this.$router.push("/menu/colabs/listar")
             this.limpar();
-            this.$router.push("/");
           }else{
-            this.$toast.error("Usuário já está cadastrado no sistema");
+            this.$toast.error("Colaborador já está cadastrado no sistema");
           }
         })
       

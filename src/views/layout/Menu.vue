@@ -5,22 +5,10 @@
       style="width: 250px"
       id="div"
     >
-      <a
-        href="/"
-        class="
-          d-flex
-          align-items-center
-          mb-3 mb-md-0
-          me-md-auto
-          text-white text-decoration-none
-        "
-      >
-        <!-----
-      <svg class="bi me-2" width="40" height="32">
-        <use xlink:href="#bootstrap"></use>
-      </svg>-->
+      
+     
         <img src="../../assets/inventarylogo.png" class="img-fluid" alt="" />
-      </a>
+    
       <hr />
       <ul class="nav nav-pills flex-column mb-auto">
         <label class="text-white mt-4 lbls">Geral</label>
@@ -88,7 +76,7 @@ export default {
     deslogar(){
       this.setLogado(false)
       this.$cookies.remove("logado")
-      this.$toast.success("Você saiu do sistema.")
+      this.$toast.info("Você saiu do sistema.")
       this.$router.push("/")
     }
   }

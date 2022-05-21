@@ -82,7 +82,7 @@ export default {
   name: "emprEstimos",
   computed: {
     ...mapState({
-      logado: (state) => state.colaboradoresStore.logado,
+      logado: (state) => state.usuarioStore.logado,
     }),
   },
 };

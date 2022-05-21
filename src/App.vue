@@ -11,23 +11,28 @@ export default {
   name: "App",
   computed: {
     ...mapState({
-      logado: (state) => state.colaboradoresStore.logado,
+      logado: (state) => state.usuarioStore.logado,
     }),
   },
   methods: {
     ...mapActions(["carregaColaboradoresDB", "carregaUsuariosDB"]),
     ...mapMutations(["setLogado"]),
-    verificaLogado(){
-      if(this.$cookies.get("logado").logado){
-        this.setLogado(this.$cookies.get("logado"))
-      }
+    verificaLogado() {
       
-    }
+        try {
+          this.setLogado(this.$cookies.get("logado"));
+          console.log(this.logado);
+        
+        } catch (error) {
+          console.log("Deu ruim no cookie: ",error)
+        }
+      
+    },
   },
   mounted() {
-    //this.carregaColaboradoresDB();
-    //this.verificaLogado()
-    this.carregaUsuariosDB()
+    this.carregaColaboradoresDB();
+    this.verificaLogado();
+    this.carregaUsuariosDB();
   },
 };
 </script>

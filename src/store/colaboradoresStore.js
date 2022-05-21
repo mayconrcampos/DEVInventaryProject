@@ -11,15 +11,7 @@ export default {
     addColaborador(state, colab) {
       state.colaboradores.push(colab)
     },
-    //setLogado(state, status) {
-    //  state.logado = status
-    //},
-    //setEmailExiste(state, status) {
-    //  state.emailExiste = status
-    //},
-    //setIndice(state, indice) {
-    //  state.indice = indice
-    //}
+ 
     delColaborador(state, indice){
       state.colaboradores.splice(indice, 1)
     }
