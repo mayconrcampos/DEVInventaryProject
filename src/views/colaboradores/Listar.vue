@@ -33,31 +33,53 @@
         <div class="album py-3 bg-light">
           <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-              <div class="col rounded" v-for="(col, index) in colaboradores" :key="index">
+              <div
+                class="col rounded"
+                v-for="(col, index) in colaboradores"
+                :key="index"
+              >
+                <m-dialog
+                  v-if="index"
+                  v-model="show"
+                  title="Visualizar Dados"
+                  draggable="ok"
+                >
+                  <p class="text-center">
+                    Funcionalidade em fase de implementação
+                    {{nome}}
+                  </p>
+
+                  <template v-slot:footer>
+                    <button class="m-dialog--confirm-btn" @click="show = false">
+                      Ok
+                    </button>
+                  </template>
+                </m-dialog>
+
                 <div class="card shadow-lg rounded">
                   <vue-gravatar
-                    
                     :email="col.email"
                     default="404"
                     alt="nobody"
+                    @click="preenche(col.nome)"
                   />
 
                   <div class="card-body">
                     <p class="card-text text-center">
-                      <strong>{{col.nome}}</strong>
+                      <strong>{{ col.nome }}</strong>
                     </p>
 
                     <div class="card-text text-center">
-                      <small class="card-text text-center"
-                        >{{col.email}}</small
-                      >
+                      <small class="card-text text-center">{{
+                        col.email
+                      }}</small>
                     </div>
 
-                    <p class="text-center">{{col.fone}}</p>
+                    <p class="text-center">{{ col.fone }}</p>
                     <hr />
 
                     <p class="text-center">
-                      <strong>{{col.cargo}}</strong>
+                      <strong>{{ col.cargo }}</strong>
                     </p>
                   </div>
                 </div>
@@ -74,12 +96,24 @@
 import { mapState } from "vuex";
 export default {
   name: "lisTar",
+  data() {
+    return {
+      show: false,
+      nome: ""
+    };
+  },
   computed: {
     ...mapState({
       logado: (state) => state.colaboradoresStore.logado,
       colaboradores: (state) => state.colaboradoresStore.colaboradores,
     }),
   },
+  methods: {
+    preenche(nome){
+      this.nome = nome
+      this.show = true
+    }
+  }
 };
 </script>
 
