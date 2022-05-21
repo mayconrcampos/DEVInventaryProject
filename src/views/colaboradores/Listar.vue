@@ -7,12 +7,8 @@
         </div>
         <div class="w-50 text-end me-3">
           <span id="gravatar"
-            ><vue-gravatar
-              email="maycon.campos@gmail.com"
-              default="404"
-              alt="nobody"
-            />
-            maycon.campos@gmail.com</span
+            ><vue-gravatar :email="logado.usuario" default="404" alt="nobody" />
+            {{ logado.usuario }}</span
           >
         </div>
       </div>
@@ -33,46 +29,41 @@
         </div>
       </div>
       <div id="form" class="bg-light w-100 mt-4 p-4 rounded-2 shadow">
-
         <!----------- Cards dos usuários ---------->
         <div class="album py-3 bg-light">
-
           <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-              <div class="col rounded">
-                  
+              <div class="col rounded" v-for="(col, index) in colaboradores" :key="index">
                 <div class="card shadow-lg rounded">
                   <vue-gravatar
-                    email="maycon.campos@gmail.com"
+                    
+                    :email="col.email"
                     default="404"
                     alt="nobody"
                   />
 
                   <div class="card-body">
                     <p class="card-text text-center">
-                      <strong>Maycon R. Campos</strong>
+                      <strong>{{col.nome}}</strong>
                     </p>
 
                     <div class="card-text text-center">
                       <small class="card-text text-center"
-                        >maycon.campos@gmail.com</small
+                        >{{col.email}}</small
                       >
                     </div>
 
-                    <p class="text-center">(48) 98444-3857</p>
+                    <p class="text-center">{{col.fone}}</p>
                     <hr />
 
                     <p class="text-center">
-                      <strong>Desenvolvedor FullStack</strong>
+                      <strong>{{col.cargo}}</strong>
                     </p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
-
-
         </div>
       </div>
     </div>
@@ -80,8 +71,15 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "lisTar",
+  computed: {
+    ...mapState({
+      logado: (state) => state.colaboradoresStore.logado,
+      colaboradores: (state) => state.colaboradoresStore.colaboradores,
+    }),
+  },
 };
 </script>
 
