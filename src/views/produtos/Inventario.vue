@@ -7,12 +7,8 @@
         </div>
         <div class="w-50 text-end me-3">
           <span id="gravatar"
-            ><vue-gravatar
-              email="maycon.campos@gmail.com"
-              default="404"
-              alt="nobody"
-            />
-            maycon.campos@gmail.com</span
+            ><vue-gravatar :email="logado.usuario" default="404" alt="nobody" />
+            {{ logado.usuario }}</span
           >
         </div>
       </div>
@@ -20,8 +16,7 @@
     <div class="container mb-5">
       <h3 class="text-left mt-4 fw-bold">Estatísticas do Sistema</h3>
 
-      <div  class="bg-white w-100 mt-4 p-4 rounded shadow">
-
+      <div class="bg-white w-100 mt-4 p-4 rounded shadow">
         <div class="card-group">
           <div class="card border rounded shadow me-3" style="width: 13rem">
             <div class="card-body">
@@ -35,7 +30,7 @@
                   fs-1
                 "
               >
-                <i class="fa-solid fa-users"></i> 30
+                <i class="fa-solid fa-users"></i> {{ numColaboradores }}
               </h2>
               <h6 class="card-subtitle mb-2 text-muted text-center">
                 Colaboradores
@@ -119,7 +114,6 @@
 
         <div class="row mh-75 row-cols-1 row-cols-md-4 g-1 mt-3">
           <!--- Colunas---->
-          
 
           <div class="col rounded shadow">
             <div class="card h-100">
@@ -132,12 +126,11 @@
                   />
                 </h5>
                 <p class="card-text">
-                  <small>Notebook Samsung Book I5 8GB 512GB SSD 15.6</small><br />
+                  <small>Notebook Samsung Book I5 8GB 512GB SSD 15.6</small
+                  ><br />
                 </p>
                 <div class="card-text">
-                  <span class="text-secondary"
-                    ><strong>Samsung</strong></span
-                  >
+                  <span class="text-secondary"><strong>Samsung</strong></span>
                   <h5>Notebook</h5>
                 </div>
               </div>
@@ -146,10 +139,6 @@
               </div>
             </div>
           </div>
-
-          
-
-          
 
           <div class="col rounded shadow">
             <div class="card h-100">
@@ -191,22 +180,17 @@
                   <small>Teclado sem fio Logitech K270 QWERTY</small><br />
                 </p>
                 <div class="card-text">
-                  <span class="text-secondary"
-                    ><strong>Logitech</strong></span
-                  >
+                  <span class="text-secondary"><strong>Logitech</strong></span>
                   <h5>Teclado</h5>
                 </div>
               </div>
               <div class="card-footer text-center">
-                <button class="btn btnstatusemprestado">Nome Colaborador</button>
+                <button class="btn btnstatusemprestado">
+                  Nome Colaborador
+                </button>
               </div>
             </div>
           </div>
-
-
-          
-
-          
         </div>
       </div>
     </div>
@@ -214,8 +198,15 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "invenTario",
+  computed: {
+    ...mapState({
+      logado: (state) => state.colaboradoresStore.logado,
+      numColaboradores: (state) => state.colaboradoresStore.colaboradores.length,
+    }),
+  },
 };
 </script>
 
