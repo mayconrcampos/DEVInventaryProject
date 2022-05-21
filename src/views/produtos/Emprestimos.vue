@@ -8,12 +8,8 @@
 
         <div class="w-50 text-end me-3">
           <span id="gravatar"
-            ><vue-gravatar
-              email="maycon.campos@gmail.com"
-              default="404"
-              alt="nobody"
-            />
-            maycon.campos@gmail.com</span
+            ><vue-gravatar :email="logado.usuario" default="404" alt="nobody" />
+            {{ logado.usuario }}</span
           >
         </div>
       </div>
@@ -65,9 +61,10 @@
             <label class="col-form-label fs-5">Logitech</label>
           </div>
           <div class="col-lg-3">
-            <label id="labeltableimg" class="col-form-label fs-5">Maycon R Campos 
+            <label id="labeltableimg" class="col-form-label fs-5"
+              >Maycon R Campos
               <vue-gravatar
-              class="ms-2"
+                class="ms-2"
                 email="maycon.campos@gmail.com"
                 default="404"
                 alt="nobody"
@@ -80,8 +77,14 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "emprEstimos",
+  computed: {
+    ...mapState({
+      logado: (state) => state.colaboradoresStore.logado,
+    }),
+  },
 };
 </script>
 

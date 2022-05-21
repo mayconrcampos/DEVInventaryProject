@@ -6,6 +6,7 @@
           <span class="">CADASTRO DE COLABORADORES</span>
         </div>
 
+        <!----
         <div class="w-50 text-end me-3">
           <span id="gravatar"
             ><vue-gravatar
@@ -16,6 +17,7 @@
             maycon.campos@gmail.com</span
           >
         </div>
+        ----->
       </div>
     </nav>
     <div class="container mb-5">

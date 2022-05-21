@@ -8,12 +8,8 @@
 
         <div class="w-50 text-end me-3">
           <span id="gravatar"
-            ><vue-gravatar
-              email="maycon.campos@gmail.com"
-              default="404"
-              alt="nobody"
-            />
-            maycon.campos@gmail.com</span
+            ><vue-gravatar :email="logado.usuario" default="404" alt="nobody" />
+            {{ logado.usuario }}</span
           >
         </div>
       </div>
@@ -62,18 +58,21 @@
               <label class="col-form-label">Modelo</label>
               <input type="text" class="form-control" />
             </div>
-            
           </div>
 
           <div class="row">
             <div class="col-lg-12">
               <label class="col-form-label">Descrição</label>
-              <textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>
+              <textarea
+                class="form-control"
+                name=""
+                id=""
+                cols="30"
+                rows="5"
+              ></textarea>
             </div>
-            
           </div>
 
-          
           <div class="d-flex justify-content-end mt-4">
             <button id="btnlimpar" class="btn me-3">Limpar</button>
             <button id="btnsalvar" class="btn">Salvar</button>
@@ -85,8 +84,14 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "caDastra",
+  computed: {
+    ...mapState({
+      logado: (state) => state.colaboradoresStore.logado,
+    }),
+  },
 };
 </script>
 
