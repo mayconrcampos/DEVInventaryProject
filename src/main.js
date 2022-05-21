@@ -44,11 +44,10 @@ const store = createStore({
 const routes = [
     { path: "/", redirect: "/user/login" },
     { path: "/user/login", component: Login },
-    { path: "/user/cadastro", component: Cadastro },
     { path: "/:pathMatch(.*)", component: error404 },
 
     {
-        path: "/menu", component: Menu, children: [
+        path: "/menu", meta: { auth: true }, component: Menu, children: [
             { path: "colabs/add", component: Cadastro  },
             { path: "colabs/listar", component: Listar },
             { path: "geral/inventario", component: Inventario },
@@ -64,6 +63,18 @@ const routes = [
 const router = new createRouter({
     routes,
     history: createWebHashHistory()
+})
+
+// Regras para proteção de rotas
+router.beforeEach((to, from, next) => {
+    if (to.meta.auth && !VueCookies.get("logado")) {
+        next("/")
+    }else if(!to.meta.auth && VueCookies.get("logado")){
+        next("/menu/geral/inventario")
+    }else{
+        next()
+    }
+    
 })
 
 createApp(App)
