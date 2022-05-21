@@ -10,33 +10,40 @@
       </div>
 
       <div class="col-lg-6 mt-5 mb-5">
-        <form class="w-75 m-auto">
+        <Form class="w-75 m-auto" @submit="logar">
           <h1 id="titulologin">Login</h1>
 
-          <div class="form-floating">
-            <input
+          <div class="form-floating mb-4">
+            <Field
+              v-model="email"
+              :rules="validaEmail"
+              name="email"
               type="email"
               class="form-control rounded"
               id="inputemail"
               placeholder="seu-email@example.com"
             />
             <label for="floatingInput">Email</label>
+            <ErrorMessage name="email" class="text-danger" />
           </div>
-          <div class="form-floating">
-            <input
+
+          <div class="form-floating mb-3">
+            <Field
+              v-model="senha"
+              :rules="validaSenha"
+              name="senha"
               type="password"
               class="form-control rounded"
               id="inputsenha"
               placeholder="Senha"
             />
             <label for="floatingPassword">Senha</label>
+            <ErrorMessage name="senha" class="text-danger" />
           </div>
 
           <button id="btnsubmit" type="submit">
             <i class="fa-solid fa-lock-open me-2"></i>
-            <router-link to="/menu/geral/inventario" id="rlinkentrar"
-              >Entrar</router-link
-            >
+            Entrar
           </button>
           <button id="btngoogle" @click="show = true">
             <i class="fa-brands fa-google me-2"></i> Entrar com Google
@@ -53,39 +60,87 @@
           <p id="fraserodape" class="mt-5 mb-3 text-muted text-center">
             © Maycon R Campos - SENAI DEVinHouse[ConectaNuvem] - Maio de 2022
           </p>
-        </form>
+        </Form>
       </div>
     </main>
 
     <m-dialog v-model="show" title="Aviso" :draggable="ok">
       <img
-          class="img img-fluid mb-5"
-          src="../../assets/inventarylogo.png"
-          alt="DEVinventary"
-        />
+        class="img img-fluid mb-5"
+        src="../../assets/inventarylogo.png"
+        alt="DEVinventary"
+      />
       <p class="text-center">Funcionalidade em fase de implementação.</p>
 
       <template v-slot:footer>
-        <button class="m-dialog--confirm-btn" @click="show = false">
-          Ok
-        </button>
+        <button class="m-dialog--confirm-btn" @click="show = false">Ok</button>
       </template>
     </m-dialog>
   </div>
 </template>
 
 <script>
+import { Field, Form, ErrorMessage } from "vee-validate";
+import { mapActions, mapState } from "vuex";
+
 export default {
   name: "loGin",
+  components: {
+    Field,
+    Form,
+    ErrorMessage,
+  },
   data() {
     return {
       show: false,
-      ok: true
-    }
+      ok: true,
+      email: "",
+      senha: "",
+    };
+  },
+  computed: {
+    ...mapState({
+      logado: (state) => state.colaboradoresStore.logado,
+    }),
   },
   methods: {
+    ...mapActions(["autentica"]),
     aviso() {
       this.$toast.error("Funcionalidade não disponível.");
+    },
+    validaEmail(email) {
+      if (email) {
+        return true;
+      }
+      return "Campo obrigatório";
+    },
+    validaSenha(senha) {
+      if (senha) {
+        return true;
+      }
+      return "Campo obrigatório";
+    },
+    logar() {
+      console.log("Email ", this.email, "Senha ", this.senha);
+
+      this.autentica({
+        email: this.email,
+        senha: this.senha,
+      })
+        .then((resposta) => {
+          if (resposta == true) {
+            this.$router.push("/menu/geral/inventario");
+            this.email = "";
+            this.senha = "";
+            this.$toast.success("Logado com Sucesso!");
+            this.$cookies.set("logado", this.logado)
+          } else {
+            this.$toast.error("Email ou senha Inválidos!");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };

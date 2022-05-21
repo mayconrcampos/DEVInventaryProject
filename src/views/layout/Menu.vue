@@ -34,9 +34,9 @@
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/" class="nav-link" aria-current="page">
+          <a href="#" class="nav-link" @click="deslogar()" aria-current="page">
             <i class="fa-solid fa-arrow-right-from-bracket me-3"></i> SAIR
-          </router-link>
+          </a>
         </li>
 
         <label class="text-white mt-4 lbls">Colaboradores</label>
@@ -80,8 +80,18 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 export default {
   name: "meNu",
+  methods: {
+    ...mapMutations(["setLogado"]),
+    deslogar(){
+      this.setLogado(false)
+      this.$cookies.remove("logado")
+      this.$toast.success("Você saiu do sistema.")
+      this.$router.push("/")
+    }
+  }
 };
 </script>
 

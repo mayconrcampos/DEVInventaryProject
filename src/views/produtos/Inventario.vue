@@ -117,7 +117,7 @@
 
         <!-------- Cards de produtos --------->
 
-        <div class="row mh-75 row-cols-1 row-cols-md-3 g-4 mt-3">
+        <div class="row mh-75 row-cols-1 row-cols-md-4 g-1 mt-3">
           <!--- Colunas---->
           
 
