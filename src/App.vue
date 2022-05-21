@@ -15,7 +15,7 @@ export default {
     }),
   },
   methods: {
-    ...mapActions(["carregaColaboradoresDB"]),
+    ...mapActions(["carregaColaboradoresDB", "carregaUsuariosDB"]),
     ...mapMutations(["setLogado"]),
     verificaLogado(){
       if(this.$cookies.get("logado").logado){
@@ -25,8 +25,9 @@ export default {
     }
   },
   mounted() {
-    this.carregaColaboradoresDB();
-    this.verificaLogado()
+    //this.carregaColaboradoresDB();
+    //this.verificaLogado()
+    this.carregaUsuariosDB()
   },
 };
 </script>

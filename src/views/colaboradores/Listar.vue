@@ -31,37 +31,20 @@
       <div id="form" class="bg-light w-100 mt-4 p-4 rounded-2 shadow">
         <!----------- Cards dos usuários ---------->
         <div class="album py-3 bg-light">
-          <div class="container">
+          <div class="d-flex flex-row">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
               <div
                 class="col rounded"
                 v-for="(col, index) in colaboradores"
                 :key="index"
               >
-                <m-dialog
-                  v-if="index"
-                  v-model="show"
-                  title="Visualizar Dados"
-                  draggable="ok"
-                >
-                  <p class="text-center">
-                    Funcionalidade em fase de implementação
-                    {{nome}}
-                  </p>
-
-                  <template v-slot:footer>
-                    <button class="m-dialog--confirm-btn" @click="show = false">
-                      Ok
-                    </button>
-                  </template>
-                </m-dialog>
-
+                
                 <div class="card shadow-lg rounded">
                   <vue-gravatar
                     :email="col.email"
                     default="404"
                     alt="nobody"
-                    @click="preenche(col.nome)"
+                  
                   />
 
                   <div class="card-body">
@@ -109,10 +92,7 @@ export default {
     }),
   },
   methods: {
-    preenche(nome){
-      this.nome = nome
-      this.show = true
-    }
+  
   }
 };
 </script>

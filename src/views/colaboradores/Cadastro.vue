@@ -287,7 +287,7 @@ export default {
 
     // Adiciona Colaborador
     adicionaColaborador() {
-    
+  
         this.insereColaborador({
           nome: this.nome,
           genero: this.genero,
@@ -416,18 +416,6 @@ export default {
         return true;
       }
       return "Campo obrigatório";
-    },
-    validaSenha1(senha1) {
-      if (senha1.length > 4) {
-        return true;
-      }
-      return "Somente senha acima de 8 caracteres";
-    },
-    validaSenha2(senha2) {
-      if (this.senha1 == senha2) {
-        return true;
-      }
-      return "Senhas não conferem";
     },
     async consultaCep(cep) {
       await axios

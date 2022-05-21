@@ -9,13 +9,14 @@
         />
       </div>
 
+      <!--------- Login formulário ------------>
       <div class="col-lg-6 mt-5 mb-5">
         <Form class="w-75 m-auto" @submit="logar">
           <h1 id="titulologin">Login</h1>
 
           <div class="form-floating mb-4">
             <Field
-              v-model="email"
+              v-model="login.email"
               :rules="validaEmail"
               name="email"
               type="email"
@@ -29,8 +30,8 @@
 
           <div class="form-floating mb-3">
             <Field
-              v-model="senha"
-              :rules="validaSenha"
+              v-model="login.senha"
+              :rules="validaSenhaLogin"
               name="senha"
               type="password"
               class="form-control rounded"
@@ -48,21 +49,23 @@
           <button id="btngoogle" @click="show = true">
             <i class="fa-brands fa-google me-2"></i> Entrar com Google
           </button>
-          <hr />
-
-          <div id="containercriaconta" class="d-block">
-            <small>Não possui uma conta?</small>
-            <router-link to="/user/cadastro" id="btncriarconta">
-              <i class="fa-solid fa-circle-plus"></i> Criar conta
-            </router-link>
-          </div>
-
-          <p id="fraserodape" class="mt-5 mb-3 text-muted text-center">
-            © Maycon R Campos - SENAI DEVinHouse[ConectaNuvem] - Maio de 2022
-          </p>
         </Form>
+        <hr />
+
+        <div id="containercriaconta" class="d-block">
+          <small>Não possui uma conta?</small>
+          <button @click="modalCadastroShow = true" id="btncriarconta">
+            <i class="fa-solid fa-circle-plus"></i> Criar conta
+          </button>
+        </div>
+
+        <p id="fraserodape" class="mt-5 mb-3 text-muted text-center">
+          © Maycon R Campos - SENAI DEVinHouse[ConectaNuvem] - Maio de 2022
+        </p>
       </div>
     </main>
+
+    <!-------------------- Modal Aviso em construção ---------------------->
 
     <m-dialog v-model="show" title="Aviso" :draggable="ok">
       <img
@@ -75,6 +78,68 @@
       <template v-slot:footer>
         <button class="m-dialog--confirm-btn" @click="show = false">Ok</button>
       </template>
+    </m-dialog>
+
+    <!----------- Modal Cadastro de Usuários admins-------------->
+    <m-dialog
+      v-model="modalCadastroShow"
+      title="Cadastro de Usuário"
+      :draggable="ok"
+    >
+      <div class="container">
+        <img
+          class="img img-fluid mb-5"
+          src="../../assets/inventarylogo.png"
+          alt="DEVinventary"
+        />
+        <hr />
+      </div>
+      <Form @submit="cadastraUsuario">
+        <div class="w-100">
+          <label class="form-label">Usuário</label>
+          <Field
+            :rules="validaUsuario"
+            v-model="cadastra.usuario"
+            name="cadastrausuario"
+            type="email"
+            class="form-control rounded"
+            id="inputusuario"
+            placeholder="Digite seu Email"
+          />
+          <ErrorMessage name="cadastrausuario" class="text-danger" />
+        </div>
+        <div class="w-100 mt-3">
+          <label class="form-label">Senha</label>
+          <Field
+            :rules="validaSenha1"
+            v-model="cadastra.senha1"
+            name="senha1"
+            type="password"
+            class="form-control rounded"
+            id="inputusenha1"
+            placeholder="Email"
+          />
+          <ErrorMessage name="senha1" class="text-danger" />
+        </div>
+        <div class="w-100 mt-3">
+          <label class="form-label">Repita a Senha</label>
+          <Field
+            :rules="validaSenha2"
+            v-model="cadastra.senha2"
+            name="senha2"
+            type="password"
+            class="form-control rounded"
+            id="inputsenha2"
+            placeholder="Email"
+          />
+          <ErrorMessage name="senha2" class="text-danger" />
+        </div>
+        <div class="w-100 mt-3">
+          <button class="m-dialog--confirm-btn" type="submit">Cadastrar</button>
+        </div>
+      </Form>
+
+      <template v-slot:footer> </template>
     </m-dialog>
   </div>
 </template>
@@ -92,40 +157,113 @@ export default {
   },
   data() {
     return {
+      modalCadastroShow: false,
       show: false,
       ok: true,
-      email: "",
-      senha: "",
+      cadastra: {
+        usuario: "",
+        senha1: "",
+        senha2: "",
+      },
+      login: {
+        email: "",
+        senha: "",
+      },
     };
   },
   computed: {
     ...mapState({
-      logado: (state) => state.colaboradoresStore.logado,
+      logado: (state) => state.usuarioStore.logado,
     }),
   },
   methods: {
-    ...mapActions(["autentica"]),
+    ...mapActions(["autentica", "insereUsuario", "salvaUsuariosDB"]),
+    limpar() {
+      this.cadastra = {};
+      this.login = {};
+    },
     aviso() {
       this.$toast.error("Funcionalidade não disponível.");
     },
     validaEmail(email) {
-      if (email) {
+      let usuario = email.substring(0, email.indexOf("@"));
+      let dominio = email.substring(email.indexOf("@") + 1, email.length);
+
+      if (
+        usuario.length >= 1 &&
+        dominio.length >= 3 &&
+        usuario.search("@") == -1 &&
+        dominio.search("@") == -1 &&
+        usuario.search(" ") == -1 &&
+        dominio.search(" ") == -1 &&
+        dominio.search(".") != -1 &&
+        dominio.indexOf(".") >= 1 &&
+        dominio.lastIndexOf(".") < dominio.length - 1
+      ) {
         return true;
       }
-      return "Campo obrigatório";
+      return "Email inválido";
     },
-    validaSenha(senha) {
+    validaUsuario(email) {
+      let usuario = email.substring(0, email.indexOf("@"));
+      let dominio = email.substring(email.indexOf("@") + 1, email.length);
+
+      if (
+        usuario.length >= 1 &&
+        dominio.length >= 3 &&
+        usuario.search("@") == -1 &&
+        dominio.search("@") == -1 &&
+        usuario.search(" ") == -1 &&
+        dominio.search(" ") == -1 &&
+        dominio.search(".") != -1 &&
+        dominio.indexOf(".") >= 1 &&
+        dominio.lastIndexOf(".") < dominio.length - 1
+      ) {
+        return true;
+      }
+      return "Email inválido";
+    },
+    validaSenhaLogin(senha) {
       if (senha) {
         return true;
       }
       return "Campo obrigatório";
     },
+
+    validaSenha1(senha1) {
+      if (senha1.length > 4) {
+        return true;
+      }
+      return "Somente senha acima de 4 caracteres";
+    },
+    validaSenha2(senha2) {
+      if (this.cadastra.senha1 == senha2) {
+        return true;
+      }
+      return "Senhas não conferem";
+    },
+    cadastraUsuario() {
+      this.insereUsuario({
+        usuario: this.cadastra.usuario,
+        senha: this.cadastra.senha1,
+      }).then((resposta) => {
+        if (resposta == true) {
+          this.modalCadastroShow = false;
+          this.salvaUsuariosDB();
+          this.$toast.success("Usuário cadastrado com sucesso");
+          this.limpar();
+          this.$router.push("/");
+        } else {
+          this.$toast.error("Usuário já está cadastrado no sistema");
+        }
+      });
+    },
     logar() {
-      console.log("Email ", this.email, "Senha ", this.senha);
+      console.log("Email ", this.login.email, "Senha ", this.login.senha);
 
       this.autentica({
-        email: this.email,
-        senha: this.senha,
+        usuario: this.login.email,
+        senha: this.login.senha,
       })
         .then((resposta) => {
           if (resposta == true) {
@@ -133,7 +271,7 @@ export default {
             this.email = "";
             this.senha = "";
             this.$toast.success("Logado com Sucesso!");
-            this.$cookies.set("logado", this.logado)
+            this.$cookies.set("logado", this.logado);
           } else {
             this.$toast.error("Email ou senha Inválidos!");
           }

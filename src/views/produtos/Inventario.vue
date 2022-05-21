@@ -203,7 +203,7 @@ export default {
   name: "invenTario",
   computed: {
     ...mapState({
-      logado: (state) => state.colaboradoresStore.logado,
+      logado: (state) => state.usuarioStore.logado,
       numColaboradores: (state) => state.colaboradoresStore.colaboradores.length,
     }),
   },

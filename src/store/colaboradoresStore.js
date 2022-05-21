@@ -2,23 +2,26 @@
 export default {
   state: {
     colaboradores: [],
-    logado: false,
-    indice: "",
-    emailExiste: ""
+    //logado: false,
+    //indice: "",
+    //emailExiste: ""
   },
 
   mutations: {
     addColaborador(state, colab) {
       state.colaboradores.push(colab)
     },
-    setLogado(state, status) {
-      state.logado = status
-    },
-    setEmailExiste(state, status) {
-      state.emailExiste = status
-    },
-    setIndice(state, indice) {
-      state.indice = indice
+    //setLogado(state, status) {
+    //  state.logado = status
+    //},
+    //setEmailExiste(state, status) {
+    //  state.emailExiste = status
+    //},
+    //setIndice(state, indice) {
+    //  state.indice = indice
+    //}
+    delColaborador(state, indice){
+      state.colaboradores.splice(indice, 1)
     }
   },
   actions: {
@@ -38,7 +41,7 @@ export default {
       context.commit("addColaborador", colaborador)
       return true
     },
-    autentica(context, login) {
+    /*autentica(context, login) {
       context.commit("setEmailExiste", false)
       context.commit("setIndice", false)
 
@@ -62,7 +65,7 @@ export default {
       }else{
         return false
       }
-    },
+    },*/
     salvaColaboradoresDB(context) {
       var dados = JSON.stringify(context.state.colaboradores)
       localStorage.setItem("colaboradores", dados)
