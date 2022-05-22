@@ -6,6 +6,7 @@
           <span class="">CADASTRO DE ITENS</span>
         </div>
 
+
         <div class="w-50 text-end me-3">
           <span id="gravatar"
             ><vue-gravatar :email="logado.usuario" default="404" alt="nobody" />
@@ -27,10 +28,11 @@
               <Field
                 :rules="validaCodigo"
                 v-model="produto.codigo"
-                name="codigo" 
-                type="text" 
-                class="form-control" />
-                <ErrorMessage name="codigo" class="text-danger" />
+                name="codigo"
+                type="text"
+                class="form-control"
+              />
+              <ErrorMessage name="codigo" class="text-danger" />
             </div>
 
             <div class="col-lg-6">
@@ -39,19 +41,21 @@
                 :rules="validaTitulo"
                 v-model="produto.titulo"
                 name="titulo"
-                type="text" 
-                class="form-control" />
-                <ErrorMessage name="titulo" class="text-danger" />
+                type="text"
+                class="form-control"
+              />
+              <ErrorMessage name="titulo" class="text-danger" />
             </div>
             <div class="col-lg-3">
               <label class="col-form-label">Categoria do Item</label>
-              <Field 
+              <Field
                 :rules="validaCategoria"
                 v-model="produto.categoria"
                 name="categoria"
-                type="text" 
-                class="form-control" />
-                <ErrorMessage name="categoria" class="text-danger" />
+                type="text"
+                class="form-control"
+              />
+              <ErrorMessage name="categoria" class="text-danger" />
             </div>
           </div>
 
@@ -63,44 +67,48 @@
               <Field
                 :rules="validaValor"
                 v-model="produto.valor"
-                name="valor" 
-                type="text" 
-                class="form-control" />
-                <ErrorMessage name="valor" class="text-danger" />
+                name="valor"
+                type="text"
+                class="form-control"
+              />
+              <ErrorMessage name="valor" class="text-danger" />
             </div>
             <div class="col-lg-9">
               <label class="col-form-label">Inserir foto</label>
-              <Field  
+              <Field
                 :rules="validaFoto"
                 v-model="produto.foto.file"
                 name="arquivo"
-                type="file" 
-                @change="arquivoSelecionado" 
-                class="form-control" />
-                <ErrorMessage name="arquivo" class="text-danger" />
+                type="file"
+                @change="arquivoSelecionado"
+                class="form-control"
+              />
+              <ErrorMessage name="arquivo" class="text-danger" />
             </div>
           </div>
 
           <div class="row">
             <div class="col-lg-6">
               <label class="col-form-label">Marca</label>
-              <Field 
+              <Field
                 :rules="validaMarca"
                 v-model="produto.marca"
                 name="marca"
-                type="text" 
-                class="form-control" />
-                <ErrorMessage name="marca" class="text-danger" />
+                type="text"
+                class="form-control"
+              />
+              <ErrorMessage name="marca" class="text-danger" />
             </div>
             <div class="col-lg-6">
               <label class="col-form-label">Modelo</label>
-              <Field 
+              <Field
                 :rules="validaModelo"
                 v-model="produto.modelo"
                 name="modelo"
-                type="text" 
-                class="form-control" />
-                <ErrorMessage name="modelo" class="text-danger" />
+                type="text"
+                class="form-control"
+              />
+              <ErrorMessage name="modelo" class="text-danger" />
             </div>
           </div>
 
@@ -119,13 +127,14 @@
           </div>
 
           <div class="d-flex justify-content-end mt-4">
-            <button @click="limpar()" id="btnlimpar" class="btn me-3">Limpar</button>
+            <button @click="limpar()" id="btnlimpar" class="btn me-3">
+              Limpar
+            </button>
             <button id="btnsalvar" class="btn">Salvar</button>
           </div>
         </Form>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -138,11 +147,12 @@ export default {
   components: {
     Field,
     Form,
-    ErrorMessage
-  },  
+    ErrorMessage,
+  },
   computed: {
     ...mapState({
       logado: (state) => state.usuarioStore.logado,
+      img_default: (state) => state.produtosStore.img_default,
     }),
   },
   data() {
@@ -153,19 +163,19 @@ export default {
         categoria: "",
         valor: "",
         foto: {
-          nome:"",
-          file: ""
+          nome: "",
+          file: "",
         },
         marca: "",
         modelo: "",
-        descricao: ""
-      }
-    }
+        descricao: "",
+      },
+    };
   },
   methods: {
     ...mapMutations(["addProduto"]),
     ...mapActions(["salvaProdutosDB"]),
-    cadastraProduto(){
+    cadastraProduto() {
       this.addProduto({
         id: new Date().getTime(),
         codigo: this.produto.codigo,
@@ -175,14 +185,14 @@ export default {
         foto: this.produto.foto,
         marca: this.produto.marca,
         modelo: this.produto.modelo,
-        descricao: this.produto.descricao
-      })
-      this.produto = ""
-      this.salvaProdutosDB()
-      this.$router.push("/menu/geral/inventario")
-      this.$toast.success("Produto cadastrado com sucesso")
+        descricao: this.produto.descricao,
+      });
+      this.$toast.success("Produto cadastrado com sucesso");
+      this.salvaProdutosDB();
+      this.$router.push("/menu/geral/inventario");
+      
     },
-    limpar(){
+    limpar() {
       this.produto = {
         codigo: "",
         titulo: "",
@@ -190,79 +200,87 @@ export default {
         valor: "",
         foto: {
           nome: "",
-          file: ""
+          file: "",
         },
         marca: "",
         modelo: "",
-        descricao: ""
-      }
+        descricao: "",
+      };
     },
-    validaCodigo(codigo){
-      if(codigo){
-        return true
+    validaCodigo(codigo) {
+      if (codigo) {
+        return true;
       }
-      return "Código obrigatório"
+      return "Código obrigatório";
     },
-    validaTitulo(titulo){
-      if(titulo){
-        return true
+    validaTitulo(titulo) {
+      if (titulo) {
+        return true;
       }
-      return "Título obrigatório"
+      return "Título obrigatório";
     },
-    validaCategoria(categoria){
-      if(categoria){
-        return true
+    validaCategoria(categoria) {
+      if (categoria) {
+        return true;
       }
-      return "Categoria obrigatório"
+      return "Categoria obrigatório";
     },
-    validaValor(Valor){
-      if(!isNaN(Valor) && Valor > 0){
-        return true
+    validaValor(Valor) {
+      if (!isNaN(Valor) && Valor > 0) {
+        return true;
       }
-      return "Valor obrigatório"
+      return "Valor obrigatório";
     },
-    validaFoto(foto){
-      let formato = foto.slice(11, 15)
-      if(formato == "png;" || formato == "jpeg" || formato == "webp" || formato == ""){
-        return true
-      }
-      return "Somente extensão 'png' 'jpeg' 'webp'"
-    },  
-    validaMarca(Marca){
-      if(Marca){
-        return true
-      }
-      return "Marca obrigatório"
-    },
-    validaModelo(Modelo){
-      if(Modelo){
-        return true
-      }
-      return "Modelo obrigatório"
-    },
-    arquivoSelecionado(event){
-      var arquivo = event.target.files || event.dataTransfer.files
-      console.log(arquivo[0].name)
-      this.produto.foto.nome = arquivo[0].name
-      if(!arquivo.length){
-        return
-      }
-      this.criaImagem(arquivo[0])
-    },
-    criaImagem(arquivo){
-      var reader = new FileReader()
-      var vm = this
-      
-      reader.onload = (e) => {
-        vm.imagem = e.target.result
-        this.produto.foto.file = vm.imagem
-      }
+    validaFoto(foto) {
+      if (foto) {
+        console.log(foto)
+        let formato = foto.slice(11, 15);
+        
+        if (formato == "png;" || formato == "jpeg" || formato == "webp" || foto == "") {
+          console.log(foto)
+          return true;
+        }
+        return "Somente extensão 'png' 'jpeg' 'webp'";
+      }else{
+ 
 
-      reader.readAsDataURL(arquivo)
+          return true
+     
+      }
     },
-    
-   
-  }
+    validaMarca(Marca) {
+      if (Marca) {
+        return true;
+      }
+      return "Marca obrigatório";
+    },
+    validaModelo(Modelo) {
+      if (Modelo) {
+        return true;
+      }
+      return "Modelo obrigatório";
+    },
+    arquivoSelecionado(event) {
+      var arquivo = event.target.files || event.dataTransfer.files;
+      this.produto.foto.nome = arquivo[0].name;
+      if (!arquivo.length) {
+        this.produto.foto.file = ""
+        return;
+      }
+      this.criaImagem(arquivo[0]);
+    },
+    criaImagem(arquivo) {
+      var reader = new FileReader();
+      var vm = this;
+
+      reader.onload = (e) => {
+        vm.imagem = e.target.result;
+        this.produto.foto.file = vm.imagem;
+      };
+
+      reader.readAsDataURL(arquivo);
+    },
+  },
 };
 </script>
 

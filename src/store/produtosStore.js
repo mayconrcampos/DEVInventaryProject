@@ -2,6 +2,7 @@
 export default {
     state: {
         produtos: [],
+        img_default: "../../assets/defaultimg.png"
     },
     getters: {
         totalProdutos: (state) => {

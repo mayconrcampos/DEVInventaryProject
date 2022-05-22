@@ -9,7 +9,10 @@
           <span id="gravatar"
             ><vue-gravatar :email="logado.usuario" default="404" alt="nobody" />
             {{ logado.usuario }}</span
+
+               
           >
+           
         </div>
       </div>
     </nav>
@@ -123,13 +126,21 @@
             :key="indice"
           >
             <div class="card h-100">
-              <div class="card-body">
+              <div id="cardproduto" class="card-body">
                 <h5 class="card-title h-50 text-center">
                   <img
+                    v-if="produto.foto.file !== ''"
                     id="img"
                     class="img-fluid mt-2"
-                    :src="produto.foto.file"
+                    :src='produto.foto.file'
                   />
+                  <img
+                    v-else
+                    id="img"
+                    class="img-fluid mt-2"
+                    src="../../assets/defaultimg.png"
+                  />
+                 
                 </h5>
                 <p class="card-text">
                   <small>{{ produto.titulo }}</small
@@ -170,6 +181,7 @@ export default {
         state.colaboradoresStore.colaboradores.length,
       num_itens: (state) => state.produtosStore.produtos.length,
       produtos: (state) => state.produtosStore.produtos,
+      img_default: (state) => state.produtosStore.img_default
     }),
   },
 };
@@ -213,9 +225,12 @@ nav {
   width: 30px !important;
   border-radius: 50% !important;
 }
-@media (max-width: 1000px){
+@media (min-width: 1024px){
   .card-body h2 {
-    font-size: 1.7em !important;
+    font-size: 1.9em !important;
+  }
+  #cardproduto .card-text h5 {
+    font-size: 0.9em !important;
   }
 }
 
@@ -233,6 +248,7 @@ nav {
   .card-body h2 {
     font-size: 1.2em !important;
   }
+  
 }
 
 @media (max-width: 600px){
