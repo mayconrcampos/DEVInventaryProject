@@ -155,6 +155,7 @@
               </div>
               <div class="card-footer text-center">
                 <button class="btn btnstatusnaempresa">Na empresa</button>
+                <button class="btn" @click="preencheCampos(produto, indice)">Editar</button>
               </div>
             </div>
           </div>
@@ -168,7 +169,7 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from "vuex";
+import { mapGetters, mapMutations, mapState } from "vuex";
 export default {
   name: "invenTario",
   computed: {
@@ -177,13 +178,27 @@ export default {
     }),
     ...mapState({
       logado: (state) => state.usuarioStore.logado,
+      produto_: (state) => state.produtosStore.produto,
       numColaboradores: (state) =>
         state.colaboradoresStore.colaboradores.length,
       num_itens: (state) => state.produtosStore.produtos.length,
       produtos: (state) => state.produtosStore.produtos,
-      img_default: (state) => state.produtosStore.img_default
+      status_edita: (state) => state.produtosStore.edita,
+      indice_produto: (state) => state.produtosStore.indice_produto
     }),
   },
+  methods: {
+    ...mapMutations(["setProduto", "setEdita", "setIndiceProduto"]),
+
+    preencheCampos(produto, indice){
+      this.setProduto(produto)
+      this.setIndiceProduto(indice)
+      this.setEdita(true)
+      //console.log(this.produto_)
+      this.$router.push("/produtos/cadastra")
+      
+    }
+  }
 };
 </script>
 

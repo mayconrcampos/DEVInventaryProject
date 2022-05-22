@@ -51,7 +51,7 @@ const routes = [
             { path: "colabs/add", component: Cadastro  },
             { path: "colabs/listar", component: Listar },
             { path: "geral/inventario", component: Inventario },
-            { path: "/produtos/cadastra", component: Cadastra },
+            { path: "/produtos/cadastra/", component: Cadastra },
             { path: "/produtos/emprestimos", component: Emprestimos }
 
         ]

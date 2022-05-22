@@ -6,7 +6,6 @@
           <span class="">CADASTRO DE ITENS</span>
         </div>
 
-
         <div class="w-50 text-end me-3">
           <span id="gravatar"
             ><vue-gravatar :email="logado.usuario" default="404" alt="nobody" />
@@ -130,7 +129,9 @@
             <button @click="limpar()" id="btnlimpar" class="btn me-3">
               Limpar
             </button>
-            <button id="btnsalvar" class="btn">Salvar</button>
+            <button id="btnsalvar" class="btn">
+              {{ status_edita ? "Editar" : "Salvar" }}
+            </button>
           </div>
         </Form>
       </div>
@@ -152,7 +153,9 @@ export default {
   computed: {
     ...mapState({
       logado: (state) => state.usuarioStore.logado,
-      img_default: (state) => state.produtosStore.img_default,
+      status_edita: (state) => state.produtosStore.edita,
+      produto_para_editar: (state) => state.produtosStore.produto,
+      indice_produto: (state) => state.produtosStore.indice_produto
     }),
   },
   data() {
@@ -172,25 +175,44 @@ export default {
       },
     };
   },
+  mounted() {
+    this.preencheCampos(this.produto_para_editar, this.indice_produto);
+  },
   methods: {
-    ...mapMutations(["addProduto"]),
+    ...mapMutations(["addProduto", "setEdita", "setProduto", "setIndiceProduto", "setEditaProduto"]),
     ...mapActions(["salvaProdutosDB"]),
     cadastraProduto() {
-      this.addProduto({
-        id: new Date().getTime(),
-        codigo: this.produto.codigo,
-        titulo: this.produto.titulo,
-        categoria: this.produto.categoria,
-        valor: this.produto.valor,
-        foto: this.produto.foto,
-        marca: this.produto.marca,
-        modelo: this.produto.modelo,
-        descricao: this.produto.descricao,
-      });
-      this.$toast.success("Produto cadastrado com sucesso");
-      this.salvaProdutosDB();
-      this.$router.push("/menu/geral/inventario");
-      
+      if (!this.status_edita) {
+        this.addProduto({
+          id: new Date().getTime(),
+          codigo: this.produto.codigo,
+          titulo: this.produto.titulo,
+          categoria: this.produto.categoria,
+          valor: this.produto.valor,
+          foto: this.produto.foto,
+          marca: this.produto.marca,
+          modelo: this.produto.modelo,
+          descricao: this.produto.descricao,
+        });
+        this.$toast.success("Produto cadastrado com sucesso");
+        this.salvaProdutosDB();
+        this.$router.push("/menu/geral/inventario");
+      }else{
+        this.setEditaProduto({
+          codigo: this.produto.codigo,
+          titulo: this.produto.titulo,
+          categoria: this.produto.categoria,
+          valor: this.produto.valor,
+          foto: this.produto.foto,
+          marca: this.produto.marca,
+          modelo: this.produto.modelo,
+          descricao: this.produto.descricao,
+        })
+        this.$toast.success("Produto atualizado com sucesso")
+        this.limpar()
+        this.salvaProdutosDB();
+        this.$router.push("/menu/geral/inventario");
+      }
     },
     limpar() {
       this.produto = {
@@ -206,6 +228,27 @@ export default {
         modelo: "",
         descricao: "",
       };
+      this.setProduto({
+        codigo: "",
+        titulo: "",
+        categoria: "",
+        valor: "",
+        foto: {
+          nome: "",
+          file: "",
+        },
+        marca: "",
+        modelo: "",
+        descricao: "",
+      });
+      this.setEdita(false);
+      this.setIndiceProduto(false);
+      
+    },
+    preencheCampos(obj = null, indice = null) {
+      if (obj && indice) {
+        this.produto = obj;
+      }
     },
     validaCodigo(codigo) {
       if (codigo) {
@@ -233,19 +276,21 @@ export default {
     },
     validaFoto(foto) {
       if (foto) {
-        console.log(foto)
+        console.log(foto);
         let formato = foto.slice(11, 15);
-        
-        if (formato == "png;" || formato == "jpeg" || formato == "webp" || foto == "") {
-          console.log(foto)
+
+        if (
+          formato == "png;" ||
+          formato == "jpeg" ||
+          formato == "webp" ||
+          foto == ""
+        ) {
+          console.log(foto);
           return true;
         }
         return "Somente extensão 'png' 'jpeg' 'webp'";
-      }else{
- 
-
-          return true
-     
+      } else {
+        return true;
       }
     },
     validaMarca(Marca) {
@@ -264,7 +309,7 @@ export default {
       var arquivo = event.target.files || event.dataTransfer.files;
       this.produto.foto.nome = arquivo[0].name;
       if (!arquivo.length) {
-        this.produto.foto.file = ""
+        this.produto.foto.file = "";
         return;
       }
       this.criaImagem(arquivo[0]);

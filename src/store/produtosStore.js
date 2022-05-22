@@ -2,7 +2,23 @@
 export default {
     state: {
         produtos: [],
-        img_default: "../../assets/defaultimg.png"
+        img_default: "../../assets/defaultimg.png",
+        produto: {
+            codigo: "",
+            titulo: "",
+            categoria: "",
+            valor: "",
+            foto: {
+              nome: "",
+              file: "",
+            },
+            marca: "",
+            modelo: "",
+            descricao: "",
+          },
+        edita: false,
+        indice_produto: false
+        
     },
     getters: {
         totalProdutos: (state) => {
@@ -12,6 +28,18 @@ export default {
         }
     },
     mutations: {
+        setIndiceProduto(state, indice){
+            state.indice_produto = indice
+        },
+        setEdita(state, status){
+            state.edita = status
+        },
+        setProduto(state, produto){
+            state.produto = produto
+        },
+        setEditaProduto(state, produto){
+            state.produtos.splice(state.indice_produto, produto)
+        },
         setProdutos(state){
             state.produtos = []
         },
