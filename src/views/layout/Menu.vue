@@ -110,7 +110,7 @@ ul li {
   background-color: whitesmoke !important;
   color: #143168 !important;
 }
-@media (max-width: 600px) {
+@media (max-width: 750px) {
   img {
     display: none;
   }

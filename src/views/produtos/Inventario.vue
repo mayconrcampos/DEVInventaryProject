@@ -18,7 +18,8 @@
 
       <div class="bg-white w-100 mt-4 p-4 rounded shadow">
         <div class="card-group">
-          <div class="card border rounded shadow me-3" style="width: 13rem">
+
+          <div class="card rounded shadow me-3" style="width: 13rem">
             <div class="card-body">
               <h2
                 class="
@@ -113,7 +114,7 @@
 
         <!-------- Cards de produtos --------->
 
-        <div class="row mh-75 row-cols-1 row-cols-md-4 g-1 mt-3">
+        <div class="row mh-75 row-cols-1 row-cols-lg-4 g-1 mt-3">
           <!--- Colunas---->
 
           <div
@@ -146,60 +147,9 @@
               </div>
             </div>
           </div>
-          <!---------------
-          <div class="col rounded shadow">
-            <div class="card h-100">
-              <div class="card-body">
-                <h5 class="card-title h-50 text-center">
-                  <img
-                    id="img"
-                    class="img-fluid mt-2"
-                    src="https://http2.mlstatic.com/D_NQ_NP_2X_743539-MLA43295550332_082020-F.webp"
-                  />
-                </h5>
-                <p class="card-text">
-                  <small>Multilaser MO251 - Mouse Sem Fio</small><br />
-                </p>
-                <div class="card-text">
-                  <span class="text-secondary"
-                    ><strong>Multilaser</strong></span
-                  >
-                  <h5>Mouse</h5>
-                </div>
-              </div>
-              <div class="card-footer text-center">
-                <button class="btn btnstatusnaempresa">Na empresa</button>
-              </div>
-            </div>
-          </div>
+         
 
-          <div class="col rounded shadow">
-            <div class="card h-100">
-              <div class="card-body">
-                <h5 class="card-title h-50 text-center">
-                  <img
-                    id="img"
-                    class="img-fluid mt-2"
-                    src="https://http2.mlstatic.com/D_NQ_NP_2X_826537-MLA43977268687_112020-F.webp"
-                  />
-                </h5>
-                <p class="card-text">
-                  <small>Teclado sem fio Logitech K270 QWERTY</small><br />
-                </p>
-                <div class="card-text">
-                  <span class="text-secondary"><strong>Logitech</strong></span>
-                  <h5>Teclado</h5>
-                </div>
-              </div>
-              <div class="card-footer text-center">
-                <button class="btn btnstatusemprestado">
-                  Nome Colaborador
-                </button>
-              </div>
-            </div>
-          </div>
 
--------------------->
         </div>
       </div>
     </div>
@@ -231,6 +181,10 @@ export default {
   overflow-y: scroll;
 }
 nav {
+  transition: 1s all;
+}
+
+nav {
   background-color: #143168;
   color: aliceblue;
 }
@@ -259,4 +213,35 @@ nav {
   width: 30px !important;
   border-radius: 50% !important;
 }
+@media (max-width: 1000px){
+  .card-body h2 {
+    font-size: 1.7em !important;
+  }
+}
+
+.card-body h2 {
+  transition: 1s all;
+}
+
+@media (max-width: 800px){
+  .card-body h2 {
+    font-size: 1.4em !important;
+  }
+}
+
+@media (max-width: 700px){
+  .card-body h2 {
+    font-size: 1.2em !important;
+  }
+}
+
+@media (max-width: 600px){
+  .card-body h2 {
+    font-size: 1em !important;
+  }
+  #gravatar {
+    font-size: 0.8em !important;
+  }
+}
+
 </style>

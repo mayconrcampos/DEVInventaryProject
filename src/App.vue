@@ -63,7 +63,7 @@ body {
   top: 0;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 750px) {
   #pai {
     display: block;
     overflow-y: scroll;
