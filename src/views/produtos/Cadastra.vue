@@ -195,6 +195,7 @@ export default {
           descricao: this.produto.descricao,
         });
         this.$toast.success("Produto cadastrado com sucesso");
+        this.limpar()
         this.salvaProdutosDB();
         this.$router.push("/menu/geral/inventario");
       }else{
@@ -243,7 +244,7 @@ export default {
       });
       this.setEdita(false);
       this.setIndiceProduto(false);
-      
+
     },
     preencheCampos(obj = null, indice = null) {
       if (obj && indice) {
