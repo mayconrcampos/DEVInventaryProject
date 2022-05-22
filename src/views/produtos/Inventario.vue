@@ -9,10 +9,7 @@
           <span id="gravatar"
             ><vue-gravatar :email="logado.usuario" default="404" alt="nobody" />
             {{ logado.usuario }}</span
-
-               
           >
-           
         </div>
       </div>
     </nav>
@@ -21,7 +18,6 @@
 
       <div class="bg-white w-100 mt-4 p-4 rounded shadow">
         <div class="card-group">
-
           <div class="card rounded shadow me-3" style="width: 13rem">
             <div class="card-body">
               <h2
@@ -106,18 +102,25 @@
 
         <div class="row">
           <div class="col-lg-10">
-            <input type="text" class="form-control" />
+            <input
+              type="text"
+              v-model="campobusca"
+              class="form-control"
+              
+            />
           </div>
           <div class="col-lg-2">
-            <button type="submit" class="btn btn-light">
+            <button type="submit" class="btn btn-light" @click="procurando()">
               <i class="fa-solid fa-magnifying-glass"></i> Buscar
             </button>
           </div>
         </div>
 
-        <!-------- Cards de produtos --------->
-
-        <div class="row mh-75 row-cols-1 row-cols-lg-4 g-1 mt-3">
+        <!-------- Cards de todos os produtos do Array --------->
+        <div
+          v-if="!procurar"
+          class="row mh-75 row-cols-1 row-cols-lg-4 g-1 mt-3"
+        >
           <!--- Colunas---->
 
           <div
@@ -132,7 +135,7 @@
                     v-if="produto.foto.file !== ''"
                     id="img"
                     class="img-fluid mt-2"
-                    :src='produto.foto.file'
+                    :src="produto.foto.file"
                   />
                   <img
                     v-else
@@ -140,7 +143,6 @@
                     class="img-fluid mt-2"
                     src="../../assets/defaultimg.png"
                   />
-                 
                 </h5>
                 <p class="card-text">
                   <small>{{ produto.titulo }}</small
@@ -155,14 +157,70 @@
               </div>
               <div class="card-footer text-center">
                 <button class="btn btnstatusnaempresa">Na empresa</button>
-                <button class="btn" @click="preencheCampos(produto, indice)">Editar</button>
+                <button class="btn" @click="preencheCampos(produto, indice)">
+                  Editar
+                </button>
               </div>
             </div>
           </div>
-         
-
-
         </div>
+
+        <!------------------- Cards dos itens filtrados ---------------------------->
+        <div
+          v-else
+          class="row mh-75 row-cols-1 row-cols-lg-4 g-1 mt-3"
+        >
+          <!--- Colunas---->
+
+          <div
+            class="col rounded shadow"
+            v-for="(p, indice) in filtrados"
+            :key="indice"
+          >
+            <div class="card h-100">
+              <div id="cardproduto" class="card-body">
+                <h5 class="card-title h-50 text-center">
+                  <img
+                    v-if="p.produto.foto.file !== ''"
+                    id="img"
+                    class="img-fluid mt-2"
+                    :src="p.produto.foto.file"
+                  />
+                  <img
+                    v-else
+                    id="img"
+                    class="img-fluid mt-2"
+                    src="../../assets/defaultimg.png"
+                  />
+                </h5>
+                <p class="card-text">
+                  <small>{{ p.produto.titulo }}</small
+                  ><br />
+                </p>
+                <div class="card-text">
+                  <span class="text-secondary"
+                    ><strong>{{ p.produto.modelo }}</strong></span
+                  >
+                  <h5>{{ p.produto.descricao }}</h5>
+                </div>
+              </div>
+              <div class="card-footer text-center">
+                <button class="btn btnstatusnaempresa">Na empresa</button>
+                <button class="btn" @click="preencheCampos(p.produto, p.indice)">
+                  Editar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        
+        
+
+
       </div>
     </div>
   </div>
@@ -172,9 +230,16 @@
 import { mapGetters, mapMutations, mapState } from "vuex";
 export default {
   name: "invenTario",
+  data() {
+    return {
+      procurar: false,
+      campobusca: "",
+      filtrados: []
+    };
+  },
   computed: {
     ...mapGetters({
-      total: "totalProdutos"
+      total: "totalProdutos",
     }),
     ...mapState({
       logado: (state) => state.usuarioStore.logado,
@@ -184,21 +249,41 @@ export default {
       num_itens: (state) => state.produtosStore.produtos.length,
       produtos: (state) => state.produtosStore.produtos,
       status_edita: (state) => state.produtosStore.edita,
-      indice_produto: (state) => state.produtosStore.indice_produto
+      indice_produto: (state) => state.produtosStore.indice_produto,
     }),
   },
   methods: {
     ...mapMutations(["setProduto", "setEdita", "setIndiceProduto"]),
 
-    preencheCampos(produto, indice){
-      this.setProduto(produto)
-      this.setIndiceProduto(indice)
-      this.setEdita(true)
-      //console.log(this.produto_)
-      this.$router.push("/produtos/cadastra")
-      
-    }
-  }
+    preencheCampos(produto, indice) {
+      console.log("Produto: ", produto, "Indice",indice)
+      this.setProduto(produto);
+      this.setIndiceProduto(indice);
+      this.setEdita(true);
+      this.$router.push("/produtos/cadastra");
+    },
+    procurando() {
+      if (this.campobusca.length > 0) {
+        console.log(this.campobusca);
+        this.procurar = true;
+        this.filtrados = []
+        
+        this.produtos.forEach((el, indice) => {
+          if(el.titulo.toLowerCase() == this.campobusca.toLowerCase()){
+            this.filtrados.push({
+              "indice": indice,
+              "produto": el
+            })
+          }
+        })
+
+        
+        console.log(this.filtrados)
+      } else {
+        this.procurar = false;
+      }
+    },
+  },
 };
 </script>
 
@@ -240,7 +325,7 @@ nav {
   width: 30px !important;
   border-radius: 50% !important;
 }
-@media (min-width: 1024px){
+@media (min-width: 1024px) {
   .card-body h2 {
     font-size: 1.9em !important;
   }
@@ -253,20 +338,19 @@ nav {
   transition: 1s all;
 }
 
-@media (max-width: 800px){
+@media (max-width: 800px) {
   .card-body h2 {
     font-size: 1.4em !important;
   }
 }
 
-@media (max-width: 700px){
+@media (max-width: 700px) {
   .card-body h2 {
     font-size: 1.2em !important;
   }
-  
 }
 
-@media (max-width: 600px){
+@media (max-width: 600px) {
   .card-body h2 {
     font-size: 1em !important;
   }
@@ -274,5 +358,4 @@ nav {
     font-size: 0.8em !important;
   }
 }
-
 </style>

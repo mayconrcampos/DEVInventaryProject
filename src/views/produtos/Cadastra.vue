@@ -247,7 +247,7 @@ export default {
 
     },
     preencheCampos(obj = null, indice = null) {
-      if (obj && indice) {
+      if (obj || indice) {
         this.produto = obj;
       }
     },
@@ -277,7 +277,7 @@ export default {
     },
     validaFoto(foto) {
       if (foto) {
-        console.log(foto);
+        
         let formato = foto.slice(11, 15);
 
         if (
@@ -286,7 +286,7 @@ export default {
           formato == "webp" ||
           foto == ""
         ) {
-          console.log(foto);
+          
           return true;
         }
         return "Somente extensão 'png' 'jpeg' 'webp'";
