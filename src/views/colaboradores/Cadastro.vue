@@ -79,7 +79,7 @@
                 name="fone"
                 type="text"
                 class="form-control"
-                v-mask="'(##) #####-####'"
+                v-mask="['(##) ####-####', '(##) #####-####']"
                 v-model="fone"
               />
               <ErrorMessage name="fone" class="text-danger" />

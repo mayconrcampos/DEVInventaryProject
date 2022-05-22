@@ -2,12 +2,13 @@
 export default {
   state: {
     colaboradores: [],
-    //logado: false,
-    //indice: "",
-    //emailExiste: ""
+  
   },
 
   mutations: {
+    setColaboradores(state){
+      state.colaboradores = []
+    },
     addColaborador(state, colab) {
       state.colaboradores.push(colab)
     },
@@ -33,36 +34,12 @@ export default {
       context.commit("addColaborador", colaborador)
       return true
     },
-    /*autentica(context, login) {
-      context.commit("setEmailExiste", false)
-      context.commit("setIndice", false)
-
-      context.state.colaboradores.forEach((user, index) => {
-        if (user.email == login.email) {
-          context.commit("setEmailExiste", true)
-          context.commit("setIndice", index)
-
-        }
-      });
-      if (context.state.emailExiste == true) {
-        if(context.state.colaboradores[context.state.indice].senha == login.senha){
-          context.commit("setLogado", {
-            "logado": true,
-            "usuario": login.email
-          })
-          return true
-        }else{
-          return false
-        }
-      }else{
-        return false
-      }
-    },*/
     salvaColaboradoresDB(context) {
       var dados = JSON.stringify(context.state.colaboradores)
       localStorage.setItem("colaboradores", dados)
     },
     carregaColaboradoresDB(context) {
+      context.commit("setColaboradores")
       try {
         var dados = localStorage.getItem("colaboradores")
 

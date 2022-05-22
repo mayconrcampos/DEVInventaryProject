@@ -15,7 +15,7 @@ export default {
     }),
   },
   methods: {
-    ...mapActions(["carregaColaboradoresDB", "carregaUsuariosDB"]),
+    ...mapActions(["carregaColaboradoresDB", "carregaUsuariosDB", "carregaProdutosDB"]),
     ...mapMutations(["setLogado"]),
     verificaLogado() {
       
@@ -29,10 +29,12 @@ export default {
       
     },
   },
+  
   mounted() {
     this.carregaColaboradoresDB();
     this.verificaLogado();
     this.carregaUsuariosDB();
+    this.carregaProdutosDB()
   },
 };
 </script>

@@ -13,7 +13,7 @@ import 'vue-m-dialog/dist/style.css'
 import colaboradoresStore from './store/colaboradoresStore'
 import emprestimoStore from './store/emprestimoStore'
 import inventarioStore from './store/inventarioStore'
-import itensStore from './store/itensStore'
+import produtosStore from './store/produtosStore'
 import formularioCadastroStore from './store/formularioCadastroStore'
 import usuarioStore from './store/usuarioStore'
 
@@ -33,7 +33,7 @@ const store = createStore({
         colaboradoresStore,
         emprestimoStore,
         inventarioStore,
-        itensStore,
+        produtosStore,
         formularioCadastroStore,
         usuarioStore
     }

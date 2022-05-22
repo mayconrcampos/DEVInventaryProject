@@ -7,6 +7,9 @@ export default {
     },
 
     mutations: {
+        setUsuarios(state){
+            state.usuarios = []
+        },
         addUsuario(state, usuario) {
             state.usuarios.push(usuario)
         },
@@ -71,6 +74,7 @@ export default {
             localStorage.setItem("usuariosDB", dados)
         },
         carregaUsuariosDB(context) {
+            context.commit("setUsuarios")
             try {
                 var dados = localStorage.getItem("usuariosDB")
 

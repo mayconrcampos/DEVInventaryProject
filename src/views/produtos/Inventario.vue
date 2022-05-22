@@ -50,7 +50,7 @@
                   fs-1
                 "
               >
-                <i class="fa-solid fa-cabinet-filing"></i> 59
+                <i class="fa-solid fa-cabinet-filing"></i> {{ num_itens }}
               </h2>
               <h6 class="card-subtitle mb-2 text-muted text-center">Itens</h6>
             </div>
@@ -68,7 +68,8 @@
                   fs-1
                 "
               >
-                <i class="fa-solid fa-brazilian-real-sign"></i> 25.9k
+                <i class="fa-solid fa-brazilian-real-sign"></i>
+                {{ total }}
               </h2>
               <h6 class="card-subtitle mb-2 text-muted text-center">
                 Valor em Produtos
@@ -115,23 +116,29 @@
         <div class="row mh-75 row-cols-1 row-cols-md-4 g-1 mt-3">
           <!--- Colunas---->
 
-          <div class="col rounded shadow">
+          <div
+            class="col rounded shadow"
+            v-for="(produto, indice) in produtos"
+            :key="indice"
+          >
             <div class="card h-100">
               <div class="card-body">
                 <h5 class="card-title h-50 text-center">
                   <img
                     id="img"
                     class="img-fluid mt-2"
-                    src="https://m.media-amazon.com/images/I/71+KVFmyssS._AC_SL1500_.jpg"
+                    :src="produto.foto.file"
                   />
                 </h5>
                 <p class="card-text">
-                  <small>Notebook Samsung Book I5 8GB 512GB SSD 15.6</small
+                  <small>{{ produto.titulo }}</small
                   ><br />
                 </p>
                 <div class="card-text">
-                  <span class="text-secondary"><strong>Samsung</strong></span>
-                  <h5>Notebook</h5>
+                  <span class="text-secondary"
+                    ><strong>{{ produto.modelo }}</strong></span
+                  >
+                  <h5>{{ produto.descricao }}</h5>
                 </div>
               </div>
               <div class="card-footer text-center">
@@ -139,7 +146,7 @@
               </div>
             </div>
           </div>
-
+          <!---------------
           <div class="col rounded shadow">
             <div class="card h-100">
               <div class="card-body">
@@ -191,6 +198,8 @@
               </div>
             </div>
           </div>
+
+-------------------->
         </div>
       </div>
     </div>
@@ -198,13 +207,19 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapGetters, mapState } from "vuex";
 export default {
   name: "invenTario",
   computed: {
+    ...mapGetters({
+      total: "totalProdutos"
+    }),
     ...mapState({
       logado: (state) => state.usuarioStore.logado,
-      numColaboradores: (state) => state.colaboradoresStore.colaboradores.length,
+      numColaboradores: (state) =>
+        state.colaboradoresStore.colaboradores.length,
+      num_itens: (state) => state.produtosStore.produtos.length,
+      produtos: (state) => state.produtosStore.produtos,
     }),
   },
 };
