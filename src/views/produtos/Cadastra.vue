@@ -70,7 +70,14 @@
             </div>
             <div class="col-lg-9">
               <label class="col-form-label">Inserir foto</label>
-              <input type="file" @change="arquivoSelecionado" class="form-control" />
+              <Field  
+                :rules="validaFoto"
+                v-model="produto.foto.file"
+                name="arquivo"
+                type="file" 
+                @change="arquivoSelecionado" 
+                class="form-control" />
+                <ErrorMessage name="arquivo" class="text-danger" />
             </div>
           </div>
 
@@ -181,7 +188,10 @@ export default {
         titulo: "",
         categoria: "",
         valor: "",
-        foto: "",
+        foto: {
+          nome: "",
+          file: ""
+        },
         marca: "",
         modelo: "",
         descricao: ""
@@ -211,6 +221,13 @@ export default {
       }
       return "Valor obrigatório"
     },
+    validaFoto(foto){
+      let formato = foto.slice(11, 15)
+      if(formato == "png;" || formato == "jpeg" || formato == "webp" || formato == ""){
+        return true
+      }
+      return "Somente extensão 'png' 'jpeg' 'webp'"
+    },  
     validaMarca(Marca){
       if(Marca){
         return true
