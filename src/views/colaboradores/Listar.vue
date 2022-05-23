@@ -20,10 +20,10 @@
 
       <div class="row">
         <div class="col-lg-10">
-          <input type="text" class="form-control" />
+          <input type="text" class="form-control" v-model="campobusca" />
         </div>
         <div class="col-lg-2">
-          <button class="btn">
+          <button class="btn" @click="procurando()">
             <i class="fa-solid fa-magnifying-glass"></i> Buscar
           </button>
         </div>
@@ -32,10 +32,10 @@
         <!----------- Cards dos usuários ---------->
         <div class="album py-3 bg-light">
           <div class="container">
-            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 g-3">
-              
-              
-              
+
+            <!------------ Cards de Todos os colaboradores ----------------->
+
+            <div v-if="!procurar" class="row row-cols-1 row-cols-sm-1 row-cols-md-3 g-3">
               <div
                 class="col rounded"
                 v-for="(col, index) in colaboradores"
@@ -71,10 +71,49 @@
                   </div>
                 </div>
               </div>
-
-
-
             </div>
+
+            <!----------------- Cards somente dos filtrados ----------------------->
+            <div v-else class="row row-cols-1 row-cols-sm-1 row-cols-md-3 g-3">
+              <div
+                
+                class="col rounded"
+                v-for="(col, index) in filtrados"
+                :key="index"
+              >
+                <div class="card shadow-lg rounded">
+                  <vue-gravatar :email="col.colaborador.email" default="404" alt="nobody" />
+
+                  <div class="card-body">
+                    <p class="card-text text-center">
+                      <strong>{{ col.colaborador.nome }}</strong>
+                    </p>
+
+                    <div class="card-text text-center">
+                      <small class="card-text text-center">{{
+                        col.colaborador.email
+                      }}</small>
+                    </div>
+
+                    <p class="text-center">{{ col.colaborador.fone }}</p>
+                    <hr />
+
+                    <p class="text-center">
+                      <strong>{{ col.colaborador.cargo }}</strong>
+                    </p>
+                    <hr />
+                    <button
+                      class="btn btn-light"
+                      @click="preencheCampos(col.colaborador, col.index)"
+                    >
+                      Editar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
           </div>
         </div>
       </div>
@@ -90,6 +129,10 @@ export default {
     return {
       show: false,
       nome: "",
+      procurar: false,
+      campobusca: "",
+      filtrados: [],
+
     };
   },
   computed: {
@@ -107,7 +150,26 @@ export default {
       this.setIndiceColaborador(indice);
       this.setEditaColaborador(true);
       this.$router.push("/menu/colabs/add");
-    }
+    },
+    procurando() {
+      console.log("Procurando")
+      if (this.campobusca.length > 0) {
+        console.log(this.campobusca);
+        this.procurar = true;
+        this.filtrados = []
+        
+        this.colaboradores.forEach((el, indice) => {
+          if(el.nome.toLowerCase().search(this.campobusca.toLowerCase()) != -1){
+            this.filtrados.push({
+              "indice": indice,
+              "colaborador": el
+            })
+          }
+        })        
+      } else {
+        this.procurar = false;
+      }
+    },
   },
 };
 </script>
