@@ -302,7 +302,6 @@ export default {
           }
         });
       }else{
-        console.log("Editando")
         this.updateColaborador({
           nome: this.nome,
           genero: this.genero,

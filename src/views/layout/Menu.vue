@@ -72,12 +72,50 @@ import { mapMutations } from 'vuex';
 export default {
   name: "meNu",
   methods: {
-    ...mapMutations(["setLogado"]),
+    ...mapMutations(["setLogado", "setColaborador", "setEditaColaborador", "setIndiceColaborador", "setProduto", "setEdita", "setIndiceProduto"]),
     deslogar(){
       this.setLogado(false)
+      this.limparVariaveis()
       this.$cookies.remove("logado")
       this.$toast.info("Você saiu do sistema.")
       this.$router.push("/")
+    },
+    limparVariaveis(){
+      // Limpa colaboradores
+      this.setColaborador({
+        nome: "",
+        genero: "",
+        data_nasc: "",
+        fone: "",
+        email: "",
+        cargo: "",
+        cep: "",
+        cidade: "",
+        uf: "",
+        logradouro: "",
+        numero: "",
+        complem: "",
+        bairro: "",
+        ponto_ref: "",
+      });
+      this.setEditaColaborador(false);
+      this.setIndiceColaborador(false);
+      // Limpa produtos
+      this.setProduto({
+        codigo: "",
+        titulo: "",
+        categoria: "",
+        valor: "",
+        foto: {
+          nome: "",
+          file: "",
+        },
+        marca: "",
+        modelo: "",
+        descricao: "",
+      });
+      this.setEdita(false);
+      this.setIndiceProduto(false);
     }
   }
 };
