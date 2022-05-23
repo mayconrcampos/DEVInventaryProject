@@ -202,8 +202,11 @@
             <button type="submit" id="btnsalvar" class="btn me-3">
               {{ status_edita ? "Editar" : "Salvar" }}
             </button>
-            <button id="btnlimpar" class="btn" @click.prevent="limpar">
+            <button id="btnlimpar" class="btn me-3" @click.prevent="limpar">
               Limpar
+            </button>
+            <button v-if="status_edita" id="btnexcluir" class="btn btn-danger">
+              Excluir Registro
             </button>
           </div>
         </Form>
@@ -334,12 +337,15 @@ export default {
         this.cep = obj.cep;
         this.cidade = obj.cidade;
         this.uf = obj.uf;
+        
+      }
+      setTimeout(() => {
         this.logradouro = obj.logradouro;
         this.numero = obj.numero;
         this.complem = obj.complem;
         this.bairro = obj.bairro;
         this.ponto_ref = obj.ponto_ref;
-      }
+      }, 500);
     },
     limpar() {
       this.nome = "";
