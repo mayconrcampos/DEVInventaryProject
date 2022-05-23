@@ -21,7 +21,6 @@ export default {
       
         try {
           this.setLogado(this.$cookies.get("logado"));
-          console.log(this.logado);
         
         } catch (error) {
           console.log("Deu ruim no cookie: ",error)

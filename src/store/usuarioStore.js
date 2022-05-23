@@ -86,7 +86,6 @@ export default {
                         context.commit("addUsuario", dados[index])
                     }
                 }
-                console.log(context.state.usuarios)
 
             } catch (error) {
                 console.log("localStorage Vazia: " + error)

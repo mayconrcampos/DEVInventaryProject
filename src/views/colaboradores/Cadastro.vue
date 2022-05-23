@@ -324,7 +324,6 @@ export default {
       }
     },
     preencheCampos(obj = null, indice = null) {
-      console.log(obj.logradouro, obj.bairro);
       if (obj || indice) {
         this.nome = obj.nome;
         this.genero = obj.genero;

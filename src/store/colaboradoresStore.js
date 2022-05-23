@@ -41,7 +41,6 @@ export default {
       state.colaboradores.push(colab)
     },
     updateColaborador(state, colab){
-      console.log("Mutation: ", state.indice_colab, colab)
       state.colaboradores.splice(state.indice_colab, 1, colab)
     },
 
@@ -54,15 +53,12 @@ export default {
       var existe = false
       context.state.colaboradores.forEach(c => {
         if (c.email === colaborador.email) {
-          console.log("Comparação: ", c.email == colaborador.email)
           existe = true
         }
       });
       if (existe == true) {
-        console.log("Existe? ", existe)
         return false
       }
-      console.log("Existe? ", existe)
       context.commit("addColaborador", colaborador)
       return true
     },
@@ -81,7 +77,6 @@ export default {
             context.commit("addColaborador", dados[index])
           }
         }
-        console.log(context.state.colaboradores)
 
       } catch (error) {
         console.log("localStorage Vazia: " + error)
