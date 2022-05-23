@@ -32,10 +32,12 @@
         <!----------- Cards dos usuários ---------->
         <div class="album py-3 bg-light">
           <div class="container">
-
             <!------------ Cards de Todos os colaboradores ----------------->
 
-            <div v-if="!procurar" class="row row-cols-1 row-cols-sm-1 row-cols-md-3 g-3">
+            <div
+              v-if="!procurar"
+              class="row row-cols-1 row-cols-sm-1 row-cols-md-3 g-3"
+            >
               <div
                 class="col rounded"
                 v-for="(col, index) in colaboradores"
@@ -76,13 +78,16 @@
             <!----------------- Cards somente dos filtrados ----------------------->
             <div v-else class="row row-cols-1 row-cols-sm-1 row-cols-md-3 g-3">
               <div
-                
                 class="col rounded"
                 v-for="(col, index) in filtrados"
                 :key="index"
               >
                 <div class="card shadow-lg rounded">
-                  <vue-gravatar :email="col.colaborador.email" default="404" alt="nobody" />
+                  <vue-gravatar
+                    :email="col.colaborador.email"
+                    default="404"
+                    alt="nobody"
+                  />
 
                   <div class="card-body">
                     <p class="card-text text-center">
@@ -112,8 +117,6 @@
                 </div>
               </div>
             </div>
-
-
           </div>
         </div>
       </div>
@@ -132,40 +135,46 @@ export default {
       procurar: false,
       campobusca: "",
       filtrados: [],
-
     };
   },
   computed: {
     ...mapState({
       logado: (state) => state.usuarioStore.logado,
       colaboradores: (state) => state.colaboradoresStore.colaboradores,
-
     }),
   },
   methods: {
-    ...mapMutations(["setColaborador", "setIndiceColaborador", "setEditaColaborador"]),
-    preencheCampos(colaborador, indice){
-      console.log("colaborador: ", colaborador, "Indice",indice)
+    ...mapMutations([
+      "setColaborador",
+      "setIndiceColaborador",
+      "setEditaColaborador",
+    ]),
+    preencheCampos(colaborador, indice) {
+      console.log("colaborador: ", colaborador, "Indice", indice);
       this.setColaborador(colaborador);
       this.setIndiceColaborador(indice);
       this.setEditaColaborador(true);
       this.$router.push("/menu/colabs/add");
     },
     procurando() {
-      console.log("Procurando")
+      console.log("Procurando");
       if (this.campobusca.length > 0) {
         console.log(this.campobusca);
         this.procurar = true;
-        this.filtrados = []
-        
+        this.filtrados = [];
+
         this.colaboradores.forEach((el, indice) => {
-          if(el.nome.toLowerCase().search(this.campobusca.toLowerCase()) != -1){
+          if (
+            el.nome.toLowerCase().search(this.campobusca.toLowerCase()) != -1 ||
+            el.email.toLowerCase().search(this.campobusca.toLowerCase()) != -1 ||
+            el.cargo.toLowerCase().search(this.campobusca.toLowerCase()) != -1
+          ) {
             this.filtrados.push({
-              "indice": indice,
-              "colaborador": el
-            })
+              indice: indice,
+              colaborador: el,
+            });
           }
-        })        
+        });
       } else {
         this.procurar = false;
       }

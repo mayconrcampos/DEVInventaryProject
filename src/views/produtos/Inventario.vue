@@ -102,12 +102,7 @@
 
         <div class="row">
           <div class="col-lg-10">
-            <input
-              type="text"
-              v-model="campobusca"
-              class="form-control"
-              
-            />
+            <input type="text" v-model="campobusca" class="form-control" />
           </div>
           <div class="col-lg-2">
             <button type="submit" class="btn btn-light" @click="procurando()">
@@ -166,10 +161,7 @@
         </div>
 
         <!------------------- Cards dos itens filtrados ---------------------------->
-        <div
-          v-else
-          class="row mh-75 row-cols-1 row-cols-lg-4 g-1 mt-3"
-        >
+        <div v-else class="row mh-75 row-cols-1 row-cols-lg-4 g-1 mt-3">
           <!--- Colunas---->
 
           <div
@@ -206,14 +198,16 @@
               </div>
               <div class="card-footer text-center">
                 <button class="btn btnstatusnaempresa">Na empresa</button>
-                <button class="btn" @click="preencheCampos(p.produto, p.indice)">
+                <button
+                  class="btn"
+                  @click="preencheCampos(p.produto, p.indice)"
+                >
                   Editar
                 </button>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -227,7 +221,7 @@ export default {
     return {
       procurar: false,
       campobusca: "",
-      filtrados: []
+      filtrados: [],
     };
   },
   computed: {
@@ -249,7 +243,7 @@ export default {
     ...mapMutations(["setProduto", "setEdita", "setIndiceProduto"]),
 
     preencheCampos(produto, indice) {
-      console.log("Produto: ", produto, "Indice",indice)
+      console.log("Produto: ", produto, "Indice", indice);
       this.setProduto(produto);
       this.setIndiceProduto(indice);
       this.setEdita(true);
@@ -259,16 +253,23 @@ export default {
       if (this.campobusca.length > 0) {
         console.log(this.campobusca);
         this.procurar = true;
-        this.filtrados = []
-        
+        this.filtrados = [];
+
         this.produtos.forEach((el, indice) => {
-          if(el.titulo.toLowerCase().search(this.campobusca.toLowerCase()) != -1){
+          if (
+            el.titulo.toLowerCase().search(this.campobusca.toLowerCase()) !=
+              -1 ||
+            el.modelo.toLowerCase().search(this.campobusca.toLowerCase()) !=
+              -1 ||
+            el.descricao.toLowerCase().search(this.campobusca.toLowerCase()) !=
+              -1
+          ) {
             this.filtrados.push({
-              "indice": indice,
-              "produto": el
-            })
+              indice: indice,
+              produto: el,
+            });
           }
-        })        
+        });
       } else {
         this.procurar = false;
       }
