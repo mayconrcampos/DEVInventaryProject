@@ -33,19 +33,16 @@
         <div class="album py-3 bg-light">
           <div class="container">
             <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 g-3">
+              
+              
+              
               <div
                 class="col rounded"
                 v-for="(col, index) in colaboradores"
                 :key="index"
               >
-                
                 <div class="card shadow-lg rounded">
-                  <vue-gravatar
-                    :email="col.email"
-                    default="404"
-                    alt="nobody"
-                  
-                  />
+                  <vue-gravatar :email="col.email" default="404" alt="nobody" />
 
                   <div class="card-body">
                     <p class="card-text text-center">
@@ -64,9 +61,19 @@
                     <p class="text-center">
                       <strong>{{ col.cargo }}</strong>
                     </p>
+                    <hr />
+                    <button
+                      class="btn btn-light"
+                      @click="preencheCampos(col, index)"
+                    >
+                      Editar
+                    </button>
                   </div>
                 </div>
               </div>
+
+
+
             </div>
           </div>
         </div>
@@ -76,24 +83,32 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapMutations, mapState } from "vuex";
 export default {
   name: "lisTar",
   data() {
     return {
       show: false,
-      nome: ""
+      nome: "",
     };
   },
   computed: {
     ...mapState({
       logado: (state) => state.usuarioStore.logado,
       colaboradores: (state) => state.colaboradoresStore.colaboradores,
+
     }),
   },
   methods: {
-  
-  }
+    ...mapMutations(["setColaborador", "setIndiceColaborador", "setEditaColaborador"]),
+    preencheCampos(colaborador, indice){
+      console.log("colaborador: ", colaborador, "Indice",indice)
+      this.setColaborador(colaborador);
+      this.setIndiceColaborador(indice);
+      this.setEditaColaborador(true);
+      this.$router.push("/menu/colabs/add");
+    }
+  },
 };
 </script>
 

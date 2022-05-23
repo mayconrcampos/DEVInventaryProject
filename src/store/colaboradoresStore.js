@@ -2,18 +2,49 @@
 export default {
   state: {
     colaboradores: [],
-  
+    edita: false,
+    indice_colab: false,
+    colaborador: {
+      nome: "",
+      genero: "",
+      data_nasc: "",
+      fone: "",
+      email: "",
+      cargo: "",
+      cep: "",
+      cidade: "",
+      uf: "",
+      logradouro: "",
+      numero: "",
+      complem: "",
+      bairro: "",
+      ponto_ref: "",
+    }
+
   },
 
   mutations: {
-    setColaboradores(state){
+
+    setColaborador(state, colaborador) {
+      state.colaborador = colaborador
+    },
+    setIndiceColaborador(state, indice) {
+      state.indice_colab = indice
+    },
+    setEditaColaborador(state, status) {
+      state.edita = status
+    },
+    setColaboradores(state) {
       state.colaboradores = []
     },
     addColaborador(state, colab) {
       state.colaboradores.push(colab)
     },
- 
-    delColaborador(state, indice){
+    updateColaborador(state, colab){
+      state.colaboradores.splice(state.indice_colab, colab)
+    },
+
+    delColaborador(state, indice) {
       state.colaboradores.splice(indice, 1)
     }
   },

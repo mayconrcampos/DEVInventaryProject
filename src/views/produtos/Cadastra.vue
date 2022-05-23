@@ -150,14 +150,6 @@ export default {
     Form,
     ErrorMessage,
   },
-  computed: {
-    ...mapState({
-      logado: (state) => state.usuarioStore.logado,
-      status_edita: (state) => state.produtosStore.edita,
-      produto_para_editar: (state) => state.produtosStore.produto,
-      indice_produto: (state) => state.produtosStore.indice_produto
-    }),
-  },
   data() {
     return {
       produto: {
@@ -174,6 +166,14 @@ export default {
         descricao: "",
       },
     };
+  },
+  computed: {
+    ...mapState({
+      logado: (state) => state.usuarioStore.logado,
+      status_edita: (state) => state.produtosStore.edita,
+      produto_para_editar: (state) => state.produtosStore.produto,
+      indice_produto: (state) => state.produtosStore.indice_produto
+    }),
   },
   mounted() {
     this.preencheCampos(this.produto_para_editar, this.indice_produto);

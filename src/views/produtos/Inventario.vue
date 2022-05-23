@@ -269,7 +269,9 @@ export default {
         this.filtrados = []
         
         this.produtos.forEach((el, indice) => {
-          if(el.titulo.toLowerCase() == this.campobusca.toLowerCase()){
+          if(
+            el.titulo.toLowerCase() == this.campobusca.toLowerCase()
+            || el.modelo.toLowerCase() == this.campobusca.toLowerCase()){
             this.filtrados.push({
               "indice": indice,
               "produto": el

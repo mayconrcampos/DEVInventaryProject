@@ -3,7 +3,9 @@ export default {
         usuarios: [],
         logado: false,
         indice: "",
-        emailExiste: ""
+        emailExiste: "",
+        
+        
     },
 
     mutations: {

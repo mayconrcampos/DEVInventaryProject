@@ -6,19 +6,12 @@
           <span class="">CADASTRO DE COLABORADORES</span>
         </div>
 
-        
         <div class="w-50 text-end me-3">
           <span id="gravatar"
-            ><vue-gravatar
-              :email="logado.usuario"
-              default="404"
-              alt="nobody"
-            />
-          {{logado.usuario}}
-          </span
-          >
+            ><vue-gravatar :email="logado.usuario" default="404" alt="nobody" />
+            {{ logado.usuario }}
+          </span>
         </div>
-        
       </div>
     </nav>
     <div class="container mb-5">
@@ -200,10 +193,10 @@
               <input type="text" class="form-control" v-model="ponto_ref" />
             </div>
           </div>
-          
+
           <div class="d-flex justify-content-end mt-4">
             <button type="submit" id="btnsalvar" class="btn me-3">
-              Salvar
+              {{ status_edita ? "Editar" : "Salvar" }}
             </button>
             <button id="btnlimpar" class="btn" @click.prevent="limpar">
               Limpar
@@ -217,7 +210,7 @@
 
 <script>
 import { mask } from "vue-the-mask";
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapMutations, mapState } from "vuex";
 import { Field, Form, ErrorMessage } from "vee-validate";
 import axios from "axios";
 
@@ -230,6 +223,9 @@ export default {
     Field,
     Form,
     ErrorMessage,
+  },
+  mounted() {
+    this.preencheCampos(this.colaborador_para_editar, this.indice_colaborador);
   },
   data() {
     return {
@@ -247,7 +243,6 @@ export default {
       complem: "",
       bairro: "",
       ponto_ref: "",
-
     };
   },
   computed: {
@@ -256,14 +251,24 @@ export default {
       colaboradores: (state) => state.colaboradoresStore.colaboradores,
       generos: (state) => state.formularioCadastroStore.generos,
       logado: (state) => state.usuarioStore.logado,
+      status_edita: (state) => state.colaboradoresStore.edita,
+      colaborador_para_editar: (state) => state.colaboradoresStore.colaborador,
+      indice_colaborador: (state) =>
+        state.colaboradoresStore.indice_colaborador,
     }),
   },
   methods: {
     ...mapActions(["salvaColaboradoresDB", "insereColaborador"]),
+    ...mapMutations([
+      "setColaborador",
+      "setIndiceColaborador",
+      "setEditaColaborador",
+      "updateColaborador"
+    ]),
 
     // Adiciona Colaborador
     adicionaColaborador() {
-  
+      if (!this.status_edita) {
         this.insereColaborador({
           nome: this.nome,
           genero: this.genero,
@@ -283,14 +288,57 @@ export default {
           if (resposta == true) {
             this.salvaColaboradoresDB();
             this.$toast.success("Colaborador cadastrado com sucesso");
-            this.$router.push("/menu/colabs/listar")
+            this.$router.push("/menu/colabs/listar");
             this.limpar();
-          }else{
+          } else {
             this.$toast.error("Colaborador já está cadastrado no sistema");
           }
+        });
+      }else{
+        this.updateColaborador({
+          nome: this.nome,
+          genero: this.genero,
+          data_nasc: this.data_nasc,
+          fone: this.fone,
+          email: this.email,
+          cargo: this.cargo,
+          cep: this.cep,
+          cidade: this.cidade,
+          uf: this.uf,
+          logradouro: this.logradouro,
+          numero: this.numero,
+          complem: this.complem,
+          bairro: this.bairro,
+          ponto_ref: this.ponto_ref,
         })
-      
-      
+        //this.salvaColaboradoresDB();
+        //    this.$toast.success("Colaborador editado com sucesso");
+        //    this.$router.push("/menu/colabs/listar");
+        //    this.limpar();
+          /*******
+           * Preciso continuar daqui... pra inserir colaborador, ele precisa testar pra ver se já existe, pois numa edição, o usuário pode botar outro email que já exista ou coisa do tipo.... Então, vou precisar submeter a uma Action pra fazer este tratamento, em caso positivo dá um commit no resultado, caso contrário ele não valida.....
+           * 
+           * ******* */
+      }
+    },
+    preencheCampos(obj = null, indice = null) {
+      console.log(obj.logradouro, obj.bairro);
+      if (obj || indice) {
+        this.nome = obj.nome;
+        this.genero = obj.genero;
+        this.data_nasc = obj.data_nasc;
+        this.fone = obj.fone;
+        this.email = obj.email;
+        this.cargo = obj.cargo;
+        this.cep = obj.cep;
+        this.cidade = obj.cidade;
+        this.uf = obj.uf;
+        this.logradouro = obj.logradouro;
+        this.numero = obj.numero;
+        this.complem = obj.complem;
+        this.bairro = obj.bairro;
+        this.ponto_ref = obj.ponto_ref;
+      }
     },
     limpar() {
       this.nome = "";
@@ -307,6 +355,25 @@ export default {
       this.complem = "";
       this.bairro = "";
       this.ponto_ref = "";
+
+      this.setColaborador({
+        nome: "",
+        genero: "",
+        data_nasc: "",
+        fone: "",
+        email: "",
+        cargo: "",
+        cep: "",
+        cidade: "",
+        uf: "",
+        logradouro: "",
+        numero: "",
+        complem: "",
+        bairro: "",
+        ponto_ref: "",
+      });
+      this.setEditaColaborador(false);
+      this.setIndiceColaborador(false);
     },
 
     // Validações
