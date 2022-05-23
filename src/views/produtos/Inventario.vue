@@ -269,18 +269,15 @@ export default {
         this.filtrados = []
         
         this.produtos.forEach((el, indice) => {
-          if(
+          if(el.titulo.toLowerCase().search(this.campobusca.toLowerCase()) != -1 /*||
             el.titulo.toLowerCase() == this.campobusca.toLowerCase()
-            || el.modelo.toLowerCase() == this.campobusca.toLowerCase()){
+            || el.modelo.toLowerCase() == this.campobusca.toLowerCase()*/){
             this.filtrados.push({
               "indice": indice,
               "produto": el
             })
           }
-        })
-
-        
-        console.log(this.filtrados)
+        })        
       } else {
         this.procurar = false;
       }
