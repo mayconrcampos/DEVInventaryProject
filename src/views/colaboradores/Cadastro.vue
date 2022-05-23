@@ -30,6 +30,7 @@
                 type="text"
                 class="form-control"
                 v-model="nome"
+                :readonly="status_edita"
               />
               <ErrorMessage name="nome" class="text-danger" />
             </div>
@@ -42,6 +43,7 @@
                 class="form-control"
                 v-model="genero"
                 as="select"
+                :readonly="status_edita"
               >
                 <option disabled>Selecione</option>
                 <option v-for="gen in generos" :key="gen" :value="gen">
@@ -59,6 +61,7 @@
                 type="date"
                 class="form-control"
                 v-model="data_nasc"
+                :readonly="status_edita"
               />
               <ErrorMessage name="data_nasc" class="text-danger" />
             </div>
@@ -86,6 +89,7 @@
                 type="email"
                 class="form-control"
                 v-model="email"
+                :readonly="status_edita"
               />
               <ErrorMessage name="email" class="text-danger" />
             </div>
@@ -295,6 +299,7 @@ export default {
           }
         });
       }else{
+        console.log("Editando")
         this.updateColaborador({
           nome: this.nome,
           genero: this.genero,
@@ -311,14 +316,11 @@ export default {
           bairro: this.bairro,
           ponto_ref: this.ponto_ref,
         })
-        //this.salvaColaboradoresDB();
-        //    this.$toast.success("Colaborador editado com sucesso");
-        //    this.$router.push("/menu/colabs/listar");
-        //    this.limpar();
-          /*******
-           * Preciso continuar daqui... pra inserir colaborador, ele precisa testar pra ver se já existe, pois numa edição, o usuário pode botar outro email que já exista ou coisa do tipo.... Então, vou precisar submeter a uma Action pra fazer este tratamento, em caso positivo dá um commit no resultado, caso contrário ele não valida.....
-           * 
-           * ******* */
+        this.salvaColaboradoresDB();
+            this.$toast.success("Colaborador editado com sucesso");
+            this.$router.push("/menu/colabs/listar");
+            this.limpar();
+          
       }
     },
     preencheCampos(obj = null, indice = null) {

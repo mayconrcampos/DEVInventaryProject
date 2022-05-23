@@ -41,7 +41,8 @@ export default {
       state.colaboradores.push(colab)
     },
     updateColaborador(state, colab){
-      state.colaboradores.splice(state.indice_colab, colab)
+      console.log("Mutation: ", state.indice_colab, colab)
+      state.colaboradores.splice(state.indice_colab, 1, colab)
     },
 
     delColaborador(state, indice) {
