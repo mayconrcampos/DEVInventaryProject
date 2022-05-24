@@ -31,9 +31,14 @@ export default {
             }, 0)
         },
         totalEmprestados: (state) => {
-            return state.produtos.reduce((a, b) => {
-                a + b.emprestado.status == true
-            }, 0)
+            var conta = 0
+            state.produtos.forEach(produto => {
+                if(produto.emprestado.status == true){
+                    conta++
+                }
+            });
+
+            return conta
         }
     },
     mutations: {
