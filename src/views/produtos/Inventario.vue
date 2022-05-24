@@ -151,7 +151,7 @@
                 </div>
               </div>
               <div class="card-footer text-center">
-                <button class="btn btnstatusnaempresa">{{ produto.emprestado.status == true ? produto.emprestado.usuario : 'Na Empresa' }}</button>
+                <button :class="produto.emprestado.status == true ? 'btn btnstatusemprestado': 'btn btnstatusnaempresa' ">{{ produto.emprestado.status == true ? produto.emprestado.usuario : 'Na Empresa' }}</button>
                 <button class="btn" @click="preencheCampos(produto, indice)">
                   Editar
                 </button>
@@ -197,7 +197,7 @@
                 </div>
               </div>
               <div class="card-footer text-center">
-                <button class="btn btnstatusnaempresa">{{ p.produto.emprestado.status == true ? p.produto.emprestado.usuario : 'Na Empresa' }}</button>
+                <button :class="p.produto.emprestado.status == true ? 'btn btnstatusemprestado': 'btn btnstatusnaempresa' ">{{ p.produto.emprestado.status == true ? p.produto.emprestado.usuario : 'Na Empresa' }}</button>
                 <button
                   class="btn"
                   @click="preencheCampos(p.produto, p.indice)"
@@ -311,6 +311,7 @@ nav {
   font-weight: bold;
   width: 80%;
 }
+
 #img {
   max-height: 100%;
 }
