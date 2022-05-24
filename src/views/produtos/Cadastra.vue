@@ -176,7 +176,8 @@ export default {
       logado: (state) => state.usuarioStore.logado,
       status_edita: (state) => state.produtosStore.edita,
       produto_para_editar: (state) => state.produtosStore.produto,
-      indice_produto: (state) => state.produtosStore.indice_produto
+      indice_produto: (state) => state.produtosStore.indice_produto,
+      produtos: (state) => state.produtosStore.produtos
     }),
   },
   mounted() {
@@ -271,11 +272,23 @@ export default {
         this.produto = obj;
       }
     },
+    verificaCodigoDuplicado(codigo){
+      var existe = false
+      this.produtos.forEach(produto => {
+        if(produto.codigo == codigo){
+          existe = true
+        }
+      });
+      if(existe){
+        return false
+      }
+      return true
+    },
     validaCodigo(codigo) {
-      if (codigo) {
+      if (codigo && this.verificaCodigoDuplicado(codigo)) {
         return true;
       }
-      return "Código obrigatório";
+      return "Campo obrigatório e valor único";
     },
     validaTitulo(titulo) {
       if (titulo) {

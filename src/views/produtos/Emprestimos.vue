@@ -65,13 +65,13 @@
                   src="../../assets/defaultimg.png"
                 />
               </td>
-              <td>
+              <td class="">
                 <label
                   id="gravatar"
-                  class="col-form-label fs-5"
+                  :class="item.emprestado.status ? 'col-form-label fs-5 me-5' : 'col-form-label fs-3 me-5'"
                   @click="selecionaItem(indice, item, item.emprestado.status)"
                   >{{ item.emprestado.status == true ? item.emprestado.usuario : 'Emprestar' }}
-                  <vue-gravatar :email="item.emprestado.usuario" default="404" alt="nobody" />
+                  <vue-gravatar v-if="item.emprestado.status" :email="item.emprestado.usuario" default="404" alt="nobody" />
                   </label
                 >
               </td>
