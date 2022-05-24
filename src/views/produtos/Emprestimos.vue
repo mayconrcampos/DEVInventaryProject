@@ -69,7 +69,7 @@
                 <label
                   id="gravatar"
                   class="col-form-label fs-5"
-                  @click="selecionaItem(indice, item)"
+                  @click="selecionaItem(indice, item, item.emprestado.status)"
                   >{{ item.emprestado.status == true ? item.emprestado.usuario : 'Emprestar' }}
                   <vue-gravatar :email="item.emprestado.usuario" default="404" alt="nobody" />
                   </label
@@ -85,11 +85,11 @@
 
     <m-dialog
       v-model="show"
-      title="Emprestar Item Para"
+      :title="statusEmprestado ? 'Clique para Devolver Item' : 'Emprestar para colaborador'"
       :draggable="ok"
       width="600px"
     >
-      <div class="input-group mb-3">
+      <div v-if="!statusEmprestado" class="input-group mb-3">
         <label class="input-group-text" for="inputGroupSelect01"
           >Colaboradores</label
         >
@@ -104,15 +104,20 @@
             :value="c.email"
             selected
           >
-            {{ c.email }}
+          {{c.email}}
           </option>
         </select>
       </div>
 
+      <div v-else class="input-group mb-3 text-center">
+        <button class="btn btn-secondary w-100" @click="devolverItem()">Devolver item</button>
+      </div>
+
       <template v-slot:footer>
-        <button class="m-dialog--confirm-btn" @click="vincular(emailColab)">
+        <button v-if="!statusEmprestado" class="m-dialog--confirm-btn" @click="vincular(emailColab)">
           Vincular
         </button>
+        <button v-else class="btn btn-secondary" @click="show = false">Fechar</button>
       </template>
     </m-dialog>
   </div>
@@ -128,6 +133,7 @@ export default {
       produtos: (state) => state.produtosStore.produtos,
       colaboradores: (state) => state.colaboradoresStore.colaboradores,
       produtodastore: (state) => state.produtosStore.produto,
+      indice_produto: (state) => state.produtosStore.indice_produto
 
     }),
   },
@@ -137,12 +143,14 @@ export default {
       ok: true,
       emailColab: "",
       produto: {},
+      statusEmprestado: false
     };
   },
   methods: {
     ...mapMutations(["setProduto", "setEditaProduto", "setIndiceProduto"]),
     ...mapActions(["salvaProdutosDB"]),
-    selecionaItem(indice, produto) {
+    selecionaItem(indice, produto, status) {
+      this.statusEmprestado = status
       this.show = true;
       this.setIndiceProduto(indice);
       this.produto = {
@@ -158,8 +166,8 @@ export default {
         modelo: produto.modelo,
         descricao: produto.descricao,
         emprestado: {
-          status: false,
-          usuario: "",
+          status: produto.emprestado.status,
+          usuario: produto.emprestado.usuario,
         },
       };
       console.log(indice, produto, this.produto);
@@ -183,6 +191,31 @@ export default {
           usuario: email,
         },
       });
+      this.setEditaProduto(this.produtodastore)
+      this.salvaProdutosDB()
+      this.limpar()
+      this.show = false;
+    },
+    devolverItem(){
+      console.log(this.statusEmprestado, this.produto, this.indice_produto)
+      this.setProduto({
+        codigo: this.produto.codigo,
+        titulo: this.produto.titulo,
+        categoria: this.produto.categoria,
+        valor: this.produto.valor,
+        foto: {
+          nome: this.produto.foto.nome,
+          file: this.produto.foto.file,
+        },
+        marca: this.produto.marca,
+        modelo: this.produto.modelo,
+        descricao: this.produto.descricao,
+        emprestado: {
+          status: false,
+          usuario: "",
+        },
+        
+      })
       this.setEditaProduto(this.produtodastore)
       this.salvaProdutosDB()
       this.limpar()
