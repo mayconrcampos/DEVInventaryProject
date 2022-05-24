@@ -71,7 +71,7 @@
                   class="col-form-label fs-5"
                   @click="selecionaItem(indice, item)"
                   >{{ item.emprestado.status == true ? item.emprestado.usuario : 'Emprestar' }}
-                  <vue-gravatar :email="item.email" default="404" alt="nobody" />
+                  <vue-gravatar :email="item.emprestado.usuario" default="404" alt="nobody" />
                   </label
                 >
               </td>

@@ -29,6 +29,11 @@ export default {
             return state.produtos.reduce((a, b) => {
                 return a + Number(b.valor)
             }, 0)
+        },
+        totalEmprestados: (state) => {
+            return state.produtos.reduce((a, b) => {
+                a + b.emprestado.status == true
+            }, 0)
         }
     },
     mutations: {

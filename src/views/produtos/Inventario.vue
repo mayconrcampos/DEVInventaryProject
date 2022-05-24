@@ -89,7 +89,7 @@
                   fs-1
                 "
               >
-                <i class="fa-solid fa-boxes-stacked"></i> 70
+                <i class="fa-solid fa-boxes-stacked"></i> {{totalEmprestado}}
               </h2>
               <h6 class="card-subtitle mb-2 text-muted text-center">
                 Empréstimos
@@ -222,11 +222,13 @@ export default {
       procurar: false,
       campobusca: "",
       filtrados: [],
+      contaEmprestado: 0
     };
   },
   computed: {
     ...mapGetters({
       total: "totalProdutos",
+      totalEmprestado: "totalEmprestados"
     }),
     ...mapState({
       logado: (state) => state.usuarioStore.logado,
@@ -241,7 +243,7 @@ export default {
   },
   methods: {
     ...mapMutations(["setProduto", "setEdita", "setIndiceProduto"]),
-
+  
     preencheCampos(produto, indice) {
       console.log("Produto: ", produto, "Indice", indice);
       this.setProduto(produto);
