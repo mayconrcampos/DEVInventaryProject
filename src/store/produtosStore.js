@@ -15,6 +15,10 @@ export default {
             marca: "",
             modelo: "",
             descricao: "",
+            emprestado: {
+                status: false,
+                usuario: ""
+            }
           },
         edita: false,
         indice_produto: false
@@ -38,7 +42,7 @@ export default {
             state.produto = produto
         },
         setEditaProduto(state, produto){
-            state.produtos.splice(state.indice_produto, produto)
+            state.produtos.splice(state.indice_produto, 1, produto)
         },
         setProdutos(state){
             state.produtos = []

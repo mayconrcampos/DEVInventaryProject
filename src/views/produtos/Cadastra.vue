@@ -164,6 +164,10 @@ export default {
         marca: "",
         modelo: "",
         descricao: "",
+        emprestado: {
+          status: false,
+          usuario: ""
+        }
       },
     };
   },
@@ -193,6 +197,10 @@ export default {
           marca: this.produto.marca,
           modelo: this.produto.modelo,
           descricao: this.produto.descricao,
+          emprestado: {
+          status: false,
+          usuario: ""
+        }
         });
         this.$toast.success("Produto cadastrado com sucesso");
         this.limpar()
@@ -208,6 +216,10 @@ export default {
           marca: this.produto.marca,
           modelo: this.produto.modelo,
           descricao: this.produto.descricao,
+          emprestado: {
+          status: false,
+          usuario: ""
+        }
         })
         this.$toast.success("Produto atualizado com sucesso")
         this.limpar()
@@ -228,6 +240,10 @@ export default {
         marca: "",
         modelo: "",
         descricao: "",
+        emprestado: {
+          status: false,
+          usuario: ""
+        }
       };
       this.setProduto({
         codigo: "",
@@ -241,6 +257,10 @@ export default {
         marca: "",
         modelo: "",
         descricao: "",
+        emprestado: {
+          status: false,
+          usuario: ""
+        }
       });
       this.setEdita(false);
       this.setIndiceProduto(false);
