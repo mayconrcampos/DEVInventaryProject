@@ -21,7 +21,7 @@
 
       <div class="row">
         <div class="col-lg-10">
-          <input type="text" class="form-control" />
+          <input type="text" class="form-control" v-model="campobusca" @keyup="procurando()" />
         </div>
         <div class="col-lg-2">
           <button class="btn">
@@ -46,7 +46,7 @@
             </tr>
           </thead>
           <!----------------------- TBODY TABLE ----------------------------->
-          <tbody>
+          <tbody v-if="!campobusca">
             <tr id="linha" v-for="(item, indice) in produtos" :key="indice">
               <th scope="row">{{ item.codigo }}</th>
               <td>{{ item.titulo }}</td>
@@ -77,11 +77,47 @@
               </td>
             </tr>
           </tbody>
+
+          <!----------------- Tbody somente para elementos filtrados --------------------->
+
+          <tbody v-else>
+            <tr id="linha" v-for="(item, indice) in filtrados" :key="indice">
+              <th scope="row">{{ item.produto.codigo }}</th>
+              <td>{{ item.produto.titulo }}</td>
+              <td>{{ item.produto.categoria }}</td>
+              <td>
+                <img
+                  v-if="item.produto.foto.file !== ''"
+                  id="img"
+                  class="img-fluid mt-2"
+                  :src="item.produto.foto.file"
+                />
+                <img
+                  v-else
+                  id="img"
+                  class="img-fluid mt-2"
+                  src="../../assets/defaultimg.png"
+                />
+              </td>
+              <td class="">
+                <label
+                  id="gravatar"
+                  :class="item.produto.emprestado.status ? 'col-form-label fs-5 me-5' : 'col-form-label fs-3 me-5'"
+                  @click="selecionaItem(item.indice, item.produto, item.produto.emprestado.status)"
+                  >{{ item.produto.emprestado.status == true ? item.produto.emprestado.usuario : 'Emprestar' }}
+                  <vue-gravatar v-if="item.produto.emprestado.status" :email="item.produto.emprestado.usuario" default="404" alt="nobody" />
+                  </label
+                >
+              </td>
+            </tr>
+          </tbody>
+
+
         </table>
       </div>
     </div>
 
-    <!-------------------- Modal Aviso em construção ---------------------->
+    <!-------------------- Modal Empréstimo e devolução de itens ---------------------->
 
     <m-dialog
       v-model="show"
@@ -143,13 +179,17 @@ export default {
       ok: true,
       emailColab: "",
       produto: {},
-      statusEmprestado: false
+      statusEmprestado: false,
+      procurar: false,
+      campobusca: "",
+      filtrados: []
     };
   },
   methods: {
     ...mapMutations(["setProduto", "setEditaProduto", "setIndiceProduto"]),
     ...mapActions(["salvaProdutosDB"]),
     selecionaItem(indice, produto, status) {
+      console.log(indice, produto, status)
       this.statusEmprestado = status
       this.show = true;
       this.setIndiceProduto(indice);
@@ -170,7 +210,21 @@ export default {
           usuario: produto.emprestado.usuario,
         },
       };
-      console.log(indice, produto, this.produto);
+      //console.log(indice, produto, this.produto);
+    },
+    procurando(){
+      //console.log(this.campobusca)
+      this.filtrados = [];
+
+        this.produtos.forEach((el, indice) => {
+          if (
+            el.codigo.toLowerCase().search(this.campobusca.toLowerCase()) != -1) {
+            this.filtrados.push({
+              indice: indice,
+              produto: el,
+            });
+          }
+        });
     },
     vincular(email) {
       console.log(email)
@@ -191,6 +245,7 @@ export default {
           usuario: email,
         },
       });
+      this.$toast.success(`Item ${this.produto.titulo} emprestado para ${email}`)
       this.setEditaProduto(this.produtodastore)
       this.salvaProdutosDB()
       this.limpar()
@@ -216,12 +271,14 @@ export default {
         },
         
       })
+      this.$toast.success(`Item ${this.produto.titulo} devolvido.`)
       this.setEditaProduto(this.produtodastore)
       this.salvaProdutosDB()
       this.limpar()
       this.show = false;
     },
     limpar() {
+      this.campobusca = ""
       this.produto = {
         codigo: "",
         titulo: "",
