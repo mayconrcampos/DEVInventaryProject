@@ -344,6 +344,7 @@ nav {
 }
 #linha {
   transition: 0.5s all;
+  cursor: pointer;
 }
 #linha:hover {
   background-color: #143168;
