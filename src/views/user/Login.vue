@@ -246,7 +246,7 @@ export default {
       if (senha.length > 8) {
         return true;
       }
-      return "A senha é obrigatória e possui acima de 8 caracteres";
+      return "A senha é obrigatória e deve possuir acima de 8 caracteres";
     },
 
     validaSenha1(senha1) {
