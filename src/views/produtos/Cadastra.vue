@@ -282,8 +282,6 @@ export default {
       if(emprestado){
         this.$toast.error("Este produto se encontra emprestado.")
       }else{
-        console.log(this.indice_produto)
-        
         this.delProduto(this.indice_produto)
         this.salvaProdutosDB()
         this.$toast.success("Item Excluido com sucesso.")

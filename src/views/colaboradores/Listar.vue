@@ -150,16 +150,13 @@ export default {
       "setEditaColaborador",
     ]),
     preencheCampos(colaborador, indice) {
-      console.log("colaborador: ", colaborador, "Indice", indice);
       this.setColaborador(colaborador);
       this.setIndiceColaborador(indice);
       this.setEditaColaborador(true);
       this.$router.push("/menu/colabs/add");
     },
     procurando() {
-      console.log("Procurando");
       if (this.campobusca.length > 0) {
-        console.log(this.campobusca);
         this.procurar = true;
         this.filtrados = [];
 

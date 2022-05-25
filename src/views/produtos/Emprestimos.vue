@@ -189,7 +189,6 @@ export default {
     ...mapMutations(["setProduto", "setEditaProduto", "setIndiceProduto"]),
     ...mapActions(["salvaProdutosDB"]),
     selecionaItem(indice, produto, status) {
-      console.log(indice, produto, status)
       this.statusEmprestado = status
       this.show = true;
       this.setIndiceProduto(indice);
@@ -210,12 +209,9 @@ export default {
           usuario: produto.emprestado.usuario,
         },
       };
-      //console.log(indice, produto, this.produto);
     },
     procurando(){
-      //console.log(this.campobusca)
       this.filtrados = [];
-
         this.produtos.forEach((el, indice) => {
           if (
             el.codigo.toLowerCase().search(this.campobusca.toLowerCase()) != -1) {
@@ -227,7 +223,6 @@ export default {
         });
     },
     vincular(email) {
-      console.log(email)
       this.setProduto({
         codigo: this.produto.codigo,
         titulo: this.produto.titulo,

@@ -245,7 +245,6 @@ export default {
     ...mapMutations(["setProduto", "setEdita", "setIndiceProduto"]),
   
     preencheCampos(produto, indice) {
-      console.log("Produto: ", produto, "Indice", indice);
       this.setProduto(produto);
       this.setIndiceProduto(indice);
       this.setEdita(true);
@@ -253,7 +252,6 @@ export default {
     },
     procurando() {
       if (this.campobusca.length > 0) {
-        console.log(this.campobusca);
         this.procurar = true;
         this.filtrados = [];
 
