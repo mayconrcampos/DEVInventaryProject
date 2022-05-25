@@ -285,7 +285,8 @@ export default {
       return true
     },
     validaCodigo(codigo) {
-      if (codigo && this.verificaCodigoDuplicado(codigo)) {
+      var valida = this.status_edita ? true : this.verificaCodigoDuplicado(codigo)
+      if (codigo && valida) {
         return true;
       }
       return "Campo obrigatório e valor único";
