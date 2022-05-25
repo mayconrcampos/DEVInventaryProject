@@ -205,9 +205,9 @@
             <button id="btnlimpar" class="btn me-3" @click.prevent="limpar">
               Limpar
             </button>
-            <button v-if="status_edita" id="btnexcluir" class="btn btn-danger">
+            <a v-if="status_edita" id="btnexcluir" class="btn btn-danger" @click="deletar()">
               Excluir Registro
-            </button>
+            </a>
           </div>
         </Form>
       </div>
@@ -262,6 +262,7 @@ export default {
       colaborador_para_editar: (state) => state.colaboradoresStore.colaborador,
       indice_colaborador: (state) =>
         state.colaboradoresStore.indice_colaborador,
+      produtos: (state) => state.produtosStore.produtos
     }),
   },
   methods: {
@@ -270,7 +271,8 @@ export default {
       "setColaborador",
       "setIndiceColaborador",
       "setEditaColaborador",
-      "updateColaborador"
+      "updateColaborador",
+      "delColaborador"
     ]),
 
     // Adiciona Colaborador
@@ -319,10 +321,33 @@ export default {
           ponto_ref: this.ponto_ref,
         })
         this.salvaColaboradoresDB();
-            this.$toast.success("Colaborador editado com sucesso");
-            this.$router.push("/menu/colabs/listar");
-            this.limpar();
+        this.$toast.success("Colaborador editado com sucesso");
+        this.$router.push("/menu/colabs/listar");
+        this.limpar();
           
+      }
+    },
+    deletar(){
+      var emprestado = false
+      this.produtos.forEach((produto) => {
+        if(produto.emprestado.usuario == this.colaborador_para_editar.email){
+          emprestado = true
+        }
+      });
+      if(emprestado){
+        this.$toast.error("Este colaborador possui itens emprestados.")
+      }else{
+        var i = false
+        this.colaboradores.forEach((colab, indice) => {
+          if(colab.email == this.colaborador_para_editar.email){
+            i = indice 
+          }
+        })
+        this.delColaborador(i)
+        this.salvaColaboradoresDB()
+        this.$toast.success("Colaborador Excluido com sucesso.")
+        this.$router.push("/menu/colabs/listar");
+        this.limpar();
       }
     },
     preencheCampos(obj = null, indice = null) {
