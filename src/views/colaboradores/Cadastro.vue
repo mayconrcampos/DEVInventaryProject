@@ -402,7 +402,7 @@ export default {
       return "Data Inválida";
     },
     validaFone(fone) {
-      if (fone.length > 14) {
+      if (fone.length > 13) {
         return true;
       }
       return "Campo obrigatório";
