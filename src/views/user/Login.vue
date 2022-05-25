@@ -49,6 +49,9 @@
           <button id="btngoogle" @click="show = true">
             <i class="fa-brands fa-google me-2"></i> Entrar com Google
           </button>
+          <button id="btngoogle" @click="showModalEsqueceuaSenha = true">
+            <i class="fa-solid fa-lock-keyhole me-2"></i> Esqueceu a senha?
+          </button>
         </Form>
         <hr />
 
@@ -65,9 +68,24 @@
       </div>
     </main>
 
-    <!-------------------- Modal Aviso em construção ---------------------->
+    <!-------------------- Modal Aviso em construção Esqueceu a senha ---------------------->
 
-    <m-dialog v-model="show" title="Aviso" :draggable="ok">
+    <m-dialog v-model="showModalEsqueceuaSenha" title="Esqueceu a Senha?" :draggable="ok">
+      <img
+        class="img img-fluid mb-5"
+        src="../../assets/inventarylogo.png"
+        alt="DEVinventary"
+      />
+      <p class="text-center">Funcionalidade em fase de implementação.</p>
+
+      <template v-slot:footer>
+        <button class="m-dialog--confirm-btn" @click="showModalEsqueceuaSenha = false">Ok</button>
+      </template>
+    </m-dialog>
+
+    <!-------------------- Modal Aviso em construção - Entrar com Google ---------------------->
+
+    <m-dialog v-model="show" title="Entrar com Google" :draggable="ok">
       <img
         class="img img-fluid mb-5"
         src="../../assets/inventarylogo.png"
@@ -169,6 +187,7 @@ export default {
         email: "",
         senha: "",
       },
+      showModalEsqueceuaSenha: false
     };
   },
   computed: {
@@ -224,17 +243,17 @@ export default {
       return "Email inválido";
     },
     validaSenhaLogin(senha) {
-      if (senha) {
+      if (senha.length > 8) {
         return true;
       }
-      return "Campo obrigatório";
+      return "A senha é obrigatória e possui acima de 8 caracteres";
     },
 
     validaSenha1(senha1) {
-      if (senha1.length > 4) {
+      if (senha1.length > 8) {
         return true;
       }
-      return "Somente senha acima de 4 caracteres";
+      return "Somente senha acima de 8 caracteres";
     },
     validaSenha2(senha2) {
       if (this.cadastra.senha1 == senha2) {
