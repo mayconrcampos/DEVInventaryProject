@@ -1,4 +1,5 @@
-    <h1>Projeto 02 - MÓDULO 01 - Senai DEVinHouse</h1>
+
+<h1>Projeto 02 - MÓDULO 01 - Senai DEVinHouse</h1>
 
 <h2>Nome do Projeto: DEVInventary Project</h2>
 
@@ -93,7 +94,7 @@
 
 <hr>
 
-<p>Tentei seguir da melhor forma e cumprir os requisitos da aplicação, mas teve uma regra que eu tive de deduzir da melhor forma, que foi o caso abaixo.</p>
+<p>Tentei seguir da melhor forma e cumprir os requisitos da aplicação, mas teve algumas regras que eu tive de deduzir da melhor forma, que foram os casos abaixo.</p>
 
 <p><strong>Caso 1: Exclusão de item - </strong>Um item só pode ser excluído do sistema se ele não estiver emprestado naquele momento. O sistema não exclui itens emprestados.</p>
 <p><strong>Caso 2: Exclusão de colaborador - </strong>Um colaborador só pode ser excluído do sistema após ele tiver devolvido todos os itens que foram pegos emprestados por ele. </p>
