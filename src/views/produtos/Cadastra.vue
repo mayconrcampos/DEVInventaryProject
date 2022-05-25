@@ -30,6 +30,7 @@
                 name="codigo"
                 type="text"
                 class="form-control"
+                :readonly="status_edita ? true : false"
               />
               <ErrorMessage name="codigo" class="text-danger" />
             </div>
@@ -42,6 +43,7 @@
                 name="titulo"
                 type="text"
                 class="form-control"
+                :readonly="status_edita ? true : false"
               />
               <ErrorMessage name="titulo" class="text-danger" />
             </div>
@@ -53,6 +55,7 @@
                 name="categoria"
                 type="text"
                 class="form-control"
+                :readonly="status_edita ? true : false"
               />
               <ErrorMessage name="categoria" class="text-danger" />
             </div>

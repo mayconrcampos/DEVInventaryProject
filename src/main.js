@@ -11,8 +11,6 @@ import 'vue-m-dialog/dist/style.css'
 
 // Import das Stores - Vuex
 import colaboradoresStore from './store/colaboradoresStore'
-import emprestimoStore from './store/emprestimoStore'
-import inventarioStore from './store/inventarioStore'
 import produtosStore from './store/produtosStore'
 import formularioCadastroStore from './store/formularioCadastroStore'
 import usuarioStore from './store/usuarioStore'
@@ -31,8 +29,6 @@ import Emprestimos from "./views/produtos/Emprestimos.vue"
 const store = createStore({
     modules: {
         colaboradoresStore,
-        emprestimoStore,
-        inventarioStore,
         produtosStore,
         formularioCadastroStore,
         usuarioStore
