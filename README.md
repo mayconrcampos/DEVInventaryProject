@@ -1,24 +1,5 @@
-# devinventaryproject
+<h1>Projeto 02 - MÓDULO 01 - Senai DEVinHouse</h1>
 
-## Project setup
-```
-npm install
-```
+<h2>Nome do Projeto: DEVInventary Project</h2>
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+<p></p>
