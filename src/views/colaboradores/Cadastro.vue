@@ -343,11 +343,15 @@ export default {
             i = indice 
           }
         })
-        this.delColaborador(i)
-        this.salvaColaboradoresDB()
-        this.$toast.success("Colaborador Excluido com sucesso.")
-        this.$router.push("/menu/colabs/listar");
-        this.limpar();
+        const confirma = confirm("Deseja mesmo excluir colaborador?")
+        if(confirma){
+          this.delColaborador(i)
+          this.salvaColaboradoresDB()
+          this.$toast.success("Colaborador Excluido com sucesso.")
+          this.$router.push("/menu/colabs/listar");
+          this.limpar();
+        }
+        
       }
     },
     preencheCampos(obj = null, indice = null) {
