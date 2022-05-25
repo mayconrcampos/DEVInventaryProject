@@ -23,7 +23,7 @@ export default {
           this.setLogado(this.$cookies.get("logado"));
         
         } catch (error) {
-          console.log("Deu ruim no cookie: ",error)
+          console.log("Cookie Error: ",error)
         }
       
     },
