@@ -132,9 +132,12 @@
             <button @click="limpar()" id="btnlimpar" class="btn me-3">
               Limpar
             </button>
-            <button id="btnsalvar" class="btn">
+            <button id="btnsalvar" class="btn me-3">
               {{ status_edita ? "Editar" : "Salvar" }}
             </button>
+            <a v-if="status_edita" id="btnexcluir" class="btn btn-danger" @click="deletar()">
+              Excluir Registro
+            </a>
           </div>
         </Form>
       </div>
@@ -187,7 +190,7 @@ export default {
     this.preencheCampos(this.produto_para_editar, this.indice_produto);
   },
   methods: {
-    ...mapMutations(["addProduto", "setEdita", "setProduto", "setIndiceProduto", "setEditaProduto"]),
+    ...mapMutations(["addProduto", "setEdita", "setProduto", "setIndiceProduto", "setEditaProduto", "delProduto"]),
     ...mapActions(["salvaProdutosDB"]),
     cadastraProduto() {
       if (!this.status_edita) {
@@ -269,6 +272,24 @@ export default {
       this.setEdita(false);
       this.setIndiceProduto(false);
 
+    },
+    deletar(){
+      var emprestado = false
+      if(this.produto_para_editar.emprestado.status == true){
+        emprestado = true
+      }
+
+      if(emprestado){
+        this.$toast.error("Este produto se encontra emprestado.")
+      }else{
+        console.log(this.indice_produto)
+        
+        this.delProduto(this.indice_produto)
+        this.salvaProdutosDB()
+        this.$toast.success("Item Excluido com sucesso.")
+        this.$router.push("/menu/geral/inventario");
+        this.limpar();
+      }
     },
     preencheCampos(obj = null, indice = null) {
       if (obj || indice) {

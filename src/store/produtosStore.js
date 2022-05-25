@@ -59,6 +59,9 @@ export default {
         },
         addProduto(state, produto){
             state.produtos.push(produto)
+        },
+        delProduto(state, indice){
+            state.produtos.splice(indice, 1)
         }
     },
     actions: {
