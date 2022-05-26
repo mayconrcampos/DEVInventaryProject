@@ -39,16 +39,46 @@ const store = createStore({
 
 const routes = [
     { path: "/", redirect: "/user/login" },
-    { path: "/user/login", component: Login },
-    { path: "/:pathMatch(.*)", component: error404 },
+    { path: "/user/login", component: Login, meta: { title: "Login"} },
+    { path: "/:pathMatch(.*)", component: error404, meta: { title: "Error 404"} },
 
     {
         path: "/menu", meta: { auth: true }, component: Menu, children: [
-            { path: "colabs/add", component: Cadastro  },
-            { path: "colabs/listar", component: Listar },
-            { path: "geral/inventario", component: Inventario },
-            { path: "/produtos/cadastra/", component: Cadastra },
-            { path: "/produtos/emprestimos", component: Emprestimos }
+            { 
+                path: "colabs/add", 
+                component: Cadastro, 
+                meta: { 
+                    title: "Cadastra Colaborador"
+                }  
+            },
+            { 
+                path: "colabs/listar", 
+                component: Listar, 
+                meta: { 
+                    title: "Listagem de Colaboradores"
+                } 
+            },
+            { 
+                path: "geral/inventario", 
+                component: Inventario, 
+                meta: { 
+                    title: "Inventário"
+                } 
+            },
+            { 
+                path: "/produtos/cadastra/", 
+                component: Cadastra, 
+                meta: { 
+                    title: "Cadastro de Produtos"
+                } 
+            },
+            { 
+                path: "/produtos/emprestimos", 
+                component: Emprestimos, 
+                meta: { 
+                    title: "Empréstimo de Produtos"
+                } 
+            }
 
         ]
     }
@@ -60,6 +90,15 @@ const router = new createRouter({
     routes,
     history: createWebHashHistory()
 })
+
+// Setando títulos das págginas
+
+router.beforeEach((to, from, next) => {
+    document.title = `${to.meta.title}`
+    next()
+})
+
+
 
 // Regras para proteção de rotas
 router.beforeEach((to, from, next) => {
