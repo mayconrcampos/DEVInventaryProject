@@ -96,7 +96,7 @@
 
 <p>Tentei seguir da melhor forma e cumprir os requisitos da aplicação, mas teve algumas regras que eu tive de deduzir da melhor forma, que foram os casos abaixo.</p>
 
-<p><strong>Caso 1: Exclusão de item - </strong>Um item só pode ser excluído do sistema se ele não estiver emprestado naquele momento. O sistema não exclui itens emprestados.</p>
-<p><strong>Caso 2: Exclusão de colaborador - </strong>Um colaborador só pode ser excluído do sistema após ele tiver devolvido todos os itens que foram pegos emprestados por ele. </p>
+<p><strong>Caso 1: Exclusão de item - </strong>Um item só pode ser excluído do sistema se ele não tiver sido emprestado naquele momento. O sistema não exclui itens emprestados.</p>
+<p><strong>Caso 2: Exclusão de colaborador - </strong>Um colaborador só pode ser excluído do sistema após ele ter devolvido todos os itens que foram pegos emprestados por ele. </p>
 <p><strong>Caso 3: Edição de item - </strong>Achei melhor deixar os campos principais do item readonly para que somente informações não essenciais pudessem ser alteradas. Caso algum item necessite trocar Código de patrimônio ou o próprio nome, melhor excluir e cadastrar outro.</p>
 <p><strong>Caso 4: Edição de colaborador - </strong>Seguindo a mesma linha, para edição de colaborador, os dados principais estão readonly, podendo somente alterar dados não essenciais, como telefone e endereço.</p>
