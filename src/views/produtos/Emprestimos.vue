@@ -247,7 +247,6 @@ export default {
       this.show = false;
     },
     devolverItem(){
-      console.log(this.statusEmprestado, this.produto, this.indice_produto)
       this.setProduto({
         codigo: this.produto.codigo,
         titulo: this.produto.titulo,
