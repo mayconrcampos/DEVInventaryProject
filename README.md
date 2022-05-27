@@ -91,6 +91,10 @@
 
 <img src="./prints/11 - Modal devolução de item.png" alt="modaldevolucao">
 
+<h3>Tela de Erro 404</h3>
+
+<img src="./prints/12-TelaError.png" alt="telaerro404">
+
 <hr>
 
 <p>Tentei seguir da melhor forma e cumprir os requisitos da aplicação, mas teve algumas regras que eu tive de deduzir da melhor forma, que foram os casos abaixo.</p>
