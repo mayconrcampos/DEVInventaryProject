@@ -97,6 +97,10 @@
 
 <hr>
 
+<h5>Projeto no Firebase</h5>
+
+<a href="https://devinventaryproject.web.app" target="_blank">https://devinventaryproject.web.app</a>
+
 <p>Tentei seguir da melhor forma e cumprir os requisitos da aplicação, mas teve algumas regras que eu tive de deduzir da melhor forma, que foram os casos abaixo.</p>
 
 <p><strong>Caso 1: Exclusão de item - </strong>Um item só pode ser excluído do sistema se ele não tiver sido emprestado naquele momento. O sistema não exclui itens emprestados.</p>
