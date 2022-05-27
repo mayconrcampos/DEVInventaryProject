@@ -278,8 +278,6 @@ export default {
       });
     },
     logar() {
-      console.log("Email ", this.login.email, "Senha ", this.login.senha);
-
       this.autentica({
         usuario: this.login.email,
         senha: this.login.senha,
