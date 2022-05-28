@@ -46,10 +46,10 @@
             <i class="fa-solid fa-lock-open me-2"></i>
             Entrar
           </button>
-          <button id="btngoogle" @click="show = true">
+          <button class="btngoogle" @click="show = true">
             <i class="fa-brands fa-google me-2"></i> Entrar com Google
           </button>
-          <button id="btngoogle" @click="showModalEsqueceuaSenha = true">
+          <button class="btngoogle" @click="showModalEsqueceuaSenha = true">
             <i class="fa-solid fa-lock-keyhole me-2"></i> Esqueceu a senha?
           </button>
         </Form>
@@ -317,7 +317,7 @@ export default {
   margin-top: 10px;
   margin-right: 10px;
 }
-#btngoogle {
+.btngoogle {
   width: 100%;
   border: 0;
   padding: 5px;

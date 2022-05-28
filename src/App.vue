@@ -39,11 +39,14 @@ export default {
 </script>
 
 <style scoped>
+
 body {
   padding: 0;
   left: 0;
   bottom: 0;
+
 }
+
 #pai {
   background: rgb(255, 255, 255);
   background: radial-gradient(
@@ -53,11 +56,11 @@ body {
   );
   display: flex;
   flex-direction: row;
-  border: 1px solid black;
+  
   position: fixed;
   width: 100%;
 
-  min-height: max-content;
+  height: auto;
   bottom: 0;
   top: 0;
 }

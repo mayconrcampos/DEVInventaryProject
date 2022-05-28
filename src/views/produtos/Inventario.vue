@@ -280,8 +280,9 @@ export default {
 
 <style scoped>
 #cadastro {
+  min-height: max-content;
   height: 100%;
-  overflow-y: scroll;
+  border-radius: 0px 0px 8px 8px;
 }
 nav {
   transition: 1s all;

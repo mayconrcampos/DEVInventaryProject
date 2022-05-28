@@ -317,7 +317,6 @@ export default {
 <style scoped>
 #cadastro {
   height: 100%;
-  overflow-y: scroll;
 }
 nav {
   background-color: #143168;

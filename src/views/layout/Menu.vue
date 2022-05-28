@@ -124,7 +124,9 @@ export default {
 <style scoped>
 #containercontent {
   width: 100%;
-  display: block;
+  overflow: auto;
+  bottom: 0;
+  
 }
 #div {
   height: 100% !important;
@@ -158,7 +160,7 @@ ul li {
   #divmenu {
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
+    
   }
 
   #div {
@@ -166,7 +168,7 @@ ul li {
     width: 100% !important;
     display: inline-flex !important;
     flex-direction: row !important;
-    overflow-y: scroll;
+    
   }
   #div a span {
     display: none;
@@ -195,6 +197,7 @@ ul li {
 
     font-size: small;
   }
+
 }
 
 .fade-enter-active,
