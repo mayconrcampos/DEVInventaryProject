@@ -280,18 +280,19 @@ export default {
 
 <style scoped>
 #cadastro {
-  min-height: max-content;
-  height: 100%;
-  border-radius: 0px 0px 8px 8px;
+  padding-bottom: calc(10%);
+  height: auto;
 }
 nav {
   transition: 1s all;
+  
 }
 
 nav {
   background-color: #143168;
   color: aliceblue;
-}
+  box-shadow: 1px 3px 10px black;
+ }
 .btnstatusnaempresa {
   border-radius: 10px !important;
   background-color: #4caf50;

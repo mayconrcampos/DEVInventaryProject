@@ -182,12 +182,13 @@ export default {
 
 <style scoped>
 #cadastro {
-  height: 100%;
-  border-radius: 0px 0px 8px 8px;
+  padding-bottom: 10%;
+  height: auto;
 }
 nav {
   background-color: #143168;
   color: aliceblue;
+  box-shadow: 1px 3px 10px black;
 }
 .btnstatusnaempresa {
   border-radius: 10px !important;

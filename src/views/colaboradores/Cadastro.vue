@@ -526,6 +526,7 @@ export default {
 nav {
   background-color: #143168;
   color: aliceblue;
+  box-shadow: 1px 3px 10px black;
 }
 #btnlimpar {
   background-color: #f9a825;

@@ -316,11 +316,13 @@ export default {
 
 <style scoped>
 #cadastro {
-  height: 100%;
+  padding-bottom: calc(10%);
+  height: auto;
 }
 nav {
   background-color: #143168;
   color: aliceblue;
+  box-shadow: 1px 3px 10px black;
 }
 #btnlimpar {
   background-color: #f9a825;
