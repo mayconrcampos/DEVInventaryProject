@@ -220,4 +220,9 @@ nav {
   width: 25%;
   border-radius: 50%;
 }
+@media (max-width: 600px) {
+  #gravatar {
+    font-size: 0.6em !important;
+  }
+}
 </style>

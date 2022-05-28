@@ -352,4 +352,10 @@ nav {
 .img-fluid {
   height: 50px !important;
 }
+
+@media (max-width: 600px) {
+  #gravatar {
+    font-size: 0.6em !important;
+  }
+}
 </style>

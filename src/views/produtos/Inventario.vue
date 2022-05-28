@@ -348,7 +348,7 @@ nav {
     font-size: 1em !important;
   }
   #gravatar {
-    font-size: 0.8em !important;
+    font-size: 0.6em !important;
   }
 }
 </style>
