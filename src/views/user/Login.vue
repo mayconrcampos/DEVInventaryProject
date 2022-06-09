@@ -135,7 +135,7 @@
             type="password"
             class="form-control rounded"
             id="inputusenha1"
-            placeholder="Email"
+            placeholder="Senha"
           />
           <ErrorMessage name="senha1" class="text-danger" />
         </div>
@@ -148,7 +148,7 @@
             type="password"
             class="form-control rounded"
             id="inputsenha2"
-            placeholder="Email"
+            placeholder="Repita a Senha"
           />
           <ErrorMessage name="senha2" class="text-danger" />
         </div>
