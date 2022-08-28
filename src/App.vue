@@ -30,10 +30,10 @@ export default {
   },
   
   mounted() {
-    this.carregaColaboradoresDB();
+    //this.carregaColaboradoresDB();
     this.verificaLogado();
-    this.carregaUsuariosDB();
-    this.carregaProdutosDB()
+    //this.carregaUsuariosDB();
+    //this.carregaProdutosDB()
   },
 };
 </script>

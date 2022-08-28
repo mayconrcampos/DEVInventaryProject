@@ -14,9 +14,17 @@ export default {
         emailExiste: "",
         modalCadastroShow: false,
         sucessoCadastro: null,
+        sucessoLogin: null,
+        msgLogin: null,
     },
 
     mutations: {
+        setMsgLogin(state, msg){
+            state.msgLogin = msg
+        },
+        setSucessoLogin(state, status){
+            state.sucessoLogin = status
+        },
         setSucessoCadastro(state, status){
             state.sucessoCadastro = status
         },
@@ -57,30 +65,30 @@ export default {
               context.commit("setSucessoCadastro", false);
             })
         },
-        autentica(context, login) {
-            context.commit("setEmailExiste", false)
-            context.commit("setIndice", false)
+        async autentica(context, login) {
+            context.commit("setSucessoLogin", null);
+            context.commit("setMsgLogin", null);
 
-            context.state.usuarios.forEach((user, index) => {
-                if (user.usuario == login.usuario) {
-                    context.commit("setEmailExiste", true)
-                    context.commit("setIndice", index)
-
-                }
-            });
-            if (context.state.emailExiste == true) {
-                if (context.state.usuarios[context.state.indice].senha == login.senha) {
-                    context.commit("setLogado", {
-                        "logado": true,
-                        "usuario": login.usuario
-                    })
-                    return true
-                } else {
-                    return false
-                }
-            } else {
-                return false
-            }
+            await axios.post('http://127.0.0.1:5000/user/login', 
+            login
+          )
+          .then((response) => {
+            console.log("token", response.data.token);
+            console.log("token", response.data.usuario);
+           
+            context.commit("setLogado", {
+                            "logado": response.data.token,
+                            "usuario": response.data.usuario
+                        })
+            context.commit("setSucessoLogin", true);
+            context.commit("setMsgLogin", `Seja Bem vindo ${response.data.usuario}!`)
+          })
+          .catch((err) => {
+        
+            context.commit("setSucessoLogin", false);
+            context.commit("setMsgLogin", err.response.data.error)
+            console.log(err.response.data.error)
+          })
         },
         salvaUsuariosDB(context) {
             var dados = JSON.stringify(context.state.usuarios)

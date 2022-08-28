@@ -194,12 +194,14 @@ export default {
     ...mapState({
       logado: (state) => state.usuarioStore.logado,
       modalCadastroShow: (state) => state.usuarioStore.modalCadastroShow,
-      sucessoCadastro: (state) => state.usuarioStore.sucessoCadastro
+      sucessoCadastro: (state) => state.usuarioStore.sucessoCadastro,
+      sucessoLogin: (state) => state.usuarioStore.sucessoLogin,
+      msgLogin: (state) => state.usuarioStore.msgLogin,
     }),
   },
   methods: {
     ...mapActions(["autentica", "insereUsuario", "salvaUsuariosDB"]),
-    ...mapMutations(["setModalCadastroShow", "setSucessoCadastro"]),
+    ...mapMutations(["setModalCadastroShow", "setSucessoCadastro", "setSucessoLogin", "setSucessoLogin"]),
     showModal(){
       this.setModalCadastroShow(true);
     },
@@ -284,23 +286,20 @@ export default {
     },
     logar() {
       this.autentica({
-        usuario: this.login.email,
-        senha: this.login.senha,
+        email: this.login.email,
+        password: this.login.senha,
       })
-        .then((resposta) => {
-          if (resposta == true) {
+        .then(() => {
+          if (this.sucessoLogin == true) {
             this.$router.push("/menu/geral/inventario");
             this.email = "";
             this.senha = "";
-            this.$toast.success("Logado com Sucesso!");
+            this.$toast.success(this.msgLogin);
             this.$cookies.set("logado", this.logado);
           } else {
-            this.$toast.error("Email ou senha Inválidos!");
+            this.$toast.error(this.msgLogin);
           }
         })
-        .catch((err) => {
-          console.log(err);
-        });
     },
   },
 };
