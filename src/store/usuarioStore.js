@@ -1,14 +1,28 @@
+import axios from "axios";
+
+
+//axios.defaults.headers.common['Access-Control-Request-Method'] = "*";
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+axios.defaults.headers.common["Access-Control-Allow-Headers"] = "Content-Type";
+axios.defaults.headers.common["Content-Type"] = "application/json; application/x-www-form-urlencoded; charset=UTF-8";
+
 export default {
     state: {
         usuarios: [],
         logado: false,
         indice: "",
         emailExiste: "",
-        
-        
+        modalCadastroShow: false,
+        sucessoCadastro: null,
     },
 
     mutations: {
+        setSucessoCadastro(state, status){
+            state.sucessoCadastro = status
+        },
+        setModalCadastroShow(state, status){
+            state.modalCadastroShow = status
+        },
         setUsuarios(state){
             state.usuarios = []
         },
@@ -26,25 +40,22 @@ export default {
         }
     },
     actions: {
-        insereUsuario(context, usuario) {
-            var existe = false
-            context.commit("setEmailExiste", false);
-            context.commit("setIndice", false);
+        async insereUsuario(context, usuario) {
+            context.commit("setSucessoCadastro", null);
 
-            context.state.usuarios.forEach(c => {
-                if (c.usuario === usuario.usuario) {
-                    console.log("Comparação: ", c.email == usuario.usuario, "Email Digitado: ", usuario.usuario)
-                    existe = true
-                }
-            });
-            if (existe == true) {
-                console.log("Existe? ", existe)
-                console.log(context.state.usuarios)
-                return false
-            }
-            console.log("Existe? ", existe)
-            context.commit("addUsuario", usuario)
-            return true
+            await axios.post('http://127.0.0.1:5000/user/', 
+              usuario
+            )
+            .then(() => {
+              //console.log("RESPONSE RECEIVED: ", res.data);
+              context.commit("setModalCadastroShow", false);
+              context.commit("setSucessoCadastro", true);
+            })
+            .catch(() => {
+              //console.log("AXIOS ERROR: ", err.response.data);
+              context.commit("setModalCadastroShow", false);
+              context.commit("setSucessoCadastro", false);
+            })
         },
         autentica(context, login) {
             context.commit("setEmailExiste", false)

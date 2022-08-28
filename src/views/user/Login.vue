@@ -57,7 +57,7 @@
 
         <div id="containercriaconta" class="d-block">
           <small>Não possui uma conta?</small>
-          <button @click="modalCadastroShow = true" id="btncriarconta">
+          <button @click="showModal()" id="btncriarconta">
             <i class="fa-solid fa-circle-plus"></i> Criar conta
           </button>
         </div>
@@ -164,7 +164,7 @@
 
 <script>
 import { Field, Form, ErrorMessage } from "vee-validate";
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapMutations, mapState } from "vuex";
 
 export default {
   name: "loGin",
@@ -175,7 +175,7 @@ export default {
   },
   data() {
     return {
-      modalCadastroShow: false,
+      //modalCadastroShow: false,
       show: false,
       ok: true,
       cadastra: {
@@ -193,10 +193,16 @@ export default {
   computed: {
     ...mapState({
       logado: (state) => state.usuarioStore.logado,
+      modalCadastroShow: (state) => state.usuarioStore.modalCadastroShow,
+      sucessoCadastro: (state) => state.usuarioStore.sucessoCadastro
     }),
   },
   methods: {
     ...mapActions(["autentica", "insereUsuario", "salvaUsuariosDB"]),
+    ...mapMutations(["setModalCadastroShow", "setSucessoCadastro"]),
+    showModal(){
+      this.setModalCadastroShow(true);
+    },
     limpar() {
       this.cadastra = {};
       this.login = {};
@@ -263,19 +269,18 @@ export default {
     },
     cadastraUsuario() {
       this.insereUsuario({
-        usuario: this.cadastra.usuario,
-        senha: this.cadastra.senha1,
-      }).then((resposta) => {
-        if (resposta == true) {
-          this.modalCadastroShow = false;
-          this.salvaUsuariosDB();
+        email: this.cadastra.usuario,
+        password: this.cadastra.senha1,
+      }).then(() => {
+        if(this.sucessoCadastro){
           this.$toast.success("Usuário cadastrado com sucesso");
           this.limpar();
           this.$router.push("/");
-        } else {
-          this.$toast.error("Usuário já está cadastrado no sistema");
+        }else{
+          this.$toast.error("Usuário já existe.");
+          this.limpar();
         }
-      });
+      })
     },
     logar() {
       this.autentica({
