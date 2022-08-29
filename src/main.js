@@ -40,7 +40,7 @@ const store = createStore({
 
 const routes = [
     { path: "/", redirect: "/user/login" },
-    { path: "/user/login", component: Login, meta: { title: "Login"} },
+    { path: "/user/login/:token*", component: Login, meta: { title: "Login"} },
     { path: "/:pathMatch(.*)", component: error404, meta: { title: "Error 404"} },
 
     {
@@ -104,13 +104,28 @@ router.beforeEach((to, from, next) => {
 // Regras para proteção de rotas
 router.beforeEach((to, from, next) => {
     if (to.meta.auth && !VueCookies.get("logado")) {
+        console.log("To aqui")
         next("/")
     }else if(!to.meta.auth && VueCookies.get("logado")){
-        next("/menu/geral/inventario")
+        next("/menu/geral/inventario");
     }else{
-        next()
+        if(to.params.token){
+            VueCookies.set("logado", {
+                "logado": to.params.token[0],
+                "usuario": to.params.token[1],
+            })
+            store.commit("setLogado", {
+                "logado": to.params.token[0],
+                "usuario": to.params.token[1],
+            })
+            //Toaster.success("Usuário cadastrado com sucesso");
+            next("/menu/gera/inventario");
+        }else{
+            next()
+        }
+        
     }
-    
+
 })
 
 createApp(App)

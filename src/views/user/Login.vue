@@ -46,7 +46,7 @@
             <i class="fa-solid fa-lock-open me-2"></i>
             Entrar
           </button>
-          <button class="btngoogle" @click="show = true">
+          <button class="btngoogle" @click="entrarComGoogle()">
             <i class="fa-brands fa-google me-2"></i> Entrar com Google
           </button>
           <button class="btngoogle" @click="showModalEsqueceuaSenha = true">
@@ -204,7 +204,7 @@ export default {
     ...mapMutations(["setModalCadastroShow", "setSucessoCadastro", "setSucessoLogin", "setSucessoLogin"]),
     showModal(){
       this.setModalCadastroShow(true);
-    },
+    }, 
     limpar() {
       this.cadastra = {};
       this.login = {};
@@ -212,6 +212,9 @@ export default {
     aviso() {
       this.$toast.error("Funcionalidade não disponível.");
     },
+    entrarComGoogle(){
+      window.open('https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=1029507675940-hg5pguijafeujq7d7214sannmueoqi65.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Fuser%2Fcallback&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid&state=KZS70f6pknmZGRusBSXnRKJp2tW7dz&access_type=offline', 'location=yes,height=600,width=520,scrollbars=yes,status=yes')
+    },  
     validaEmail(email) {
       let usuario = email.substring(0, email.indexOf("@"));
       let dominio = email.substring(email.indexOf("@") + 1, email.length);
@@ -258,7 +261,7 @@ export default {
     },
 
     validaSenha1(senha1) {
-      if (senha1.length > 8) {
+      if (senha1.length >= 8) {
         return true;
       }
       return "Somente senha acima de 8 caracteres";
