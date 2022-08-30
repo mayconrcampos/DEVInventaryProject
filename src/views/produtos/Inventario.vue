@@ -239,10 +239,11 @@ export default {
       produtos: (state) => state.produtosStore.produtos,
       status_edita: (state) => state.produtosStore.edita,
       indice_produto: (state) => state.produtosStore.indice_produto,
+      msgLogin: (state) => state.usuarioStore.msgLogin,
     }),
   },
   methods: {
-    ...mapMutations(["setProduto", "setEdita", "setIndiceProduto"]),
+    ...mapMutations(["setProduto", "setEdita", "setIndiceProduto", "setMsgLogin"]),
   
     preencheCampos(produto, indice) {
       this.setProduto(produto);
@@ -274,6 +275,25 @@ export default {
         this.procurar = false;
       }
     },
+    verificaLogado() {
+      
+      try {
+
+        if (this.msgLogin) {
+          this.$toast.success(this.msgLogin);
+          this.setMsgLogin("");
+        }
+        
+      
+      } catch (error) {
+        console.log("login Error: ",error)
+      }
+    
+    },
+  },
+  mounted() {
+    this.verificaLogado();
+
   },
 };
 </script>

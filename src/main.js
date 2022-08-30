@@ -118,7 +118,7 @@ router.beforeEach((to, from, next) => {
                 "logado": to.params.token[0],
                 "usuario": to.params.token[1],
             })
-            //Toaster.success("Usuário cadastrado com sucesso");
+            store.commit("setMsgLogin", `Seja Bem vindo ${to.params.token[1]}!`);
             next("/menu/gera/inventario");
         }else{
             next()
