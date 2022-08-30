@@ -200,7 +200,7 @@ export default {
     }),
   },
   methods: {
-    ...mapActions(["autentica", "insereUsuario", "salvaUsuariosDB"]),
+    ...mapActions(["autentica", "insereUsuario"]),
     ...mapMutations(["setModalCadastroShow", "setSucessoCadastro", "setSucessoLogin", "setSucessoLogin"]),
     showModal(){
       this.setModalCadastroShow(true);

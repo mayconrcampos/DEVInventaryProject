@@ -55,12 +55,10 @@ export default {
               usuario
             )
             .then(() => {
-              //console.log("RESPONSE RECEIVED: ", res.data);
               context.commit("setModalCadastroShow", false);
               context.commit("setSucessoCadastro", true);
             })
             .catch(() => {
-              //console.log("AXIOS ERROR: ", err.response.data);
               context.commit("setModalCadastroShow", false);
               context.commit("setSucessoCadastro", false);
             })
@@ -90,25 +88,5 @@ export default {
             console.log(err.response.data.error)
           })
         },
-        salvaUsuariosDB(context) {
-            var dados = JSON.stringify(context.state.usuarios)
-            localStorage.setItem("usuariosDB", dados)
-        },
-        carregaUsuariosDB(context) {
-            context.commit("setUsuarios")
-            try {
-                var dados = localStorage.getItem("usuariosDB")
-
-                if (dados.length > 0 || dados !== null) {
-                    dados = JSON.parse(dados)
-                    for (let index = 0; index < dados.length; index++) {
-                        context.commit("addUsuario", dados[index])
-                    }
-                }
-
-            } catch (error) {
-                console.log("localStorage Vazia: " + error)
-            }
-        }
     },
 }
